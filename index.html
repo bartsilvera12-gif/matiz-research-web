@@ -750,11 +750,9 @@ class Component extends DCLogic {
       const s = window.scrollY > 24;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
       if (this.tickInv) this.tickInv();
-      const portal = document.querySelector('[data-screen-label="Hero"] section[id^="gp-"]');
       const hero = document.querySelector('[data-screen-label="Hero"]');
       const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
-      const stillOnHero = heroBottom > (this.state.headerH || 0);
-      const over = this.state.page === 'Home' && stillOnHero && (!portal || Number(portal.dataset.gpProgress || 0) > 0.45 || window.scrollY < 4);
+      const over = this.state.page === 'Home' && heroBottom > (this.state.headerH || 0);
       if (over !== this.state.heroDark) this.setState({ heroDark: over });
     };
     let saved = null;
