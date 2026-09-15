@@ -19,7 +19,8 @@
   :root { --ink: #000; --paper: #fff; --muted: #788389; }
   html[data-theme="dark"] { --ink: #fff; --paper: #000; --muted: #000; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); background: var(--paper); text-wrap: pretty; overflow-x: hidden; }
+  html { overflow-x: clip; }
+  body { margin: 0; font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); background: var(--paper); text-wrap: pretty; overflow-x: clip; }
   * { box-sizing: border-box; }
   a { color: var(--ink); text-decoration: none; }
   a:hover { color: #788389; }
