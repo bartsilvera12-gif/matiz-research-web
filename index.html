@@ -65,10 +65,10 @@
   <div data-page="Home" style="display:{{ pgHome }}">
   <section id="inicio" data-screen-label="Hero">
     <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
-      <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);color:var(--paper)">
-        <h1 style="font-weight:600;font-size:clamp(34px,6.4vw,92px);line-height:.98;letter-spacing:-.04em;max-width:16ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
+      <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(16px,2vw,28px);color:var(--paper)">
+        <h1 style="font-weight:600;font-size:clamp(26px,4.2vw,58px);line-height:1;letter-spacing:-.03em;max-width:20ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
 
-        <div data-hero-net style="position:relative;display:grid;grid-template-columns:{{ netCols }};align-items:center;gap:clamp(14px,2.2vw,36px) clamp(18px,3vw,56px);border-top:1px solid #788389;padding-top:clamp(20px,2.4vw,32px)">
+        <div data-hero-net style="position:relative;display:grid;grid-template-columns:{{ netCols }};align-items:center;gap:clamp(10px,1.6vw,24px) clamp(18px,3vw,56px);border-top:1px solid #788389;padding-top:clamp(14px,1.8vw,22px)">
           <svg aria-hidden="true" viewBox="{{ netViewBox }}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
             <sc-for list="{{ netPaths }}" as="p" hint-placeholder-count="0">
               <path d="{{ p.d }}" fill="none" stroke="#788389" stroke-width="1" opacity="{{ p.opacity }}" style="transition:opacity .4s ease"></path>
@@ -87,7 +87,7 @@
             </ul>
           </div>
 
-          <div data-mark style="position:relative;justify-self:center;width:clamp(96px,11vw,148px);aspect-ratio:1;border-radius:50%;background:var(--paper);display:grid;place-items:center">
+          <div data-mark style="position:relative;justify-self:center;width:clamp(72px,8vw,110px);aspect-ratio:1;border-radius:50%;background:var(--paper);display:grid;place-items:center">
             <img src="logo-matiz-m.svg" alt="Matiz" style="display:{{ logoOnPaper }};width:52%;height:auto" />
             <img src="logo-matiz-m-dark.svg" alt="Matiz" style="display:{{ logoOnInk }};width:52%;height:auto;grid-area:1 / 1" />
           </div>
@@ -102,14 +102,14 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,48px);max-width:1060px;border-top:1px solid #788389;padding-top:clamp(20px,2.4vw,32px)">
-          <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.6">En Matiz Research ayudamos a empresas a comprender a sus consumidores, evaluar sus marcas y productos e identificar oportunidades a través de estudios de mercado diseñados a medida.</p>
-          <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.6">También somos aliados de consultoras y agencias de investigación que necesitan soporte de fieldwork confiable en Paraguay y Latinoamérica, acompañando la puesta en marcha y ejecución de sus proyectos.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(16px,2.4vw,36px);max-width:1060px;border-top:1px solid #788389;padding-top:clamp(14px,1.8vw,22px)">
+          <p style="font-size:clamp(13.5px,1vw,15.5px);line-height:1.55">En Matiz Research ayudamos a empresas a comprender a sus consumidores, evaluar sus marcas y productos e identificar oportunidades a través de estudios de mercado diseñados a medida.</p>
+          <p style="font-size:clamp(13.5px,1vw,15.5px);line-height:1.55">También somos aliados de consultoras y agencias de investigación que necesitan soporte de fieldwork confiable en Paraguay y Latinoamérica, acompañando la puesta en marcha y ejecución de sus proyectos.</p>
         </div>
 
-        <div style="display:flex;flex-wrap:wrap;gap:14px">
-          <a href="#investigacion" onMouseEnter="{{ hoverResearch }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverResearch }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:58px;display:inline-flex;align-items:center;padding:18px 28px;border:1px solid var(--paper);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Quiero realizar un estudio</a>
-          <a href="#fieldwork" onMouseEnter="{{ hoverField }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverField }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:58px;display:inline-flex;align-items:center;padding:18px 28px;border:1px solid var(--paper);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Necesito soporte de fieldwork</a>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#investigacion" onMouseEnter="{{ hoverResearch }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverResearch }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:46px;display:inline-flex;align-items:center;padding:12px 22px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Quiero realizar un estudio</a>
+          <a href="#fieldwork" onMouseEnter="{{ hoverField }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverField }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:46px;display:inline-flex;align-items:center;padding:12px 22px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Necesito soporte de fieldwork</a>
         </div>
       </div>
     </x-import>
