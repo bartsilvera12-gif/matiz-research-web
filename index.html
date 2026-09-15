@@ -27,7 +27,7 @@
   ul { list-style: none; }
   button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-  section[data-screen-label="Hero"] section[id^="gp-"] { --gp-paper: var(--ink); --gp-ink: var(--paper); --gp-field: var(--ink); --gp-foreground: var(--paper); font-family: Montserrat, Helvetica, Arial, sans-serif; }
+  section[data-screen-label="Hero"] section[id^="gp-"] { --gp-paper: var(--paper); --gp-ink: var(--ink); --gp-field: var(--ink); --gp-foreground: var(--paper); font-family: Montserrat, Helvetica, Arial, sans-serif; }
   section[data-screen-label="Hero"] [data-gp-content] a { color: var(--paper); }
   @keyframes mtzDot { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
   @keyframes mtzLine { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
@@ -61,7 +61,7 @@
 
 <main>
   <div data-page="Home" style="display:{{ pgHome }}">
-  <section id="inicio" data-screen-label="Hero" style="background:var(--ink);color:var(--paper)">
+  <section id="inicio" data-screen-label="Hero">
     <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
       <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);color:var(--paper)">
         <h1 style="font-weight:600;font-size:clamp(34px,6.4vw,92px);line-height:.98;letter-spacing:-.04em;max-width:16ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
@@ -733,7 +733,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido pendiente&quot;},&quot;socialEnabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido pendiente&quot;}}">
 class Component extends DCLogic {
-  state = { dark: false, study: 0, method: 0, svc: -1, heroDark: true, net: null, netW: 0, headerH: 0, scrolled: false, invP: 0, page: 'Home', hover: null, infra: 0, maps: null, pyIn: false, market: null, formMsg: '' };
+  state = { dark: false, study: 0, method: 0, svc: -1, heroDark: false, net: null, netW: 0, headerH: 0, scrolled: false, invP: 0, page: 'Home', hover: null, infra: 0, maps: null, pyIn: false, market: null, formMsg: '' };
 
   route() {
     const h = (window.location.hash || '').replace(/^#\/?/, '');
@@ -747,9 +747,12 @@ class Component extends DCLogic {
       const s = window.scrollY > 24;
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
       if (this.tickInv) this.tickInv();
+      const portal = document.querySelector('[data-screen-label="Hero"] section[id^="gp-"]');
       const hero = document.querySelector('[data-screen-label="Hero"]');
       const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
-      const over = this.state.page === 'Home' && heroBottom > (this.state.headerH || 0);
+      const stillOnHero = heroBottom > (this.state.headerH || 0);
+      const progress = portal ? Number(portal.dataset.gpProgress || 0) : 0;
+      const over = this.state.page === 'Home' && stillOnHero && progress > 0.35;
       if (over !== this.state.heroDark) this.setState({ heroDark: over });
     };
     let saved = null;
