@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Matiz Research | Investigación de Mercado &amp; Fieldwork LATAM</title>
+<meta name="description" content="Matiz Research diseña estudios de mercado a medida y brinda soporte de fieldwork a consultoras y agencias de investigación en Paraguay y Latinoamérica." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  :root { --ink: #000; --paper: #fff; --muted: #788389; }
+  html[data-theme="dark"] { --ink: #fff; --paper: #000; --muted: #000; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); background: var(--paper); text-wrap: pretty; overflow-x: hidden; }
+  * { box-sizing: border-box; }
+  a { color: var(--ink); text-decoration: none; }
+  a:hover { color: #788389; }
+  h1, h2, h3, h4, p, ul, li, figure { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  section[data-screen-label="Hero"] section[id^="gp-"] { --gp-paper: var(--paper); --gp-ink: var(--ink); --gp-field: var(--ink); --gp-foreground: var(--paper); font-family: Montserrat, Helvetica, Arial, sans-serif; }
+  section[data-screen-label="Hero"] [data-gp-content] a { color: var(--paper); }
+  @keyframes mtzDot { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+  @keyframes mtzLine { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;background:{{ hdrBg }};color:{{ hdrFg }};border-bottom:1px solid {{ headerBorder }};transition:background .35s ease,color .35s ease,border-color .3s ease">
+  <div style="max-width:1320px;margin:0 auto;width:100%;padding:clamp(10px,1.2vw,14px) clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px clamp(16px,3vw,40px)">
+    <a href="#inicio" aria-label="Matiz Research, inicio" style="display:flex;align-items:center;flex-shrink:0;padding:6px 0">
+      <img src="logo-matiz.svg" alt="Matiz Research — Insights &amp; Fieldwork LATAM" style="display:{{ hdrLogoBlack }};height:clamp(40px,4.2vw,52px);width:auto" />
+      <img src="logo-matiz-dark.svg" alt="Matiz Research — Insights &amp; Fieldwork LATAM" style="display:{{ hdrLogoWhite }};height:clamp(40px,4.2vw,52px);width:auto" />
+    </a>
+
+    <nav aria-label="Navegación principal" style="flex:1 1 380px;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:clamp(10px,1.4vw,20px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:4px clamp(9px,1.2vw,19px);min-width:0">
+      <a href="#inicio" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navInicio }};padding-bottom:4px" style-hover="border-color:var(--muted)">Inicio</span></a>
+      <a href="#investigacion" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navInvestigacion }};padding-bottom:4px" style-hover="border-color:var(--muted)">Investigación de Mercado</span></a>
+      <a href="#fieldwork" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navFieldwork }};padding-bottom:4px" style-hover="border-color:var(--muted)">Fieldwork</span></a>
+      <a href="#capacidad" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navCapacidad }};padding-bottom:4px" style-hover="border-color:var(--muted)">Capacidad</span></a>
+      <a href="#nosotros" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navNosotros }};padding-bottom:4px" style-hover="border-color:var(--muted)">Nosotros</span></a>
+      <a href="#equipo" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navEquipo }};padding-bottom:4px" style-hover="border-color:var(--muted)">Equipo</span></a>
+      </div>
+      <a href="#contacto" style="flex-shrink:0;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;padding:0 16px;border:1px solid currentColor;color:inherit;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:border-color .25s ease">Hablemos</a>
+      <button type="button" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" aria-pressed="{{ isDark }}" title="{{ themeLabel }}" style="flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;width:46px;height:26px;padding:3px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;opacity:.75;transition:opacity .25s ease" style-hover="opacity:1">
+        <span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;background:currentColor;transform:translateX({{ knobX }});transition:transform .3s ease"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div data-page="Home" style="display:{{ pgHome }}">
+  <section id="inicio" data-screen-label="Hero">
+    <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
+      <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);color:var(--paper)">
+        <h1 style="font-weight:600;font-size:clamp(34px,6.4vw,92px);line-height:.98;letter-spacing:-.04em;max-width:16ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
+
+        <div data-hero-net style="position:relative;display:grid;grid-template-columns:{{ netCols }};align-items:center;gap:clamp(14px,2.2vw,36px) clamp(18px,3vw,56px);border-top:1px solid #788389;padding-top:clamp(20px,2.4vw,32px)">
+          <svg aria-hidden="true" viewBox="{{ netViewBox }}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
+            <sc-for list="{{ netPaths }}" as="p" hint-placeholder-count="0">
+              <path d="{{ p.d }}" fill="none" stroke="#788389" stroke-width="1" opacity="{{ p.opacity }}" style="transition:opacity .4s ease"></path>
+            </sc-for>
+            <sc-for list="{{ netDots }}" as="p" hint-placeholder-count="0">
+              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="3" opacity="{{ p.opacity }}" style="fill:var(--paper);transition:opacity .4s ease"></circle>
+            </sc-for>
+          </svg>
+
+          <div style="position:relative">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:{{ researchOpacity }};transition:opacity .4s ease">Investigación</p>
+            <ul style="margin-top:14px;display:flex;flex-direction:column;gap:9px;opacity:{{ researchOpacity }};transition:opacity .4s ease">
+              <li data-node="l" style="display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Comprender</span></li>
+              <li data-node="l" style="display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Interpretar</span></li>
+              <li data-node="l" style="display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Transformar datos en insights</span></li>
+            </ul>
+          </div>
+
+          <div data-mark style="position:relative;justify-self:center;width:clamp(96px,11vw,148px);aspect-ratio:1;border-radius:50%;background:var(--paper);display:grid;place-items:center">
+            <img src="logo-matiz-m.svg" alt="Matiz" style="display:{{ logoOnPaper }};width:52%;height:auto" />
+            <img src="logo-matiz-m-dark.svg" alt="Matiz" style="display:{{ logoOnInk }};width:52%;height:auto;grid-area:1 / 1" />
+          </div>
+
+          <div style="position:relative;text-align:right">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:{{ fieldOpacity }};transition:opacity .4s ease">Fieldwork</p>
+            <ul style="margin-top:14px;display:flex;flex-direction:column;gap:9px;opacity:{{ fieldOpacity }};transition:opacity .4s ease">
+              <li data-node="r" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Ejecutar</span></li>
+              <li data-node="r" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Coordinar</span></li>
+              <li data-node="r" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Llegar al terreno y hacerlo posible</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,48px);max-width:1060px;border-top:1px solid #788389;padding-top:clamp(20px,2.4vw,32px)">
+          <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.6">En Matiz Research ayudamos a empresas a comprender a sus consumidores, evaluar sus marcas y productos e identificar oportunidades a través de estudios de mercado diseñados a medida.</p>
+          <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.6">También somos aliados de consultoras y agencias de investigación que necesitan soporte de fieldwork confiable en Paraguay y Latinoamérica, acompañando la puesta en marcha y ejecución de sus proyectos.</p>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px">
+          <a href="#investigacion" onMouseEnter="{{ hoverResearch }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverResearch }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:58px;display:inline-flex;align-items:center;padding:18px 28px;border:1px solid var(--paper);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Quiero realizar un estudio</a>
+          <a href="#fieldwork" onMouseEnter="{{ hoverField }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverField }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:58px;display:inline-flex;align-items:center;padding:18px 28px;border:1px solid var(--paper);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Necesito soporte de fieldwork</a>
+        </div>
+      </div>
+    </x-import>
+  </section>
+
+  <section data-screen-label="Dos áreas" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <h2 data-reveal style="max-width:22ch;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.06;letter-spacing:-.025em">Dos áreas. <span style="color:#788389">Un mismo compromiso con cada proyecto.</span></h2>
+      <p data-reveal style="margin-top:22px;max-width:56ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Matiz no busca ser un proveedor más. Busca convertirse en un aliado que se involucra en cada proyecto y encuentra la manera de hacerlo posible.</p>
+      <div data-reveal style="margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,72px)">
+        <div style="border-top:1px solid var(--ink);padding-top:26px">
+          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Investigación de Mercado</p>
+          <h3 style="margin-top:18px;font-weight:600;font-size:clamp(22px,2.4vw,34px);line-height:1.12;letter-spacing:-.025em;max-width:20ch">De la pregunta de negocio a los insights.</h3>
+          <p style="margin-top:16px;max-width:48ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Diseñamos investigaciones a medida para entender a tus consumidores, evaluar marcas, productos y servicios e identificar oportunidades.</p>
+          <a href="#investigacion" style="margin-top:24px;display:inline-flex;align-items:center;min-height:48px;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:6px" style-hover="border-color:var(--muted)">Ver Investigación de Mercado →</a>
+        </div>
+        <div style="border-top:1px solid var(--ink);padding-top:26px">
+          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Fieldwork &amp; Research Support</p>
+          <h3 style="margin-top:18px;font-weight:600;font-size:clamp(22px,2.4vw,34px);line-height:1.12;letter-spacing:-.025em;max-width:20ch">Todo lo necesario para poner tu estudio en marcha.</h3>
+          <p style="margin-top:16px;max-width:48ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Nos convertimos en el equipo local de consultoras y agencias, aportando personas, estructura, logística, coordinación y control.</p>
+          <a href="#fieldwork" style="margin-top:24px;display:inline-flex;align-items:center;min-height:48px;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:6px" style-hover="border-color:var(--muted)">Ver Fieldwork →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-inv data-screen-label="Declaración" style="position:relative;height:{{ invHeight }};background:var(--paper);border-top:1px solid #788389">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;top:50%;left:50%;border-radius:50%;background:var(--ink);width:{{ invBallSize }};height:{{ invBallSize }};transform:translate(-50%,calc(-50% + {{ invBallY }}));will-change:transform,width,height"></div>
+      <div aria-hidden="false" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 clamp(20px,6vw,80px);pointer-events:none;color:var(--ink);z-index:2">
+        <h2 style="font-weight:600;font-size:clamp(30px,5.2vw,76px);line-height:1.0;letter-spacing:-.035em;max-width:18ch">No queremos ser un proveedor más.</h2>
+        <p style="margin-top:clamp(18px,2vw,28px);font-weight:500;font-size:clamp(17px,2vw,30px);line-height:1.24;letter-spacing:-.02em;max-width:30ch">Queremos ser el equipo al que llamás cuando necesitás entender, resolver y hacerlo posible.</p>
+      </div>
+      <div aria-hidden="true" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 clamp(20px,6vw,80px);pointer-events:none;color:var(--paper);z-index:3;clip-path:{{ invClip }}">
+        <h2 style="font-weight:600;font-size:clamp(30px,5.2vw,76px);line-height:1.0;letter-spacing:-.035em;max-width:18ch">No queremos ser un proveedor más.</h2>
+        <p style="margin-top:clamp(18px,2vw,28px);font-weight:500;font-size:clamp(17px,2vw,30px);line-height:1.24;letter-spacing:-.02em;max-width:30ch">Queremos ser el equipo al que llamás cuando necesitás entender, resolver y hacerlo posible.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Propuesta de valor" style="padding:clamp(80px,10vw,160px) clamp(20px,5vw,64px);background:var(--ink);color:var(--paper)">
+    <div style="max-width:1100px;margin:0 auto;width:100%">
+      <svg viewBox="0 0 600 60" aria-hidden="true" style="width:100%;max-width:420px;height:auto;display:block;margin-bottom:clamp(32px,4vw,56px)">
+        <path d="M0,46 C70,46 76,12 132,12 C190,12 196,46 252,46 C310,46 316,14 372,14 C430,14 438,44 500,44 L562,44" fill="none" stroke="#788389" stroke-width="1" />
+        <circle cx="568" cy="44" r="5" style="fill:var(--paper)" />
+      </svg>
+      <p data-reveal style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Nuestra forma de trabajar</p>
+      <div data-reveal style="margin-top:clamp(28px,3vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,48px);border-top:1px solid #788389;padding-top:clamp(24px,3vw,40px)">
+        <p style="font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;color:var(--paper)">Sabemos lo que significa trabajar con tiempos ajustados, perfiles difíciles, mercados nuevos, presupuestos que deben cerrar y clientes que esperan respuestas.</p>
+        <div>
+          <p style="font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;color:var(--paper)">Por eso nuestro trabajo no termina en cotizar un servicio.</p>
+          <p style="margin-top:16px;font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;color:var(--paper)">Nos involucramos, proponemos alternativas y buscamos la manera de que cada proyecto pueda realizarse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Experiencia" style="padding:clamp(64px,8vw,112px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <h2 data-reveal style="max-width:24ch;font-weight:600;font-size:clamp(26px,3.4vw,50px);line-height:1.06;letter-spacing:-.03em">Más de una década <span style="color:#788389">entendiendo mercados desde el terreno.</span></h2>
+      <p data-reveal style="margin-top:22px;max-width:58ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink)">Más de 10 años de experiencia en investigación de mercados, estudios sociales y opinión pública, trabajando con consultoras y empresas nacionales e internacionales.</p>
+      <div data-reveal style="margin-top:clamp(36px,4vw,64px);border-top:1px solid #788389;padding-top:clamp(24px,3vw,36px)">
+        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Experiencia en múltiples categorías</p>
+        <p style="margin-top:24px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 22px;letter-spacing:-.02em;line-height:1.05">
+          <span style="font-weight:600;font-size:clamp(22px,2.8vw,40px)">Bebidas</span>
+          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Alimentos</span>
+          <span style="font-weight:600;font-size:clamp(20px,2.4vw,34px)">Supermercados</span>
+          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Telecomunicaciones</span>
+          <span style="font-weight:600;font-size:clamp(22px,2.8vw,40px)">Cosméticos</span>
+          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Indumentarias</span>
+          <span style="font-weight:600;font-size:clamp(20px,2.2vw,32px)">Golosinas</span>
+          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Inmobiliarias</span>
+          <span style="font-weight:600;font-size:clamp(20px,2.4vw,34px)">Cigarrillos</span>
+          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Seguros</span>
+          <span style="font-weight:600;font-size:clamp(22px,2.8vw,40px)">Educación</span>
+          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Salud</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div data-page="Investigacion" style="display:{{ pgInvestigacion }}">
+  <section id="investigacion" data-screen-label="Investigación de Mercado" style="scroll-margin-top:80px;padding:clamp(56px,7vw,104px) clamp(20px,5vw,64px) clamp(48px,6vw,88px);background:var(--ink);color:var(--paper);min-height:72vh;display:flex;align-items:center">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase">Investigación de Mercado</p>
+      <h2 style="margin-top:clamp(24px,3vw,44px);font-weight:600;font-size:clamp(38px,6.6vw,104px);line-height:.97;letter-spacing:-.04em;max-width:15ch">De la pregunta de negocio <span style="color:#788389">a los insights.</span></h2>
+      <div style="margin-top:clamp(36px,4.5vw,72px);border-top:1px solid #788389;padding-top:clamp(22px,2.6vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(20px,3vw,56px);align-items:start">
+        <p style="font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;max-width:52ch">Diseñamos investigaciones a medida para ayudarte a entender qué piensan y cómo se comportan tus consumidores, evaluar marcas, productos y servicios e identificar oportunidades para tomar mejores decisiones.</p>
+        <a href="#contacto" style="justify-self:start;display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:17px 28px;border:1px solid var(--paper);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Quiero conocer más sobre mi mercado →</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Qué podemos estudiar" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,72px);align-items:start">
+      <div data-reveal>
+        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Qué podemos estudiar</p>
+        <div style="margin-top:clamp(20px,2.4vw,34px)">
+          <button type="button" onMouseEnter="{{ study0 }}" onFocus="{{ study0 }}" onClick="{{ study0 }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:18px;width:100%;padding:clamp(16px,1.8vw,26px) 0;border:0;border-top:1px solid #788389;background:none;text-align:left;cursor:pointer;color:{{ study0Color }};transition:color .3s ease">
+            <span style="font-weight:600;font-size:clamp(26px,4vw,60px);line-height:1;letter-spacing:-.035em">Consumidor</span>
+            <span aria-hidden="true" style="flex-shrink:0;width:{{ study0Bar }};height:1px;background:currentColor;transition:width .35s ease;align-self:center"></span>
+          </button>
+          <button type="button" onMouseEnter="{{ study1 }}" onFocus="{{ study1 }}" onClick="{{ study1 }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:18px;width:100%;padding:clamp(16px,1.8vw,26px) 0;border:0;border-top:1px solid #788389;background:none;text-align:left;cursor:pointer;color:{{ study1Color }};transition:color .3s ease">
+            <span style="font-weight:600;font-size:clamp(26px,4vw,60px);line-height:1;letter-spacing:-.035em">Marca</span>
+            <span aria-hidden="true" style="flex-shrink:0;width:{{ study1Bar }};height:1px;background:currentColor;transition:width .35s ease;align-self:center"></span>
+          </button>
+          <button type="button" onMouseEnter="{{ study2 }}" onFocus="{{ study2 }}" onClick="{{ study2 }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:18px;width:100%;padding:clamp(16px,1.8vw,26px) 0;border:0;border-top:1px solid #788389;background:none;text-align:left;cursor:pointer;color:{{ study2Color }};transition:color .3s ease">
+            <span style="font-weight:600;font-size:clamp(26px,4vw,60px);line-height:1;letter-spacing:-.035em">Factibilidad</span>
+            <span aria-hidden="true" style="flex-shrink:0;width:{{ study2Bar }};height:1px;background:currentColor;transition:width .35s ease;align-self:center"></span>
+          </button>
+          <button type="button" onMouseEnter="{{ study3 }}" onFocus="{{ study3 }}" onClick="{{ study3 }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:18px;width:100%;padding:clamp(16px,1.8vw,26px) 0;border:0;border-top:1px solid #788389;background:none;text-align:left;cursor:pointer;color:{{ study3Color }};transition:color .3s ease">
+            <span style="font-weight:600;font-size:clamp(26px,4vw,60px);line-height:1;letter-spacing:-.035em">Opinión pública</span>
+            <span aria-hidden="true" style="flex-shrink:0;width:{{ study3Bar }};height:1px;background:currentColor;transition:width .35s ease;align-self:center"></span>
+          </button>
+        </div>
+      </div>
+      <div data-reveal style="position:sticky;top:120px;border-top:1px solid var(--ink);padding-top:clamp(20px,2.4vw,32px)">
+        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Qué mira este territorio</p>
+        <div style="margin-top:clamp(18px,2vw,28px);min-height:150px">
+            <div style="display:{{ study0Show }}">
+              <ul style="display:flex;flex-direction:column;gap:10px">
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Hábitos</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Actitudes</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Segmentación</li>
+              </ul>
+            </div>
+            <div style="display:{{ study1Show }}">
+              <ul style="display:flex;flex-direction:column;gap:10px">
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Posicionamiento</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Salud de marca</li>
+              </ul>
+            </div>
+            <div style="display:{{ study2Show }}">
+              <ul style="display:flex;flex-direction:column;gap:10px">
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Testeo</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Precios</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Ubicación</li>
+              </ul>
+            </div>
+            <div style="display:{{ study3Show }}">
+              <ul style="display:flex;flex-direction:column;gap:10px">
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Foto electoral</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Tendencias</li>
+                <li style="font-weight:500;font-size:clamp(17px,1.7vw,26px);letter-spacing:-.02em;line-height:1.2">Opiniones generales</li>
+              </ul>
+            </div>
+        </div>
+        <p style="margin-top:clamp(28px,3vw,44px);padding-top:22px;border-top:1px solid #788389;font-weight:600;font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Entender antes de decidir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Metodologías" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--ink);color:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:16px">
+        <h2 style="font-weight:600;font-size:clamp(30px,4.4vw,64px);line-height:1;letter-spacing:-.035em">Metodologías</h2>
+        <p style="font-size:clamp(14px,1vw,16px);color:var(--paper);max-width:40ch">Del terreno a los insights: elegimos la técnica según la pregunta, no al revés.</p>
+      </div>
+
+      <div data-reveal style="margin-top:clamp(36px,4.5vw,72px);min-height:clamp(120px,14vw,170px)">
+          <div style="display:{{ m0Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Cualitativas</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Sesiones grupales moderadas para explorar percepciones, lenguaje y motivaciones.</p>
+          </div>
+          <div style="display:{{ m1Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Cualitativas</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Conversaciones individuales para llegar al detalle de una experiencia o una decisión.</p>
+          </div>
+          <div style="display:{{ m2Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Cualitativas</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Observación en el contexto real de uso, compra o consumo.</p>
+          </div>
+          <div style="display:{{ m3Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Cuantitativas</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Relevamiento cara a cara, en hogares, puntos de venta o vía pública.</p>
+          </div>
+          <div style="display:{{ m4Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Cuantitativas</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Entrevistas telefónicas con supervisión y control durante todo el campo.</p>
+          </div>
+          <div style="display:{{ m5Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Cuantitativas</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Cuestionarios autoadministrados para llegar rápido a muestras dispersas.</p>
+          </div>
+          <div style="display:{{ m6Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Técnicas complementarias</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Visitas simuladas para evaluar la experiencia de atención tal como ocurre.</p>
+          </div>
+          <div style="display:{{ m7Show }}">
+            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Técnicas complementarias</p>
+            <p style="margin-top:14px;font-weight:500;font-size:clamp(20px,2.4vw,34px);line-height:1.22;letter-spacing:-.025em;max-width:24ch">Análisis de la información secundaria ya disponible sobre el mercado.</p>
+          </div>
+      </div>
+
+      <div data-reveal style="margin-top:clamp(28px,3vw,44px);position:relative;border-top:1px solid #788389;padding-top:22px">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,52px)">
+            <button type="button" onMouseEnter="{{ m0 }}" onFocus="{{ m0 }}" onClick="{{ m0 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m0Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m0Size }};height:{{ m0Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Focus groups</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m1 }}" onFocus="{{ m1 }}" onClick="{{ m1 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m1Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m1Size }};height:{{ m1Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Entrevistas en profundidad</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m2 }}" onFocus="{{ m2 }}" onClick="{{ m2 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m2Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m2Size }};height:{{ m2Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Etnografía</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m3 }}" onFocus="{{ m3 }}" onClick="{{ m3 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m3Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m3Size }};height:{{ m3Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Encuestas presenciales (F2F)</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m4 }}" onFocus="{{ m4 }}" onClick="{{ m4 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m4Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m4Size }};height:{{ m4Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Encuestas telefónicas (CATI)</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m5 }}" onFocus="{{ m5 }}" onClick="{{ m5 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m5Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m5Size }};height:{{ m5Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Encuestas online</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m6 }}" onFocus="{{ m6 }}" onClick="{{ m6 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m6Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m6Size }};height:{{ m6Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Mystery shopper</span>
+            </button>
+            <button type="button" onMouseEnter="{{ m7 }}" onFocus="{{ m7 }}" onClick="{{ m7 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m7Color }};transition:color .3s ease;min-height:52px">
+              <span aria-hidden="true" style="width:{{ m7Size }};height:{{ m7Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
+              <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Desk research</span>
+            </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Cómo trabajamos" style="padding:clamp(64px,8vw,112px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <h2 data-reveal style="font-weight:600;font-size:clamp(26px,3.4vw,50px);line-height:1.06;letter-spacing:-.03em;max-width:20ch">Cómo trabajamos</h2>
+      <div data-reveal style="margin-top:clamp(36px,4vw,64px);display:flex;flex-wrap:wrap;gap:0 clamp(16px,2vw,32px)">
+        <div style="flex:1 1 190px;min-width:170px;position:relative;padding:28px 0 0">
+          <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:#788389"></div>
+          <div aria-hidden="true" style="position:absolute;top:-3.5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--ink)"></div>
+          <p style="font-weight:600;font-size:clamp(16px,1.4vw,20px);line-height:1.25;letter-spacing:-.015em">Definición del problema</p>
+        </div>
+        <div style="flex:1 1 190px;min-width:170px;position:relative;padding:28px 0 0">
+          <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:#788389"></div>
+          <div aria-hidden="true" style="position:absolute;top:-3.5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--ink)"></div>
+          <p style="font-weight:600;font-size:clamp(16px,1.4vw,20px);line-height:1.25;letter-spacing:-.015em">Diseño metodológico</p>
+        </div>
+        <div style="flex:1 1 190px;min-width:170px;position:relative;padding:28px 0 0">
+          <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:#788389"></div>
+          <div aria-hidden="true" style="position:absolute;top:-3.5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--ink)"></div>
+          <p style="font-weight:600;font-size:clamp(16px,1.4vw,20px);line-height:1.25;letter-spacing:-.015em">Relevamiento</p>
+        </div>
+        <div style="flex:1 1 190px;min-width:170px;position:relative;padding:28px 0 0">
+          <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:#788389"></div>
+          <div aria-hidden="true" style="position:absolute;top:-3.5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--ink)"></div>
+          <p style="font-weight:600;font-size:clamp(16px,1.4vw,20px);line-height:1.25;letter-spacing:-.015em">Análisis</p>
+        </div>
+        <div style="flex:1 1 190px;min-width:170px;position:relative;padding:28px 0 0">
+          <div aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:1px;background:#788389"></div>
+          <div aria-hidden="true" style="position:absolute;top:-3.5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--ink)"></div>
+          <div aria-hidden="true" style="position:absolute;top:-4.5px;right:0;width:10px;height:10px;border-radius:50%;background:var(--ink)"></div>
+          <p style="font-weight:600;font-size:clamp(16px,1.4vw,20px);line-height:1.25;letter-spacing:-.015em">Presentación de insights</p>
+        </div>
+      </div>
+
+      <div data-reveal style="margin-top:clamp(48px,6vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,64px)">
+        <h3 style="font-weight:600;font-size:clamp(22px,2.4vw,34px);line-height:1.1;letter-spacing:-.025em;max-width:18ch">Por qué trabajar con Matiz</h3>
+        <ul style="display:flex;flex-direction:column">
+          <li style="padding:16px 0;border-bottom:1px solid #788389;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Conocimiento profundo del mercado paraguayo</li>
+          <li style="padding:16px 0;border-bottom:1px solid #788389;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Experiencia regional y red de colaboradores</li>
+          <li style="padding:16px 0;border-bottom:1px solid #788389;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Insights accionables</li>
+          <li style="padding:16px 0;border-bottom:1px solid #788389;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Comunicación clara y constante</li>
+          <li style="padding:16px 0;border-bottom:1px solid #788389;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Cumplimiento de tiempos y entregables</li>
+          <li style="padding:16px 0;border-bottom:1px solid #788389;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Reclutamiento preciso y supervisión activa</li>
+          <li style="padding:16px 0;font-size:clamp(15px,1.15vw,17.5px);font-weight:500">Control riguroso de calidad de los datos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div data-page="Fieldwork" style="display:{{ pgFieldwork }}">
+  <section id="fieldwork" data-screen-label="Fieldwork" style="scroll-margin-top:80px;padding:clamp(56px,7vw,104px) clamp(20px,5vw,64px) clamp(48px,6vw,88px);background:var(--ink);color:var(--paper);min-height:72vh;display:flex;align-items:center">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase">Fieldwork &amp; Research Support</p>
+      <h2 style="margin-top:clamp(24px,3vw,44px);font-weight:600;font-size:clamp(38px,6.6vw,104px);line-height:.97;letter-spacing:-.04em;max-width:14ch">Todo lo necesario <span style="color:#788389">para poner tu estudio en marcha.</span></h2>
+      <div style="margin-top:clamp(36px,4.5vw,72px);border-top:1px solid #788389;padding-top:clamp(22px,2.6vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(20px,3vw,56px);align-items:start">
+        <p style="font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;max-width:52ch">Somos especialistas en ejecución y soporte de trabajo de campo. Nos convertimos en el equipo local de consultoras y agencias de investigación, aportando las personas, estructura, logística, coordinación y control necesarios para llevar cada proyecto a la realidad.</p>
+        <a href="#contacto" style="justify-self:start;display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:17px 28px;border:1px solid var(--paper);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Necesito soporte de fieldwork →</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Servicios de fieldwork" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,72px);align-items:start">
+      <div data-reveal>
+        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Servicios</p>
+        <p style="margin-top:clamp(18px,2vw,30px);font-weight:600;font-size:clamp(24px,2.8vw,40px);line-height:1.1;letter-spacing:-.03em;max-width:16ch">El equipo local de tu proyecto, donde haga falta.</p>
+      </div>
+      <ul data-reveal style="grid-column:span 2;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0 clamp(28px,4vw,72px)">
+          <li style="border-top:1px solid #788389">
+            <div onMouseEnter="{{ svc0 }}" onMouseLeave="{{ svcOut }}" style="display:flex;align-items:baseline;gap:18px;padding:clamp(16px,1.8vw,26px) 0;transform:translateX({{ svc0X }});transition:transform .3s ease">
+              <span aria-hidden="true" style="flex-shrink:0;width:{{ svc0Bar }};height:1px;background:var(--ink);align-self:center;transition:width .3s ease"></span>
+              <span style="font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Fieldwork en Paraguay para estudios internacionales</span>
+            </div>
+          </li>
+          <li style="border-top:1px solid #788389">
+            <div onMouseEnter="{{ svc1 }}" onMouseLeave="{{ svcOut }}" style="display:flex;align-items:baseline;gap:18px;padding:clamp(16px,1.8vw,26px) 0;transform:translateX({{ svc1X }});transition:transform .3s ease">
+              <span aria-hidden="true" style="flex-shrink:0;width:{{ svc1Bar }};height:1px;background:var(--ink);align-self:center;transition:width .3s ease"></span>
+              <span style="font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Coordinación de trabajo de campo en Latinoamérica</span>
+            </div>
+          </li>
+          <li style="border-top:1px solid #788389">
+            <div onMouseEnter="{{ svc2 }}" onMouseLeave="{{ svcOut }}" style="display:flex;align-items:baseline;gap:18px;padding:clamp(16px,1.8vw,26px) 0;transform:translateX({{ svc2X }});transition:transform .3s ease">
+              <span aria-hidden="true" style="flex-shrink:0;width:{{ svc2Bar }};height:1px;background:var(--ink);align-self:center;transition:width .3s ease"></span>
+              <span style="font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Reclutamiento de participantes</span>
+            </div>
+          </li>
+          <li style="border-top:1px solid #788389">
+            <div onMouseEnter="{{ svc3 }}" onMouseLeave="{{ svcOut }}" style="display:flex;align-items:baseline;gap:18px;padding:clamp(16px,1.8vw,26px) 0;transform:translateX({{ svc3X }});transition:transform .3s ease">
+              <span aria-hidden="true" style="flex-shrink:0;width:{{ svc3Bar }};height:1px;background:var(--ink);align-self:center;transition:width .3s ease"></span>
+              <span style="font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Gestión logística de proyectos</span>
+            </div>
+          </li>
+          <li style="border-top:1px solid #788389">
+            <div onMouseEnter="{{ svc4 }}" onMouseLeave="{{ svcOut }}" style="display:flex;align-items:baseline;gap:18px;padding:clamp(16px,1.8vw,26px) 0;transform:translateX({{ svc4X }});transition:transform .3s ease">
+              <span aria-hidden="true" style="flex-shrink:0;width:{{ svc4Bar }};height:1px;background:var(--ink);align-self:center;transition:width .3s ease"></span>
+              <span style="font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Supervisión de campo</span>
+            </div>
+          </li>
+          <li style="border-top:1px solid #788389">
+            <div onMouseEnter="{{ svc5 }}" onMouseLeave="{{ svcOut }}" style="display:flex;align-items:baseline;gap:18px;padding:clamp(16px,1.8vw,26px) 0;transform:translateX({{ svc5X }});transition:transform .3s ease">
+              <span aria-hidden="true" style="flex-shrink:0;width:{{ svc5Bar }};height:1px;background:var(--ink);align-self:center;transition:width .3s ease"></span>
+              <span style="font-weight:500;font-size:clamp(19px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Control de calidad de datos</span>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </section>
+
+  <section data-screen-label="Declaración fieldwork" style="padding:clamp(72px,9vw,140px) clamp(20px,5vw,64px);background:var(--ink);color:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <p data-reveal style="font-weight:600;font-size:clamp(28px,4.6vw,72px);line-height:1.04;letter-spacing:-.035em;max-width:20ch">Nos involucramos, buscamos alternativas y <span style="color:#788389">encontramos la mejor manera de hacerlo posible.</span></p>
+    </div>
+  </section>
+
+  <section data-obs="py" data-screen-label="Cobertura Paraguay" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
+    <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(32px,5vw,80px)">
+      <div data-reveal style="flex:1 1 340px;min-width:280px">
+        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Cobertura local</p>
+        <h2 style="margin-top:20px;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em">Paraguay, de punta a punta.</h2>
+        <p style="margin-top:22px;max-width:46ch;font-size:clamp(16px,1.3vw,20px);line-height:1.5;font-weight:500">Nuestro mercado de origen y nuestra principal fortaleza operativa.</p>
+        <p style="margin-top:18px;max-width:50ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Contamos con experiencia coordinando estudios en Asunción, Área Metropolitana y distintos departamentos del país, con equipos capaces de llegar tanto a centros urbanos como a zonas rurales.</p>
+        <p style="margin-top:22px;font-size:clamp(16px,1.3vw,20px);line-height:1.45;font-weight:600">Encontramos la mejor manera de hacerlo posible.</p>
+      </div>
+      <div style="flex:1 1 300px;min-width:260px;display:flex;justify-content:center">
+        <svg viewBox="{{ pyViewBox }}" role="img" aria-label="Mapa de Paraguay con puntos de cobertura" style="width:100%;max-width:440px;height:auto;display:block">
+          <path d="{{ pyPath }}" stroke-linejoin="round" style="fill:var(--paper);stroke:var(--ink);stroke-width:1.2" />
+          <g stroke="#788389" stroke-width=".8" opacity=".55">
+            <sc-for list="{{ pyLinks }}" as="l" hint-placeholder-count="0">
+              <line x1="{{ l.x1 }}" y1="{{ l.y1 }}" x2="{{ l.x2 }}" y2="{{ l.y2 }}"></line>
+            </sc-for>
+          </g>
+          <sc-for list="{{ pyDots }}" as="d" hint-placeholder-count="0">
+            <g opacity="{{ d.op }}" style="animation:{{ d.anim }};transform-origin:{{ d.origin }}">
+              <circle cx="{{ d.x }}" cy="{{ d.y }}" r="{{ d.r }}" style="fill:{{ d.fill }}"></circle>
+            </g>
+          </sc-for>
+          <g font-family="Montserrat, Helvetica, sans-serif" font-size="12" font-weight="500" opacity="{{ pyLabelOpacity }}" style="fill:var(--ink);transition:opacity .6s ease .5s">
+            <text x="253" y="382" text-anchor="end">Asunción</text>
+            <text x="401" y="405" text-anchor="end">Ciudad del Este</text>
+            <text x="338" y="494" text-anchor="end">Encarnación</text>
+            <text x="285" y="279">Concepción</text>
+            <text x="130" y="222">Filadelfia</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section data-obs="latam" data-screen-label="Cobertura LATAM" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);align-items:end">
+        <div>
+          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Cobertura regional</p>
+          <h2 style="margin-top:20px;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em">Una red <span style="color:#788389">que cruza fronteras.</span></h2>
+        </div>
+        <p style="max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Contamos con experiencia en la ejecución y coordinación de estudios cualitativos y cuantitativos en Latinoamérica, respaldada por una red consolidada de colaboradores y equipos locales en distintos mercados de la región.</p>
+      </div>
+
+      <div style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-start">
+        <div style="flex:1 1 280px;min-width:240px;display:flex;justify-content:center">
+          <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block">
+            <sc-for list="{{ latamShapes }}" as="c" hint-placeholder-count="0">
+              <path d="{{ c.d }}" stroke-linejoin="round" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transition:fill .3s ease"></path>
+            </sc-for>
+            <sc-for list="{{ latamDots }}" as="p" hint-placeholder-count="0">
+              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" style="fill:{{ p.fill }};stroke:var(--paper);stroke-width:1"></circle>
+            </sc-for>
+          </svg>
+        </div>
+        <div style="flex:1 1 320px;min-width:260px">
+          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Mercados con experiencia y red de colaboradores</p>
+          <ul style="margin-top:18px">
+            <sc-for list="{{ markets }}" as="m" hint-placeholder-count="7">
+              <li onMouseEnter="{{ m.enter }}" onMouseLeave="{{ m.leave }}" onClick="{{ m.enter }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-height:52px;padding:14px 0;border-bottom:1px solid #788389;cursor:default">
+                <span style="font-size:clamp(16px,1.5vw,22px);font-weight:500;letter-spacing:-.01em;color:{{ m.color }};transition:color .25s ease">{{ m.name }}</span>
+                <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">{{ m.note }}</span>
+              </li>
+            </sc-for>
+          </ul>
+          <p style="margin-top:clamp(28px,3vw,44px);max-width:26ch;font-weight:600;font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.02em">Un solo punto de contacto. Distintos mercados. Una misma metodología.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div data-page="Capacidad" style="display:{{ pgCapacidad }}">
+  <section id="capacidad" data-screen-label="Infraestructura" style="scroll-margin-top:80px;padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px">
+        <h2 style="max-width:20ch;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.06;letter-spacing:-.025em">Infraestructura preparada para investigar.</h2>
+        <p style="font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)">Conocé nuestra capacidad operativa ↓</p>
+      </div>
+
+      <div style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,64px)">
+        <div style="flex:1 1 380px;min-width:280px;align-self:flex-start;position:sticky;top:110px">
+          <div style="position:relative;width:100%;aspect-ratio:4 / 3;background:var(--paper);border:1px solid #788389">
+            <div style="position:absolute;inset:0;display:{{ infra0 }}"><image-slot id="mtz-infra-focus" shape="rect" fit="cover" placeholder="Foto real — Sala de Focus Groups"></image-slot></div>
+            <div style="position:absolute;inset:0;display:{{ infra1 }}"><image-slot id="mtz-infra-transmision" shape="rect" fit="cover" placeholder="Foto real — Sala de transmisión"></image-slot></div>
+            <div style="position:absolute;inset:0;display:{{ infra2 }}"><image-slot id="mtz-infra-telefonica" shape="rect" fit="cover" placeholder="Foto real — Operación telefónica"></image-slot></div>
+            <div style="position:absolute;inset:0;display:{{ infra3 }}"><image-slot id="mtz-infra-campo" shape="rect" fit="cover" placeholder="Foto real — Equipo de campo nacional"></image-slot></div>
+          </div>
+          <p style="margin-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.04em;color:var(--ink);display:{{ notesDisplay }}">Reemplazar con fotografías reales de las instalaciones. Arrastrá una imagen sobre el recuadro.</p>
+        </div>
+
+        <div style="flex:1 1 340px;min-width:280px;display:flex;flex-direction:column;gap:clamp(28px,5vh,56px);padding-top:8px">
+          <div data-infra="0" style="border-top:1px solid {{ infraBorder0 }};padding-top:24px;opacity:{{ infraOpacity0 }};transition:opacity .4s ease">
+            <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Sala de Focus Groups</h3>
+            <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Espacio preparado para sesiones presenciales, con comodidad para participantes y moderadores.</p>
+          </div>
+          <div data-infra="1" style="border-top:1px solid {{ infraBorder1 }};padding-top:24px;opacity:{{ infraOpacity1 }};transition:opacity .4s ease">
+            <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Sala de transmisión</h3>
+            <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Permite a clientes y equipos de investigación acompañar las sesiones de manera remota y en tiempo real.</p>
+          </div>
+          <div data-infra="2" style="border-top:1px solid {{ infraBorder2 }};padding-top:24px;opacity:{{ infraOpacity2 }};transition:opacity .4s ease">
+            <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Operación telefónica</h3>
+            <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Oficina equipada para encuestas y entrevistas telefónicas con procesos de supervisión y control.</p>
+          </div>
+          <div data-infra="3" style="border-top:1px solid {{ infraBorder3 }};padding-top:24px;opacity:{{ infraOpacity3 }};transition:opacity .4s ease">
+            <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Equipo de campo nacional</h3>
+            <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Red de encuestadores, entrevistadores y supervisores para ejecución en diferentes puntos del país.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div data-page="Nosotros" style="display:{{ pgNosotros }}">
+  <section id="nosotros" data-screen-label="Somos Matiz" style="scroll-margin-top:80px;padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:center">
+      <div style="flex:1 1 360px;min-width:280px">
+        <div style="position:relative;width:100%;aspect-ratio:5 / 4;border:1px solid #788389;background:var(--paper)">
+          <image-slot id="mtz-somos" shape="rect" fit="cover" placeholder="Foto real — las tres integrantes trabajando"></image-slot>
+        </div>
+        <p style="margin-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.04em;color:var(--ink);display:{{ notesDisplay }}">Fotografía natural, en contexto de trabajo. Sin pose corporativa.</p>
+      </div>
+      <div data-reveal style="flex:1 1 360px;min-width:280px">
+        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Nosotros</p>
+        <h2 style="margin-top:20px;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em">Somos Matiz</h2>
+        <p style="margin-top:18px;font-weight:500;font-size:clamp(17px,1.6vw,24px);line-height:1.32;letter-spacing:-.02em;max-width:26ch">Un equipo que entiende la investigación desde el terreno.</p>
+        <p style="margin-top:24px;max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Matiz Research nace de años de experiencia trabajando en estudios de mercado, sociales y de opinión pública para consultoras y empresas nacionales e internacionales.</p>
+        <p style="margin-top:16px;max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Conocemos el proceso completo: desde encontrar al entrevistado correcto hasta analizar la información y transformarla en insights.</p>
+        <p style="margin-top:16px;max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Nos involucramos en cada proyecto, buscamos alternativas y encontramos la mejor manera de hacerlo posible.</p>
+        <p style="margin-top:clamp(28px,3vw,40px);padding-top:24px;border-top:1px solid #788389;font-weight:600;font-size:clamp(22px,2.6vw,38px);line-height:1.1;letter-spacing:-.025em">Tu proyecto <span style="color:#788389">también es nuestro proyecto.</span></p>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div data-page="Equipo" style="display:{{ pgEquipo }}">
+  <section id="equipo" data-screen-label="Equipo" style="scroll-margin-top:80px;padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%">
+      <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);align-items:end">
+        <h2 style="font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em;max-width:18ch">Distintas miradas, <span style="color:#788389">un mismo equipo.</span></h2>
+        <p style="max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Tenemos un equipo de profesionales con experiencia directa en investigación, coordinación y trabajo de campo. Nos involucramos personalmente en la ejecución y seguimiento de cada estudio.</p>
+      </div>
+
+      <div style="margin-top:clamp(40px,5vw,80px);display:flex;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px)">
+        <article style="flex:1.5 1 320px;min-width:280px;max-width:560px">
+          <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
+            <image-slot id="mtz-team-mabel" shape="rect" fit="cover" placeholder="Foto — Mabel Drakeford"></image-slot>
+          </div>
+          <h3 style="margin-top:24px;font-weight:600;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.02em">Mabel Drakeford</h3>
+          <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Jefa de Proyectos y Operaciones</p>
+          <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Ciencias de la Comunicación, especializada en Investigación Cualitativa. Apasionada por la información, proactiva y resolutiva, desarrolló toda su trayectoria profesional vinculada a la investigación, experiencia que hoy vuelca en cada proyecto que lidera.</p>
+          <p style="margin-top:22px;padding-top:22px;border-top:1px solid var(--ink);font-weight:500;font-size:clamp(17px,1.6vw,23px);line-height:1.35;letter-spacing:-.015em">Después de años trabajando como investigadora independiente, dio origen a Matiz Research, reuniendo experiencia, equipo y una red consolidada de colaboradores.</p>
+        </article>
+        <article style="flex:1 1 260px;min-width:250px;max-width:420px">
+          <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
+            <image-slot id="mtz-team-laura" shape="rect" fit="cover" placeholder="Foto — Laura Estigarribia"></image-slot>
+          </div>
+          <h3 style="margin-top:24px;font-weight:600;font-size:clamp(20px,1.9vw,26px);letter-spacing:-.02em">Laura Estigarribia</h3>
+          <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Coordinadora de Estudios</p>
+          <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Psicología, con más de 9 años de experiencia en investigación de mercado, especialmente en estudios cualitativos. Detallista, analítica y cercana, disfruta descubriendo nuevas herramientas que aporten valor a su trabajo. Su experiencia en coordinación, moderación y análisis le permite acompañar cada proyecto con una mirada organizada y estratégica.</p>
+        </article>
+        <article style="flex:1 1 260px;min-width:250px;max-width:420px">
+          <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
+            <image-slot id="mtz-team-camila" shape="rect" fit="cover" placeholder="Foto — Camila"></image-slot>
+          </div>
+          <h3 style="margin-top:24px;font-weight:600;font-size:clamp(20px,1.9vw,26px);letter-spacing:-.02em">Camila</h3>
+          <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Supervisora de Campo</p>
+          <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Ciencias de la Comunicación, con experiencia en trabajo de campo y relevamiento de datos. Se destaca por su capacidad de organización y seguimiento, acompañando de cerca a los equipos para asegurar el cumplimiento de los criterios metodológicos y de calidad de cada estudio.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div data-page="Contacto" style="display:{{ pgContacto }}">
+  <section id="contacto" data-screen-label="Contacto" style="scroll-margin-top:80px;padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div style="max-width:1320px;margin:0 auto;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,88px)">
+      <div data-reveal>
+        <h2 style="font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em;max-width:18ch">Hablemos de nuestro próximo proyecto</h2>
+        <p style="margin-top:20px;font-weight:500;font-size:clamp(17px,1.6vw,24px);line-height:1.3;letter-spacing:-.02em;max-width:26ch">¿Qué necesitás conocer, entender o poner en marcha?</p>
+        <p style="margin-top:22px;max-width:48ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Contanos tu desafío. En Matiz ponemos nuestra experiencia, equipo y capacidad de ejecución al servicio de cada investigación.</p>
+        <a href="https://wa.me/595985711422" target="_blank" rel="noopener" style="margin-top:32px;min-height:56px;display:inline-flex;align-items:center;gap:12px;padding:17px 28px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Hablemos por WhatsApp →</a>
+        <div style="margin-top:clamp(32px,4vw,56px);border-top:1px solid #788389;padding-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px">
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">WhatsApp / Teléfono</p>
+            <a href="tel:+595985711422" style="margin-top:8px;display:inline-block;font-size:clamp(15px,1.2vw,18px);font-weight:500">+595 985 711 422</a>
+          </div>
+          <div>
+            <p style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Correo</p>
+            <a href="mailto:mabedrakeford@gmail.com" style="margin-top:8px;display:inline-block;font-size:clamp(15px,1.2vw,18px);font-weight:500;word-break:break-all">mabedrakeford@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:20px;border-top:1px solid var(--ink);padding-top:clamp(24px,3vw,36px)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">Nombre</span>
+            <input type="text" name="nombre" required="{{ true }}" style="min-height:48px;padding:12px 0;border:none;border-bottom:1px solid #788389;background:none;font-size:16px;outline-offset:6px" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">Empresa</span>
+            <input type="text" name="empresa" style="min-height:48px;padding:12px 0;border:none;border-bottom:1px solid #788389;background:none;font-size:16px;outline-offset:6px" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">Correo</span>
+            <input type="email" name="correo" required="{{ true }}" style="min-height:48px;padding:12px 0;border:none;border-bottom:1px solid #788389;background:none;font-size:16px;outline-offset:6px" />
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">País</span>
+            <input type="text" name="pais" style="min-height:48px;padding:12px 0;border:none;border-bottom:1px solid #788389;background:none;font-size:16px;outline-offset:6px" />
+          </label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">¿Qué necesitás?</span>
+          <select name="necesidad" style="min-height:48px;padding:12px 0;border:none;border-bottom:1px solid #788389;background:none;font-size:16px;outline-offset:6px">
+            <option value="investigacion">Realizar una investigación</option>
+            <option value="fieldwork">Soporte de fieldwork</option>
+            <option value="otro">Otro proyecto</option>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">Mensaje</span>
+          <textarea name="mensaje" rows="4" style="padding:12px 0;border:none;border-bottom:1px solid #788389;background:none;font-size:16px;resize:vertical;outline-offset:6px"></textarea>
+        </label>
+        <button type="submit" style="align-self:flex-start;min-height:56px;padding:17px 28px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .25s ease,color .25s ease" style-hover="background:var(--ink);color:var(--paper)">Enviar consulta</button>
+        <p aria-live="polite" style="font-size:13px;color:var(--ink);min-height:18px">{{ formMsg }}</p>
+      </form>
+    </div>
+  </section>
+</div>
+
+  </main>
+
+<footer style="background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px) 32px">
+  <div style="max-width:1320px;margin:0 auto;width:100%">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(32px,4vw,64px)">
+      <div>
+        <img src="logo-matiz-dark.svg" alt="Matiz Research — Insights &amp; Fieldwork LATAM" style="display:{{ logoOnPaper }};width:min(260px,100%);height:auto" />
+        <img src="logo-matiz.svg" alt="Matiz Research — Insights &amp; Fieldwork LATAM" style="display:{{ logoOnInk }};width:min(260px,100%);height:auto" />
+        <p style="margin-top:24px;font-size:14px;line-height:1.6;color:var(--muted);max-width:30ch">Investigación de mercado y soporte de fieldwork en Paraguay y Latinoamérica.</p>
+      </div>
+      <nav aria-label="Secciones" style="display:flex;flex-direction:column;gap:12px">
+        <a href="#investigacion" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Investigación de Mercado</a>
+        <a href="#fieldwork" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Fieldwork</a>
+        <a href="#capacidad" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Capacidad Operativa</a>
+        <a href="#nosotros" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Nosotros</a>
+        <a href="#equipo" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Equipo</a>
+        <a href="#contacto" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Contacto</a>
+      </nav>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Contacto</p>
+        <a href="mailto:mabedrakeford@gmail.com" style="color:var(--paper);font-size:14px;word-break:break-all" style-hover="color:var(--muted)">mabedrakeford@gmail.com</a>
+        <a href="tel:+595985711422" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">+595 985 711 422</a>
+        <a href="https://matizr.com" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">matizr.com</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Redes</p>
+        <span style="font-size:14px;color:var(--muted)">LinkedIn</span>
+        <span style="font-size:14px;color:var(--muted)">Instagram</span>
+        <span style="font-size:14px;color:var(--muted)">Facebook</span>
+        <p style="font-size:12px;color:var(--muted);display:{{ socialNoteDisplay }}">En proceso de creación.</p>
+      </div>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,72px);padding-top:24px;border-top:1px solid #788389;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+      <p style="font-size:12px;color:var(--muted)">© Matiz Research</p>
+      <p style="font-size:12px;color:var(--muted)">Paraguay · Latinoamérica</p>
+      <p style="font-size:12px;color:var(--muted)">Desarrollado por <a href="https://neura.com.py" target="_blank" rel="noopener" style="color:var(--paper);border-bottom:1px solid #788389;padding-bottom:2px" style-hover="border-color:var(--paper)">Neura</a></p>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido pendiente&quot;},&quot;socialEnabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido pendiente&quot;}}">
+class Component extends DCLogic {
+  state = { dark: false, study: 0, method: 0, svc: -1, heroDark: false, net: null, netW: 0, headerH: 0, scrolled: false, invP: 0, page: 'Home', hover: null, infra: 0, maps: null, pyIn: false, market: null, formMsg: '' };
+
+  route() {
+    const h = (window.location.hash || '').replace(/^#\/?/, '');
+    const map = { '': 'Home', 'inicio': 'Home', 'investigacion': 'Investigacion', 'fieldwork': 'Fieldwork', 'capacidad': 'Capacidad', 'nosotros': 'Nosotros', 'equipo': 'Equipo', 'contacto': 'Contacto' };
+    const p = map[h] || 'Home';
+    if (p !== this.state.page) { this.setState({ page: p }); window.scrollTo(0, 0); }
+  }
+
+  componentDidMount() {
+    this.onScroll = () => {
+      const s = window.scrollY > 24;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+      if (this.tickInv) this.tickInv();
+      const portal = document.querySelector('[data-screen-label="Hero"] section[id^="gp-"]');
+      const over = !!portal && this.state.page === 'Home' && Number(portal.dataset.gpProgress || 0) > 0.45;
+      if (over !== this.state.heroDark) this.setState({ heroDark: over });
+    };
+    let saved = null;
+    try { saved = window.localStorage.getItem('matiz-theme'); } catch (e) {}
+    if (saved === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); this.setState({ dark: true }); }
+    this.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.tickInv = () => {
+      if (this._raf) return;
+      this._raf = requestAnimationFrame(() => {
+        this._raf = null;
+        const el = document.querySelector('[data-inv]');
+        if (!el || !el.offsetHeight) return;
+        const r = el.getBoundingClientRect();
+        const denom = r.height - window.innerHeight;
+        if (denom <= 0) return;
+        let p = Math.max(0, Math.min(1, -r.top / denom));
+        if (Math.abs(p - this.state.invP) > 0.002) this.setState({ invP: p });
+      });
+    };
+    this.tickInv();
+
+    this.measureHeader = () => {
+      const h = document.querySelector('header');
+      const v = h ? Math.round(h.getBoundingClientRect().height) : 0;
+      if (v !== this.state.headerH) this.setState({ headerH: v });
+    };
+    this.measureNet = () => {
+      const box = document.querySelector('[data-hero-net]');
+      const mark = box && box.querySelector('[data-mark]');
+      if (!box || !mark) return;
+      const b = box.getBoundingClientRect();
+      if (!b.width) return;
+      const m = mark.getBoundingClientRect();
+      const cx = m.left - b.left + m.width / 2, cy = m.top - b.top + m.height / 2, r = m.width / 2;
+      const paths = [], dots = [];
+      if (b.width >= 680) {
+        for (const label of Array.from(box.querySelectorAll('[data-node] span'))) {
+          const side = label.parentElement.getAttribute('data-node');
+          const rect = label.getBoundingClientRect();
+          const y = rect.top - b.top + rect.height / 2;
+          const x = side === 'l' ? rect.right - b.left + 14 : rect.left - b.left - 14;
+          const dx = cx - x, dy = cy - y;
+          const len = Math.hypot(dx, dy) || 1;
+          const ex = cx - dx / len * (r + 5), ey = cy - dy / len * (r + 5);
+          paths.push({ d: 'M' + x + ',' + y + ' C' + (x + dx * 0.55) + ',' + y + ' ' + (ex - dx * 0.3) + ',' + ey + ' ' + ex + ',' + ey, side: side });
+          dots.push({ x: x, y: y, side: side });
+        }
+      }
+      const next = { w: Math.round(b.width), h: Math.round(b.height), paths: paths, dots: dots };
+      const sig = JSON.stringify(next);
+      if (sig === this.netSig) return;
+      this.netSig = sig;
+      this.setState({ net: next, netW: next.w });
+    };
+    this.onResize = () => { this.measureHeader(); this.measureNet(); this.forceUpdate(); this.tickInv(); };
+    window.addEventListener('resize', this.onResize);
+    this.measureHeader();
+    this.measureNet();
+    if (window.ResizeObserver) {
+      this.bodyRO = new ResizeObserver(() => { this.measureHeader(); this.measureNet(); });
+      this.bodyRO.observe(document.body);
+      this.netRO = new ResizeObserver(() => this.measureNet());
+    }
+    let tries = 0;
+    this.netTimer = setInterval(() => {
+      this.measureHeader();
+      this.measureNet();
+      const box = document.querySelector('[data-hero-net]');
+      if (box && box.getBoundingClientRect().width) {
+        clearInterval(this.netTimer);
+        if (this.netRO) this.netRO.observe(box);
+      } else if (++tries > 60) clearInterval(this.netTimer);
+    }, 150);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { this.measureHeader(); this.measureNet(); });
+
+    this.onHash = () => this.route();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('hashchange', this.onHash);
+    this.route();
+
+    fetch('maps.json').then(r => r.json()).then(m => this.setState({ maps: m })).catch(() => {});
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        const t = e.target;
+        if (t.hasAttribute('data-infra')) { const i = +t.getAttribute('data-infra'); if (i !== this.state.infra) this.setState({ infra: i }); return; }
+        if (t.getAttribute('data-obs') === 'py') { if (!this.state.pyIn) this.setState({ pyIn: true }); io.unobserve(t); return; }
+        t.style.opacity = '1'; t.style.transform = 'none'; io.unobserve(t);
+      }), { threshold: 0.1 });
+      document.querySelectorAll('[data-obs="py"]').forEach(el => io.observe(el));
+      const infraIo = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { const i = +e.target.getAttribute('data-infra'); if (i !== this.state.infra) this.setState({ infra: i }); }
+      }), { rootMargin: '-45% 0px -45% 0px' });
+      document.querySelectorAll('[data-infra]').forEach(el => infraIo.observe(el));
+      if (!reduce) {
+        document.querySelectorAll('[data-reveal]').forEach(el => {
+          el.style.opacity = '0'; el.style.transform = 'translateY(14px)';
+          el.style.transition = 'opacity .55s ease, transform .55s ease';
+          io.observe(el);
+        });
+        setTimeout(() => document.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; }), 4000);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('hashchange', this.onHash);
+    window.removeEventListener('resize', this.onResize);
+    clearInterval(this.netTimer);
+    if (this.netRO) this.netRO.disconnect();
+    if (this.bodyRO) this.bodyRO.disconnect();
+
+  }
+
+  renderVals() {
+    const s = this.state;
+    const m = s.maps;
+    const labelled = { 'Asunción': 1, 'Ciudad del Este': 1, 'Encarnación': 1, 'Concepción': 1, 'Filadelfia': 1 };
+    const cities = m ? m.paraguayCities : [];
+    const asu = cities.find(c => c.n === 'Asunción');
+    const pyDots = cities.map((c, i) => ({
+      x: c.x, y: c.y, r: c.n === 'Asunción' ? 6 : 4,
+      fill: c.n === 'Asunción' ? 'var(--ink)' : '#788389',
+      label: labelled[c.n] ? c.n : '',
+      anchor: c.x > 300 ? 'end' : 'start',
+      tx: c.x > 300 ? c.x - 12 : c.x + 12,
+      ty: c.y + 4,
+      origin: c.x + 'px ' + c.y + 'px',
+      op: s.pyIn ? 0 : 1,
+      anim: s.pyIn ? 'mtzDot .5s ' + (i * 80) + 'ms ease forwards' : 'none'
+    }));
+    const pyLinks = asu ? cities.filter(c => c.n !== 'Asunción').map(c => ({ x1: asu.x, y1: asu.y, x2: c.x, y2: c.y })) : [];
+
+    const marketNames = [
+      ['Paraguay', 'Mercado de origen'],
+      ['Argentina', ''], ['Bolivia', ''], ['Chile', ''], ['Uruguay', ''], ['Perú', ''], ['Colombia', '']
+    ];
+    const geoKey = { 'Paraguay': 'Paraguay', 'Argentina': 'Argentina', 'Bolivia': 'Bolivia', 'Chile': 'Chile', 'Uruguay': 'Uruguay', 'Perú': 'Peru', 'Colombia': 'Colombia' };
+    const isMarket = { Paraguay: 1, Argentina: 1, Bolivia: 1, Chile: 1, Uruguay: 1, Peru: 1, Colombia: 1 };
+    const hoveredGeo = s.market ? geoKey[s.market] : null;
+    const latamShapes = m ? Object.keys(m.latam.countries).map(name => {
+      const market = isMarket[name];
+      let fill = 'var(--paper)';
+      if (market) fill = name === 'Paraguay' ? 'var(--ink)' : '#788389';
+      if (hoveredGeo === name) fill = 'var(--ink)';
+      return { d: m.latam.countries[name], fill: fill, stroke: market ? 'var(--paper)' : '#788389', sw: market ? 1 : 0.8 };
+    }) : [];
+    const latamDots = m ? m.latamPoints.map(p => ({ x: p.x, y: p.y, r: s.market === p.n ? 6 : 3.5, fill: 'var(--paper)' })) : [];
+    const markets = marketNames.map(([name, note]) => ({
+      name: name, note: s.market === name ? (note || 'Red local') : note,
+      color: s.market === name ? 'var(--ink)' : 'var(--ink)',
+      enter: () => this.setState({ market: name }),
+      leave: () => this.setState({ market: null })
+    }));
+
+    const vh = window.innerHeight || 800;
+    const vw = window.innerWidth || 1000;
+    const pInv = this.reduce ? 1 : s.invP;
+    const q1 = Math.min(1, pInv / 0.5);
+    const q2 = Math.max(0, Math.min(1, (pInv - 0.5) / 0.5));
+    const q1e = q1 < 0.5 ? 8 * Math.pow(q1, 4) : 1 - Math.pow(-2 * q1 + 2, 4) / 2;
+    const q2e = q2 * q2;
+    const ball = Math.min(380, vw * 0.62);
+    const yOff = (1 - q1e) * (vh / 2 + ball / 2);
+    const ballSize = ball + q2e * (Math.max(vw, vh) * 2.8 - ball);
+
+    return {
+      isDark: s.dark,
+      headerOffset: s.headerH,
+      logoOnPaper: s.dark ? 'none' : 'block',
+      logoOnInk: s.dark ? 'block' : 'none',
+      knobX: s.dark ? '20px' : '0px',
+      themeLabel: s.dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
+      toggleTheme: () => {
+        const d = !this.state.dark;
+        if (d) document.documentElement.setAttribute('data-theme', 'dark');
+        else document.documentElement.removeAttribute('data-theme');
+        try { window.localStorage.setItem('matiz-theme', d ? 'dark' : 'light'); } catch (e) {}
+        this.setState({ dark: d });
+      },
+      invHeight: this.reduce ? '100vh' : '300vh',
+      invBallSize: ballSize + 'px',
+      invBallY: yOff + 'px',
+      invClip: 'circle(' + (ballSize / 2) + 'px at 50% calc(50% + ' + yOff + 'px))',
+      headerBorder: s.scrolled ? '#788389' : 'transparent',
+      pgHome: s.page === 'Home' ? 'block' : 'none',
+      pgInvestigacion: s.page === 'Investigacion' ? 'block' : 'none',
+      pgFieldwork: s.page === 'Fieldwork' ? 'block' : 'none',
+      pgCapacidad: s.page === 'Capacidad' ? 'block' : 'none',
+      pgNosotros: s.page === 'Nosotros' ? 'block' : 'none',
+      pgEquipo: s.page === 'Equipo' ? 'block' : 'none',
+      pgContacto: s.page === 'Contacto' ? 'block' : 'none',
+      netCols: (s.netW && s.netW < 680) ? '1fr' : 'minmax(0,1fr) auto minmax(0,1fr)',
+      netViewBox: s.net ? '0 0 ' + s.net.w + ' ' + s.net.h : '0 0 100 100',
+      netPaths: s.net ? s.net.paths.map(p => ({ d: p.d, opacity: p.side === 'l' ? (s.hover === 'field' ? 0.25 : 1) : (s.hover === 'research' ? 0.25 : 1) })) : [],
+      netDots: s.net ? s.net.dots.map(p => ({ x: p.x, y: p.y, opacity: p.side === 'l' ? (s.hover === 'field' ? 0.25 : 1) : (s.hover === 'research' ? 0.25 : 1) })) : [],
+      study0: () => { if (this.state.study !== 0) this.setState({ study: 0 }); },
+      study0Color: s.study === 0 ? 'var(--ink)' : '#788389',
+      study0Bar: s.study === 0 ? '96px' : '28px',
+      study0Show: s.study === 0 ? 'block' : 'none',
+      study1: () => { if (this.state.study !== 1) this.setState({ study: 1 }); },
+      study1Color: s.study === 1 ? 'var(--ink)' : '#788389',
+      study1Bar: s.study === 1 ? '96px' : '28px',
+      study1Show: s.study === 1 ? 'block' : 'none',
+      study2: () => { if (this.state.study !== 2) this.setState({ study: 2 }); },
+      study2Color: s.study === 2 ? 'var(--ink)' : '#788389',
+      study2Bar: s.study === 2 ? '96px' : '28px',
+      study2Show: s.study === 2 ? 'block' : 'none',
+      study3: () => { if (this.state.study !== 3) this.setState({ study: 3 }); },
+      study3Color: s.study === 3 ? 'var(--ink)' : '#788389',
+      study3Bar: s.study === 3 ? '96px' : '28px',
+      study3Show: s.study === 3 ? 'block' : 'none',
+      m0: () => { if (this.state.method !== 0) this.setState({ method: 0 }); },
+      m0Color: s.method === 0 ? 'var(--paper)' : '#788389',
+      m0Size: s.method === 0 ? '13px' : '7px',
+      m0Show: s.method === 0 ? 'block' : 'none',
+      m1: () => { if (this.state.method !== 1) this.setState({ method: 1 }); },
+      m1Color: s.method === 1 ? 'var(--paper)' : '#788389',
+      m1Size: s.method === 1 ? '13px' : '7px',
+      m1Show: s.method === 1 ? 'block' : 'none',
+      m2: () => { if (this.state.method !== 2) this.setState({ method: 2 }); },
+      m2Color: s.method === 2 ? 'var(--paper)' : '#788389',
+      m2Size: s.method === 2 ? '13px' : '7px',
+      m2Show: s.method === 2 ? 'block' : 'none',
+      m3: () => { if (this.state.method !== 3) this.setState({ method: 3 }); },
+      m3Color: s.method === 3 ? 'var(--paper)' : '#788389',
+      m3Size: s.method === 3 ? '13px' : '7px',
+      m3Show: s.method === 3 ? 'block' : 'none',
+      m4: () => { if (this.state.method !== 4) this.setState({ method: 4 }); },
+      m4Color: s.method === 4 ? 'var(--paper)' : '#788389',
+      m4Size: s.method === 4 ? '13px' : '7px',
+      m4Show: s.method === 4 ? 'block' : 'none',
+      m5: () => { if (this.state.method !== 5) this.setState({ method: 5 }); },
+      m5Color: s.method === 5 ? 'var(--paper)' : '#788389',
+      m5Size: s.method === 5 ? '13px' : '7px',
+      m5Show: s.method === 5 ? 'block' : 'none',
+      m6: () => { if (this.state.method !== 6) this.setState({ method: 6 }); },
+      m6Color: s.method === 6 ? 'var(--paper)' : '#788389',
+      m6Size: s.method === 6 ? '13px' : '7px',
+      m6Show: s.method === 6 ? 'block' : 'none',
+      m7: () => { if (this.state.method !== 7) this.setState({ method: 7 }); },
+      m7Color: s.method === 7 ? 'var(--paper)' : '#788389',
+      m7Size: s.method === 7 ? '13px' : '7px',
+      m7Show: s.method === 7 ? 'block' : 'none',
+      svc0: () => this.setState({ svc: 0 }),
+      svc0X: s.svc === 0 ? '10px' : '0px',
+      svc0Bar: s.svc === 0 ? '48px' : '16px',
+      svc1: () => this.setState({ svc: 1 }),
+      svc1X: s.svc === 1 ? '10px' : '0px',
+      svc1Bar: s.svc === 1 ? '48px' : '16px',
+      svc2: () => this.setState({ svc: 2 }),
+      svc2X: s.svc === 2 ? '10px' : '0px',
+      svc2Bar: s.svc === 2 ? '48px' : '16px',
+      svc3: () => this.setState({ svc: 3 }),
+      svc3X: s.svc === 3 ? '10px' : '0px',
+      svc3Bar: s.svc === 3 ? '48px' : '16px',
+      svc4: () => this.setState({ svc: 4 }),
+      svc4X: s.svc === 4 ? '10px' : '0px',
+      svc4Bar: s.svc === 4 ? '48px' : '16px',
+      svc5: () => this.setState({ svc: 5 }),
+      svc5X: s.svc === 5 ? '10px' : '0px',
+      svc5Bar: s.svc === 5 ? '48px' : '16px',
+      svcOut: () => this.setState({ svc: -1 }),
+      hdrBg: s.heroDark ? 'var(--ink)' : 'var(--paper)',
+      hdrFg: s.heroDark ? 'var(--paper)' : 'var(--ink)',
+      hdrLogoBlack: (s.dark === s.heroDark) ? 'block' : 'none',
+      hdrLogoWhite: (s.dark === s.heroDark) ? 'none' : 'block',
+      navInicio: s.page === 'Home' ? 'currentColor' : 'transparent',
+      navInvestigacion: s.page === 'Investigacion' ? 'currentColor' : 'transparent',
+      navFieldwork: s.page === 'Fieldwork' ? 'currentColor' : 'transparent',
+      navCapacidad: s.page === 'Capacidad' ? 'currentColor' : 'transparent',
+      navNosotros: s.page === 'Nosotros' ? 'currentColor' : 'transparent',
+      navEquipo: s.page === 'Equipo' ? 'currentColor' : 'transparent',
+      hoverResearch: () => this.setState({ hover: 'research' }),
+      hoverField: () => this.setState({ hover: 'field' }),
+      hoverNone: () => this.setState({ hover: null }),
+      researchOpacity: s.hover === 'field' ? 0.25 : 1,
+      fieldOpacity: s.hover === 'research' ? 0.25 : 1,
+      researchLabelColor: 'var(--ink)',
+      fieldLabelColor: 'var(--ink)',
+      infra0: s.infra === 0 ? 'block' : 'none',
+      infra1: s.infra === 1 ? 'block' : 'none',
+      infra2: s.infra === 2 ? 'block' : 'none',
+      infra3: s.infra === 3 ? 'block' : 'none',
+      infraOpacity0: s.infra === 0 ? 1 : 0.82,
+      infraOpacity1: s.infra === 1 ? 1 : 0.82,
+      infraOpacity2: s.infra === 2 ? 1 : 0.82,
+      infraOpacity3: s.infra === 3 ? 1 : 0.82,
+      pyLabelOpacity: 1,
+      infraBorder0: s.infra === 0 ? 'var(--ink)' : '#788389',
+      infraBorder1: s.infra === 1 ? 'var(--ink)' : '#788389',
+      infraBorder2: s.infra === 2 ? 'var(--ink)' : '#788389',
+      infraBorder3: s.infra === 3 ? 'var(--ink)' : '#788389',
+      notesDisplay: (this.props.showNotes ?? true) ? 'block' : 'none',
+      socialNoteDisplay: (this.props.socialEnabled ?? false) ? 'none' : 'block',
+      pyViewBox: m ? '0 0 ' + m.paraguay.w + ' ' + m.paraguay.h : '0 0 440 560',
+      pyPath: m ? m.paraguay.path : '',
+      pyDots: pyDots,
+      pyLinks: pyLinks,
+      latamViewBox: m ? '0 0 ' + m.latam.w + ' ' + m.latam.h : '0 0 520 720',
+      latamShapes: latamShapes,
+      latamDots: latamDots,
+      markets: markets,
+      formMsg: s.formMsg,
+      onSubmit: (e) => { e.preventDefault(); this.setState({ formMsg: 'Gracias. Te responderemos a la brevedad.' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
