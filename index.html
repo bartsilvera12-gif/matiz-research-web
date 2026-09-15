@@ -736,7 +736,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido pendiente&quot;},&quot;socialEnabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenido pendiente&quot;}}">
 class Component extends DCLogic {
-  state = { dark: false, study: 0, method: 0, svc: -1, heroDark: false, net: null, netW: 0, headerH: 0, scrolled: false, invP: 0, page: 'Home', hover: null, infra: 0, maps: null, pyIn: false, market: null, formMsg: '' };
+  state = { dark: false, study: 0, method: 0, svc: -1, heroDark: true, net: null, netW: 0, headerH: 0, scrolled: false, invP: 0, page: 'Home', hover: null, infra: 0, maps: null, pyIn: false, market: null, formMsg: '' };
 
   route() {
     const h = (window.location.hash || '').replace(/^#\/?/, '');
@@ -751,7 +751,10 @@ class Component extends DCLogic {
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
       if (this.tickInv) this.tickInv();
       const portal = document.querySelector('[data-screen-label="Hero"] section[id^="gp-"]');
-      const over = !!portal && this.state.page === 'Home' && Number(portal.dataset.gpProgress || 0) > 0.45;
+      const hero = document.querySelector('[data-screen-label="Hero"]');
+      const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+      const stillOnHero = heroBottom > (this.state.headerH || 0);
+      const over = this.state.page === 'Home' && stillOnHero && (!portal || Number(portal.dataset.gpProgress || 0) > 0.45 || window.scrollY < 4);
       if (over !== this.state.heroDark) this.setState({ heroDark: over });
     };
     let saved = null;
