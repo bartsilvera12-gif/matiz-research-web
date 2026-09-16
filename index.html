@@ -111,16 +111,8 @@
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
-  .mtz-hero-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; color: var(--paper); overflow: hidden; contain: strict; opacity: .45;
-    /* Only the outer edges: fade out toward the content column so no line ever crosses text or tables */
-    -webkit-mask-image: linear-gradient(90deg, #000 0, transparent 7%, transparent 93%, #000 100%), linear-gradient(180deg, #000 0, transparent 14%, transparent 86%, #000 100%);
-    mask-image: linear-gradient(90deg, #000 0, transparent 7%, transparent 93%, #000 100%), linear-gradient(180deg, #000 0, transparent 14%, transparent 86%, #000 100%);
-    -webkit-mask-composite: source-over; mask-composite: add; }
-  .mtz-hero-paths svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transform: translateZ(0); }
-  .mtz-hero-paths path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-dasharray: .5 .5; animation: mtzFlow linear infinite; }
-  @keyframes mtzFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
-  @media (prefers-reduced-motion: reduce) { .mtz-hero-paths path { animation: none !important; stroke-dasharray: none; opacity: .35; } }
-  section[data-screen-label="Hero"] [data-gp-content] > div:not(.mtz-hero-paths) { position: relative; z-index: 1; }
+  .mtz-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .55; }
+  section[data-screen-label="Hero"] [data-gp-content] > div { position: relative; z-index: 1; }
   /* Data tables inside hero */
   .mtz-tables { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px,2vw,32px); }
   .mtz-table { border: 1px solid #788389; background: color-mix(in srgb, var(--ink) 72%, transparent); overflow: hidden; }
@@ -210,7 +202,7 @@
     main h3 { font-size: 22px !important; line-height: 1.1 !important; }
 
     /* Hero — tighter */
-    section[data-screen-label="Hero"] [data-gp-content] > div:not(.mtz-hero-paths) { gap: 18px !important; }
+    section[data-screen-label="Hero"] [data-gp-content] > div { gap: 18px !important; }
     section[data-screen-label="Hero"] [data-gp-content] h1 { font-size: 30px !important; letter-spacing: -.025em !important; max-width: none !important; }
     /* Intro labels a touch smaller on phones (letter position comes from the word-y prop) */
     section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 12px !important; }
@@ -218,7 +210,7 @@
     section[data-screen-label="Hero"] [data-gp-caption] { top: calc(var(--gp-word-bottom, 50%) + 104px) !important; bottom: auto !important; }
     section[data-screen-label="Hero"], section[data-screen-label="Hero"] [data-gp-content] { overflow-x: clip !important; }
     section[data-screen-label="Hero"] [data-gp-content] { padding-left: 16px !important; padding-right: 16px !important; box-sizing: border-box !important; max-width: 100vw !important; }
-    section[data-screen-label="Hero"] [data-gp-content] > div:not(.mtz-hero-paths) { max-width: 100% !important; width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
+    section[data-screen-label="Hero"] [data-gp-content] > div { max-width: 100% !important; width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
     .mtz-hero-copy { grid-template-columns: 1fr !important; max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
     .mtz-tables { grid-template-columns: 1fr !important; gap: 10px !important; max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
     .mtz-table { max-width: 100% !important; min-width: 0 !important; }
@@ -349,7 +341,7 @@
     .mtz-chip--lg { padding: 10px 16px !important; font-size: 14.5px !important; }
 
     /* Hero canvas — a touch dimmer on mobile */
-    .mtz-hero-paths { display: none !important; }
+    .mtz-hero-canvas { display: none !important; }
 
     /* Hero tables full width */
     .mtz-tables { grid-template-columns: 1fr !important; }
@@ -397,7 +389,7 @@
   <div data-page="Home" style="display:{{ pgHome }}">
   <section id="inicio" data-screen-label="Hero">
     <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" word-y="{{ heroWordY }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
-      <div class="mtz-hero-paths" aria-hidden="true"></div>
+      <canvas class="mtz-hero-canvas" aria-hidden="true"></canvas>
       <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,32px);color:var(--paper);position:relative;z-index:1">
         <h1 style="font-weight:600;font-size:clamp(26px,4.2vw,58px);line-height:1;letter-spacing:-.03em;max-width:20ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
 
@@ -1610,57 +1602,79 @@ class Component extends DCLogic {
     if (document.readyState !== 'loading') initMagnetic(); else document.addEventListener('DOMContentLoaded', initMagnetic);
     new MutationObserver(initMagnetic).observe(document.body, { childList: true, subtree: true });
 
-    // Hero floating paths: mirrored sets of bezier curves; a dash slides along each one.
-    // Paths are built in the host's real pixel size (no non-scaling-stroke, no stretched viewBox)
-    // so Chrome computes dashes once and nothing shimmers.
-    const startPaths = () => {
-      const host = document.querySelector('.mtz-hero-paths');
-      if (!host || host.dataset.ready) return;
+    // Hero particle network (like tics-py, in black)
+    const startCanvas = () => {
+      const canvas = document.querySelector('.mtz-hero-canvas');
+      if (!canvas || canvas.dataset.ready) return;
       if (window.matchMedia('(max-width: 640px)').matches) return;
-      host.dataset.ready = '1';
-      const NS = 'http://www.w3.org/2000/svg';
-      const svg = document.createElementNS(NS, 'svg');
-      svg.setAttribute('preserveAspectRatio', 'none');
-      host.appendChild(svg);
-      const seeds = [];
-      for (const position of [1, -1]) {
-        for (let i = 0; i < 36; i++) {
-          if (i % 3 !== 0) continue;
-          const dur = 22 + Math.random() * 10;
-          seeds.push({ position, i, dur, delay: -Math.random() * dur });
-        }
-      }
-      let lastW = 0, lastH = 0;
-      const build = () => {
-        const W = Math.round(host.clientWidth), H = Math.round(host.clientHeight);
-        if (!W || !H || (W === lastW && H === lastH)) return;
-        lastW = W; lastH = H;
-        const sx = W / 696, sy = H / 316;
-        svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-        svg.textContent = '';
-        for (const { position, i, dur, delay } of seeds) {
-          const X = (n) => ((n - i * 5 * position) * sx).toFixed(1);
-          const NX = (n) => (-(n - i * 5 * position) * sx).toFixed(1);
-          const Y = (n) => (n * sy).toFixed(1);
-          const d = 'M' + NX(380) + ' ' + Y(-(189 + i * 6)) +
-            'C' + NX(380) + ' ' + Y(-(189 + i * 6)) + ' ' + NX(312) + ' ' + Y(216 - i * 6) + ' ' + X(152) + ' ' + Y(343 - i * 6) +
-            'C' + X(616) + ' ' + Y(470 - i * 6) + ' ' + X(684) + ' ' + Y(875 - i * 6) + ' ' + X(684) + ' ' + Y(875 - i * 6);
-          const path = document.createElementNS(NS, 'path');
-          path.setAttribute('d', d);
-          path.setAttribute('pathLength', '1');
-          path.setAttribute('stroke-width', (0.6 + i * 0.03).toFixed(2));
-          path.setAttribute('stroke-opacity', Math.min(0.6, 0.1 + i * 0.018).toFixed(2));
-          path.style.animationDuration = dur.toFixed(1) + 's';
-          path.style.animationDelay = delay.toFixed(1) + 's';
-          svg.appendChild(path);
+      canvas.dataset.ready = '1';
+      const ctx = canvas.getContext('2d');
+      let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const nodes = [];
+      const N = Math.max(28, Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 22000)));
+      const mouse = { x: -9999, y: -9999 };
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        w = rect.width; h = rect.height;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      const seed = () => {
+        nodes.length = 0;
+        for (let i = 0; i < N; i++) {
+          nodes.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25 });
         }
       };
-      build();
-      let t = 0;
-      new ResizeObserver(() => { clearTimeout(t); t = setTimeout(build, 150); }).observe(host);
+      resize();
+      seed();
+      window.addEventListener('resize', () => { resize(); seed(); });
+      canvas.parentElement && canvas.parentElement.addEventListener('mousemove', (e) => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      });
+      canvas.parentElement && canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+      const linkDist = 140;
+      // Lines/dots use the content color, which flips with the theme (paper on the ink field).
+      let netRGB = '255,255,255';
+      const readNetColor = () => { const m = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim(); netRGB = m === '#000' || m === '#000000' ? '0,0,0' : '255,255,255'; };
+      readNetColor();
+      new MutationObserver(readNetColor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      const tick = () => {
+        ctx.clearRect(0, 0, w, h);
+        for (const n of nodes) {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+          const dxm = n.x - mouse.x, dym = n.y - mouse.y, dm = Math.hypot(dxm, dym);
+          if (dm < 120) { n.x += dxm / dm * .8; n.y += dym / dm * .8; }
+        }
+        // lines
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const d = Math.hypot(dx, dy);
+            if (d < linkDist) {
+              const alpha = (1 - d / linkDist) * .55;
+              ctx.strokeStyle = 'rgba(' + netRGB + ',' + alpha.toFixed(3) + ')';
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+          }
+        }
+        // dots
+        ctx.fillStyle = 'rgba(' + netRGB + ',.85)';
+        for (const n of nodes) {
+          ctx.beginPath(); ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2); ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      };
+      if (!reduce) requestAnimationFrame(tick);
     };
-    if (document.readyState !== 'loading') startPaths(); else document.addEventListener('DOMContentLoaded', startPaths);
-    new MutationObserver(startPaths).observe(document.body, { childList: true, subtree: true });
+    // Wait for GlyphPortal content to be attached
+    if (document.readyState !== 'loading') setTimeout(startCanvas, 300);
+    else window.addEventListener('DOMContentLoaded', () => setTimeout(startCanvas, 300));
+    new MutationObserver(startCanvas).observe(document.body, { childList: true, subtree: true });
   })();
 </script>
 </body>
