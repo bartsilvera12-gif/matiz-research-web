@@ -106,6 +106,8 @@
   .mtz-magnetic__inner span { color: var(--paper); }
   .mtz-magnetic-caption { margin-top: clamp(14px, 1.6vw, 22px); font-size: 13px; color: #788389; }
   @media (hover: none) { .mtz-magnetic { cursor: default; } .mtz-magnetic-caption { display: none; } }
+  /* Paint ink below the footer: Safari's translucent toolbar and bottom overscroll otherwise show the white page */
+  footer { box-shadow: 0 50vh 0 50vh var(--ink); padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)) !important; }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -1537,6 +1539,29 @@ class Component extends DCLogic {
     if (document.readyState !== 'loading') initBurger();
     else document.addEventListener('DOMContentLoaded', initBurger);
     new MutationObserver(initBurger).observe(document.body, { childList: true, subtree: true });
+
+    // Mountains: size the white gap above the ridge so that, fully scrolled down, the
+    // viewport shows only sky + mountains + footer (no content edges peeking under the header).
+    const fitHorizon = () => {
+      const sec = document.querySelector('section[data-screen-label="Experiencia"]');
+      const mount = sec && sec.querySelector('.mtz-mountains');
+      const footer = document.querySelector('footer');
+      const header = document.querySelector('header');
+      if (!sec || !mount || !footer || !sec.offsetParent) return;
+      const minGap = Math.max(48, Math.min(112, innerWidth * 0.08));
+      const needed = innerHeight - header.offsetHeight - mount.getBoundingClientRect().height - footer.offsetHeight + 32;
+      sec.style.setProperty('padding-bottom', Math.round(mount.getBoundingClientRect().height + Math.max(minGap, needed)) + 'px', 'important');
+    };
+    let fitT = 0;
+    const queueFit = () => { cancelAnimationFrame(fitT); fitT = requestAnimationFrame(fitHorizon); };
+    window.addEventListener('resize', queueFit);
+    window.addEventListener('hashchange', () => setTimeout(fitHorizon, 50));
+    if (document.readyState !== 'loading') setTimeout(fitHorizon, 300); else document.addEventListener('DOMContentLoaded', () => setTimeout(fitHorizon, 300));
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(queueFit);
+      const watch = () => { const f = document.querySelector('footer'); if (f && !f.dataset.mtzWatched) { f.dataset.mtzWatched = '1'; ro.observe(f); } };
+      watch(); new MutationObserver(() => { watch(); queueFit(); }).observe(document.body, { childList: true, subtree: true });
+    }
 
     // Magnetic text: circle follows the pointer and reveals the inverted word
     const initMagnetic = () => {
