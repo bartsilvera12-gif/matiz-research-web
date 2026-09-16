@@ -1278,7 +1278,7 @@ class Component extends DCLogic {
         try { window.localStorage.setItem('matiz-theme', d ? 'dark' : 'light'); } catch (e) {}
         this.setState({ dark: d });
       },
-      invHeight: this.reduce ? '100vh' : '300vh',
+      invHeight: this.reduce ? '100vh' : '200vh',
       invBallSize: ballSize + 'px',
       invBallY: yOff + 'px',
       invClip: 'circle(' + (ballSize / 2) + 'px at 50% calc(50% + ' + yOff + 'px))',
