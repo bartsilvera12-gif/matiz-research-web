@@ -662,13 +662,17 @@
 
       <div style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-start">
         <div style="flex:1 1 280px;min-width:240px;display:flex;justify-content:center">
-          <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block">
+          <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block;overflow:visible">
             <sc-for list="{{ latamShapes }}" as="c" hint-placeholder-count="0">
-              <path d="{{ c.d }}" stroke-linejoin="round" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transition:fill .3s ease"></path>
+              <path d="{{ c.d }}" stroke-linejoin="round" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transform:{{ c.transform }};transform-origin:{{ c.origin }};transform-box:fill-box;transition:transform .3s cubic-bezier(.2,.7,.2,1),fill .3s ease;cursor:{{ c.cursor }};filter:{{ c.filter }}"></path>
             </sc-for>
             <sc-for list="{{ latamDots }}" as="p" hint-placeholder-count="0">
-              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" style="fill:{{ p.fill }};stroke:var(--paper);stroke-width:1"></circle>
+              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" style="fill:{{ p.fill }};stroke:var(--paper);stroke-width:1;pointer-events:none"></circle>
             </sc-for>
+            <g style="opacity:{{ tipOpacity }};transition:opacity .2s ease;pointer-events:none">
+              <rect x="{{ tipX }}" y="{{ tipY }}" width="{{ tipW }}" height="26" rx="4" style="fill:var(--ink)"></rect>
+              <text x="{{ tipTextX }}" y="{{ tipTextY }}" style="fill:var(--paper);font-family:Montserrat,Helvetica,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em">{{ tipLabel }}</text>
+            </g>
           </svg>
         </div>
         <div style="flex:1 1 320px;min-width:260px">
@@ -1056,16 +1060,34 @@ class Component extends DCLogic {
       ['Argentina', ''], ['Bolivia', ''], ['Chile', ''], ['Uruguay', ''], ['Perú', ''], ['Colombia', '']
     ];
     const geoKey = { 'Paraguay': 'Paraguay', 'Argentina': 'Argentina', 'Bolivia': 'Bolivia', 'Chile': 'Chile', 'Uruguay': 'Uruguay', 'Perú': 'Peru', 'Colombia': 'Colombia' };
+    const geoToMarket = { Paraguay: 'Paraguay', Argentina: 'Argentina', Bolivia: 'Bolivia', Chile: 'Chile', Uruguay: 'Uruguay', Peru: 'Perú', Colombia: 'Colombia' };
     const isMarket = { Paraguay: 1, Argentina: 1, Bolivia: 1, Chile: 1, Uruguay: 1, Peru: 1, Colombia: 1 };
     const hoveredGeo = s.market ? geoKey[s.market] : null;
+    const centroids = m ? Object.fromEntries(m.latamPoints.map(p => [geoKey[p.n] || p.n, p])) : {};
     const latamShapes = m ? Object.keys(m.latam.countries).map(name => {
       const market = isMarket[name];
+      const marketName = geoToMarket[name] || name;
       let fill = 'var(--paper)';
       if (market) fill = name === 'Paraguay' ? 'var(--ink)' : '#788389';
       if (hoveredGeo === name) fill = 'var(--ink)';
-      return { d: m.latam.countries[name], fill: fill, stroke: market ? 'var(--paper)' : '#788389', sw: market ? 1 : 0.8 };
+      const cen = centroids[name] || { x: 0, y: 0 };
+      return {
+        d: m.latam.countries[name],
+        fill: fill,
+        stroke: market ? 'var(--paper)' : '#788389',
+        sw: market ? 1 : 0.8,
+        transform: hoveredGeo === name ? 'translate(0,-6px)' : 'translate(0,0)',
+        origin: cen.x + 'px ' + cen.y + 'px',
+        cursor: market ? 'pointer' : 'default',
+        filter: hoveredGeo === name ? 'drop-shadow(0 6px 10px rgba(0,0,0,.25))' : 'none',
+        enter: market ? () => this.setState({ market: marketName }) : () => {},
+        leave: market ? () => this.setState({ market: null }) : () => {}
+      };
     }) : [];
     const latamDots = m ? m.latamPoints.map(p => ({ x: p.x, y: p.y, r: s.market === p.n ? 6 : 3.5, fill: 'var(--paper)' })) : [];
+    const hoveredPoint = s.market && m ? m.latamPoints.find(p => p.n === s.market) : null;
+    const tipText = s.market || '';
+    const tipW = Math.max(60, tipText.length * 9 + 20);
     const markets = marketNames.map(([name, note]) => ({
       name: name, note: s.market === name ? (note || 'Red local') : note,
       color: s.market === name ? 'var(--ink)' : 'var(--ink)',
@@ -1220,6 +1242,13 @@ class Component extends DCLogic {
       latamViewBox: m ? '0 0 ' + m.latam.w + ' ' + m.latam.h : '0 0 520 720',
       latamShapes: latamShapes,
       latamDots: latamDots,
+      tipOpacity: hoveredPoint ? 1 : 0,
+      tipX: hoveredPoint ? (hoveredPoint.x + 14) : 0,
+      tipY: hoveredPoint ? (hoveredPoint.y - 34) : 0,
+      tipW: tipW,
+      tipTextX: hoveredPoint ? (hoveredPoint.x + 24) : 0,
+      tipTextY: hoveredPoint ? (hoveredPoint.y - 16) : 0,
+      tipLabel: tipText,
       markets: markets,
       formMsg: s.formMsg,
       onSubmit: (e) => { e.preventDefault(); this.setState({ formMsg: 'Gracias. Te responderemos a la brevedad.' }); }
