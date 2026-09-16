@@ -81,6 +81,10 @@
   .mtz-mountains .m-back { fill: #a7b0b4; opacity: .45; }
   .mtz-mountains .m-mid { fill: #788389; opacity: .85; }
   .mtz-mountains .m-front { fill: var(--ink); }
+  /* Metodologías: all eight methods on one row on desktop */
+  .mtz-methods { display: grid !important; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 20px clamp(14px, 1.6vw, 28px) !important; }
+  .mtz-methods > button > span:last-child { max-width: none !important; }
+  @media (max-width: 1100px) and (min-width: 641px) { .mtz-methods { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -593,7 +597,7 @@
       </div>
 
       <div data-reveal style="margin-top:clamp(28px,3vw,44px);position:relative;border-top:1px solid #788389;padding-top:22px">
-        <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,52px)">
+        <div class="mtz-methods" style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,52px)">
             <button type="button" onMouseEnter="{{ m0 }}" onFocus="{{ m0 }}" onClick="{{ m0 }}" style="position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0;border:0;background:none;cursor:pointer;color:{{ m0Color }};transition:color .3s ease;min-height:52px">
               <span aria-hidden="true" style="width:{{ m0Size }};height:{{ m0Size }};border-radius:50%;background:currentColor;transition:width .3s ease,height .3s ease"></span>
               <span style="font-size:clamp(13px,1.05vw,15.5px);font-weight:500;letter-spacing:-.01em;text-align:left;max-width:15ch">Focus groups</span>
