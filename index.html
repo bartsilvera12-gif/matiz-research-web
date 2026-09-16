@@ -111,7 +111,11 @@
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
-  .mtz-hero-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; color: var(--paper); overflow: hidden; contain: strict; opacity: .7; }
+  .mtz-hero-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; color: var(--paper); overflow: hidden; contain: strict; opacity: .45;
+    /* Only the outer edges: fade out toward the content column so no line ever crosses text or tables */
+    -webkit-mask-image: linear-gradient(90deg, #000 0, transparent 7%, transparent 93%, #000 100%), linear-gradient(180deg, #000 0, transparent 14%, transparent 86%, #000 100%);
+    mask-image: linear-gradient(90deg, #000 0, transparent 7%, transparent 93%, #000 100%), linear-gradient(180deg, #000 0, transparent 14%, transparent 86%, #000 100%);
+    -webkit-mask-composite: source-over; mask-composite: add; }
   .mtz-hero-paths svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transform: translateZ(0); }
   .mtz-hero-paths path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-dasharray: .5 .5; animation: mtzFlow linear infinite; }
   @keyframes mtzFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
@@ -345,7 +349,7 @@
     .mtz-chip--lg { padding: 10px 16px !important; font-size: 14.5px !important; }
 
     /* Hero canvas — a touch dimmer on mobile */
-    .mtz-hero-paths { opacity: .6 !important; }
+    .mtz-hero-paths { display: none !important; }
 
     /* Hero tables full width */
     .mtz-tables { grid-template-columns: 1fr !important; }
@@ -1612,6 +1616,7 @@ class Component extends DCLogic {
     const startPaths = () => {
       const host = document.querySelector('.mtz-hero-paths');
       if (!host || host.dataset.ready) return;
+      if (window.matchMedia('(max-width: 640px)').matches) return;
       host.dataset.ready = '1';
       const NS = 'http://www.w3.org/2000/svg';
       const svg = document.createElementNS(NS, 'svg');
@@ -1620,7 +1625,7 @@ class Component extends DCLogic {
       const seeds = [];
       for (const position of [1, -1]) {
         for (let i = 0; i < 36; i++) {
-          if (i % 3 === 1) continue;
+          if (i % 3 !== 0) continue;
           const dur = 22 + Math.random() * 10;
           seeds.push({ position, i, dur, delay: -Math.random() * dur });
         }
