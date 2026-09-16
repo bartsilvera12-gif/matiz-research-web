@@ -99,7 +99,9 @@
   .mtz-magnetic__base, .mtz-magnetic__inner span { font-weight: 800; font-size: clamp(56px, 12vw, 190px); line-height: 1; letter-spacing: -.035em; white-space: nowrap; }
   .mtz-magnetic__base { color: var(--ink); }
   .mtz-magnetic__circle { position: absolute; top: 0; left: 0; width: 0; height: 0; border-radius: 50%; background: var(--ink); overflow: hidden; pointer-events: none; will-change: transform, width, height; transition: width .5s cubic-bezier(.33,1,.68,1), height .5s cubic-bezier(.33,1,.68,1); }
-  .mtz-magnetic.is-hover .mtz-magnetic__circle { width: clamp(130px, 14vw, 220px); height: clamp(130px, 14vw, 220px); }
+  .mtz-magnetic.is-hover .mtz-magnetic__circle { width: clamp(190px, 24vw, 360px); height: clamp(190px, 24vw, 360px); }
+  .mtz-magnetic-host { margin-bottom: clamp(56px, 7vw, 112px) !important; }
+  .mtz-magnetic-host .mtz-magnetic-wrap { margin-top: 0; }
   .mtz-magnetic__inner { position: absolute; top: 50%; left: 50%; display: flex; align-items: center; justify-content: center; will-change: transform; }
   .mtz-magnetic__inner span { color: var(--paper); }
   .mtz-magnetic-caption { margin-top: clamp(14px, 1.6vw, 22px); font-size: 13px; color: #788389; }
@@ -578,7 +580,6 @@
         <p style="margin-top:clamp(28px,3vw,44px);padding-top:22px;border-top:1px solid #788389;font-weight:600;font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Entender antes de decidir.</p>
       </div>
     </div>
-    </div>
   </section>
 
   <section data-screen-label="Metodologías" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--ink);color:var(--paper)">
@@ -903,6 +904,16 @@
 
   <div data-page="Nosotros" style="display:{{ pgNosotros }}">
   <section id="nosotros" data-screen-label="Somos Matiz" style="scroll-margin-top:80px;padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper)">
+    <div class="mtz-magnetic-host" style="max-width:1320px;margin:0 auto;width:100%">
+        <div class="mtz-magnetic-wrap" role="group" aria-label="Entender y resolver">
+          <p class="mtz-magnetic-eyebrow">Nuestra forma de trabajar</p>
+          <div class="mtz-magnetic" data-magnetic aria-hidden="true">
+            <span class="mtz-magnetic__base">ENTENDER</span>
+            <div class="mtz-magnetic__circle"><div class="mtz-magnetic__inner"><span>RESOLVER</span></div></div>
+          </div>
+          <p class="mtz-magnetic-caption">Pasá el cursor: primero entendemos, después resolvemos.</p>
+        </div>
+    </div>
     <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:center">
       <div style="flex:1 1 360px;min-width:280px">
         <div style="position:relative;width:100%;aspect-ratio:5 / 4;border:1px solid #788389;background:var(--paper)">
@@ -920,15 +931,6 @@
         <p style="margin-top:clamp(28px,3vw,40px);padding-top:24px;border-top:1px solid #788389;font-weight:600;font-size:clamp(22px,2.6vw,38px);line-height:1.1;letter-spacing:-.025em">Tu proyecto <span style="color:#788389">también es nuestro proyecto.</span></p>
       </div>
     </div>
-    <div class="mtz-magnetic-host" style="max-width:1320px;margin:0 auto;width:100%">
-        <div class="mtz-magnetic-wrap" role="group" aria-label="Entender y resolver">
-          <p class="mtz-magnetic-eyebrow">Nuestra forma de trabajar</p>
-          <div class="mtz-magnetic" data-magnetic aria-hidden="true">
-            <span class="mtz-magnetic__base">ENTENDER</span>
-            <div class="mtz-magnetic__circle"><div class="mtz-magnetic__inner"><span>RESOLVER</span></div></div>
-          </div>
-          <p class="mtz-magnetic-caption">Pasá el cursor: primero entendemos, después resolvemos.</p>
-        </div>
   </section>
 
   </div>
