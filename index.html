@@ -45,6 +45,53 @@
   /* Arrow slide inside links / CTAs */
   .mtz-arrow { display: inline-block; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
   a:hover .mtz-arrow, a:focus-visible .mtz-arrow, button:hover .mtz-arrow, button:focus-visible .mtz-arrow { transform: translateX(6px); }
+  /* Hero particle network canvas */
+  .mtz-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .55; }
+  section[data-screen-label="Hero"] [data-gp-content] > div { position: relative; z-index: 1; }
+  /* Data tables inside hero */
+  .mtz-tables { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px,2vw,32px); }
+  .mtz-table { border: 1px solid #788389; background: rgba(0,0,0,.35); backdrop-filter: blur(6px); overflow: hidden; }
+  .mtz-table__h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px clamp(14px,1.4vw,22px); border-bottom: 1px solid #788389; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #a7b0b4; }
+  .mtz-table__h span:last-child { color: var(--paper); font-weight: 500; letter-spacing: 0; text-transform: none; font-size: 12px; }
+  .mtz-table table { width: 100%; border-collapse: collapse; }
+  .mtz-table td { padding: 12px clamp(14px,1.4vw,22px); font-size: clamp(15px,1.25vw,18px); font-weight: 500; letter-spacing: -.015em; border-top: 1px solid rgba(120,131,137,.35); transition: background .25s ease, padding-left .3s cubic-bezier(.2,.7,.2,1); cursor: default; color: var(--paper); }
+  .mtz-table tr:first-child td { border-top: 0; }
+  .mtz-table tr:hover td { background: rgba(255,255,255,.06); padding-left: calc(clamp(14px,1.4vw,22px) + 6px); }
+  /* Hero CTA buttons — filled variant with slide */
+  .mtz-hero-cta { position: relative; overflow: hidden; isolation: isolate; background: rgba(255,255,255,.08) !important; }
+  .mtz-hero-cta::before { content: ""; position: absolute; inset: 0; background: var(--paper); transform: translateY(101%); transition: transform .4s cubic-bezier(.2,.7,.2,1); z-index: -1; }
+  .mtz-hero-cta:hover::before, .mtz-hero-cta:focus-visible::before { transform: none; }
+  .mtz-hero-cta:hover, .mtz-hero-cta:focus-visible { color: var(--ink) !important; background: transparent !important; }
+  .mtz-hero-cta__arrow { display: inline-block; margin-left: 10px; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .mtz-hero-cta:hover .mtz-hero-cta__arrow, .mtz-hero-cta:focus-visible .mtz-hero-cta__arrow { transform: translateX(6px); }
+  /* Interactive dark card (Dos áreas) */
+  .mtz-area { position: relative; overflow: hidden; isolation: isolate; padding: clamp(28px,3vw,42px) clamp(24px,2.6vw,36px); border: 1px solid var(--ink); display: flex; flex-direction: column; gap: 16px; transition: color .4s ease; min-height: 320px; }
+  .mtz-area::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: translateY(100%); transition: transform .5s cubic-bezier(.2,.7,.2,1); z-index: -1; }
+  .mtz-area:hover::before, .mtz-area:focus-within::before { transform: none; }
+  .mtz-area:hover, .mtz-area:focus-within { color: var(--paper); }
+  .mtz-area:hover .mtz-area__eyebrow, .mtz-area:hover .mtz-area__link { color: currentColor; }
+  .mtz-area__eyebrow { font-weight: 600; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; transition: color .35s ease; }
+  .mtz-area__title { font-weight: 600; font-size: clamp(22px,2.4vw,34px); line-height: 1.12; letter-spacing: -.025em; max-width: 20ch; }
+  .mtz-area__desc { font-size: clamp(15px,1.1vw,17px); line-height: 1.62; max-width: 48ch; }
+  .mtz-area__link { margin-top: auto; padding-top: 14px; display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; border-top: 1px solid currentColor; align-self: flex-start; }
+  .mtz-area__link .mtz-arrow { display: inline-block; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .mtz-area:hover .mtz-area__link .mtz-arrow, .mtz-area:focus-within .mtz-area__link .mtz-arrow { transform: translateX(6px); }
+  /* Text stagger animation for headlines */
+  .mtz-stagger { display: inline-block; }
+  .mtz-stagger .mtz-word { display: inline-block; opacity: 0; transform: translateY(0.5em); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  .mtz-stagger.is-in .mtz-word { opacity: 1; transform: none; }
+  /* Category chips (Experiencia) */
+  .mtz-chips { display: flex; flex-wrap: wrap; gap: 10px 12px; }
+  .mtz-chip { position: relative; overflow: hidden; isolation: isolate; padding: 10px 18px; border: 1px solid var(--ink); font-weight: 500; font-size: clamp(14px,1.05vw,16px); letter-spacing: -.005em; color: var(--ink); background: transparent; transition: color .35s ease; }
+  .mtz-chip::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: translateY(101%); transition: transform .35s cubic-bezier(.2,.7,.2,1); z-index: -1; }
+  .mtz-chip:hover::before, .mtz-chip:focus-visible::before { transform: none; }
+  .mtz-chip:hover, .mtz-chip:focus-visible { color: var(--paper); }
+  .mtz-chip--lg { font-weight: 700; padding: 12px 22px; font-size: clamp(15px,1.2vw,18px); }
+  /* Filled dark button */
+  .mtz-btn-fill { position: relative; overflow: hidden; isolation: isolate; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); }
+  .mtz-btn-fill::before { content: ""; position: absolute; inset: 0; background: var(--paper); transform: translateY(-100%); transition: transform .4s cubic-bezier(.2,.7,.2,1); z-index: -1; }
+  .mtz-btn-fill:hover::before, .mtz-btn-fill:focus-visible::before { transform: none; }
+  .mtz-btn-fill:hover, .mtz-btn-fill:focus-visible { color: var(--ink); }
   /* Reason cards — editorial */
   .mtz-reason { position: relative; padding: clamp(32px,3.4vw,48px) 0 clamp(28px,3vw,40px); border-top: 1px solid #788389; display: grid; grid-template-columns: 88px 1fr; gap: clamp(20px,2.6vw,44px); align-items: start; transition: padding-left .5s cubic-bezier(.2,.7,.2,1); }
   .mtz-reason__num { font-size: clamp(18px,1.4vw,22px); font-weight: 600; letter-spacing: 0; color: #788389; font-variant-numeric: tabular-nums; transition: color .35s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
@@ -78,11 +125,9 @@
     /* Hero — tighter */
     section[data-screen-label="Hero"] [data-gp-content] > div { gap: 18px !important; }
     section[data-screen-label="Hero"] [data-gp-content] h1 { font-size: 30px !important; letter-spacing: -.025em !important; max-width: none !important; }
-    section[data-screen-label="Hero"] [data-hero-net] { grid-template-columns: 1fr !important; gap: 14px !important; }
-    section[data-screen-label="Hero"] [data-hero-net] > div:last-child { text-align: left !important; }
-    section[data-screen-label="Hero"] [data-hero-net] li { justify-content: flex-start !important; font-size: 14px !important; min-height: 28px !important; }
-    section[data-screen-label="Hero"] [data-hero-net] [data-mark] { display: none !important; }
-    section[data-screen-label="Hero"] [data-hero-net] svg { display: none !important; }
+    .mtz-tables { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .mtz-table__h { font-size: 10px !important; }
+    .mtz-table td { font-size: 14px !important; padding: 8px 10px !important; }
     section[data-screen-label="Hero"] [data-gp-content] a[href^="#"] { min-height: 44px !important; padding: 10px 16px !important; font-size: 10.5px !important; flex: 1 1 100% !important; justify-content: center !important; }
 
     /* Two-column card grid — forced on mobile */
@@ -135,8 +180,21 @@
     .mtz-reason__title { font-size: 18px !important; }
     .mtz-reason__desc { font-size: 14px !important; }
 
-    /* Buttons — full width in hero */
-    section[data-screen-label="Dos áreas"] > div > div { grid-template-columns: 1fr !important; gap: 24px !important; }
+    /* Dos áreas cards — stack */
+    section[data-screen-label="Dos áreas"] > div > div[data-reveal] { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .mtz-area { min-height: 240px !important; padding: 22px !important; }
+    .mtz-area__title { font-size: 20px !important; }
+    .mtz-area__desc { font-size: 14px !important; }
+
+    /* Chips (Experiencia) — smaller */
+    .mtz-chip { padding: 8px 14px !important; font-size: 13px !important; }
+    .mtz-chip--lg { padding: 10px 16px !important; font-size: 14.5px !important; }
+
+    /* Hero canvas — a touch dimmer on mobile */
+    .mtz-hero-canvas { opacity: .35 !important; }
+
+    /* Hero tables full width */
+    .mtz-tables { grid-template-columns: 1fr !important; }
   }
 
 </style>
@@ -170,40 +228,26 @@
   <div data-page="Home" style="display:{{ pgHome }}">
   <section id="inicio" data-screen-label="Hero">
     <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
-      <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(16px,2vw,28px);color:var(--paper)">
+      <canvas class="mtz-hero-canvas" aria-hidden="true"></canvas>
+      <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,32px);color:var(--paper);position:relative;z-index:1">
         <h1 style="font-weight:600;font-size:clamp(26px,4.2vw,58px);line-height:1;letter-spacing:-.03em;max-width:20ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
 
-        <div data-hero-net style="position:relative;display:grid;grid-template-columns:{{ netCols }};align-items:center;gap:clamp(10px,1.6vw,24px) clamp(18px,3vw,56px);border-top:1px solid #788389;padding-top:clamp(14px,1.8vw,22px)">
-          <svg aria-hidden="true" viewBox="{{ netViewBox }}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible">
-            <sc-for list="{{ netPaths }}" as="p" hint-placeholder-count="0">
-              <path d="{{ p.d }}" fill="none" stroke="#788389" stroke-width="1" opacity="{{ p.opacity }}" style="transition:opacity .4s ease"></path>
-            </sc-for>
-            <sc-for list="{{ netDots }}" as="p" hint-placeholder-count="0">
-              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="3" opacity="{{ p.opacity }}" style="fill:var(--paper);transition:opacity .4s ease"></circle>
-            </sc-for>
-          </svg>
-
-          <div style="position:relative">
-            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:{{ researchOpacity }};transition:opacity .4s ease">Investigación</p>
-            <ul style="margin-top:14px;display:flex;flex-direction:column;gap:9px;opacity:{{ researchOpacity }};transition:opacity .4s ease">
-              <li data-node="l" style="display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Comprender</span></li>
-              <li data-node="l" style="display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Interpretar</span></li>
-              <li data-node="l" style="display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Transformar datos en insights</span></li>
-            </ul>
+        <div class="mtz-tables" data-reveal>
+          <div class="mtz-table">
+            <div class="mtz-table__h"><span>Investigación</span><span>Insights</span></div>
+            <table><tbody>
+              <tr><td>Comprender</td></tr>
+              <tr><td>Interpretar</td></tr>
+              <tr><td>Transformar datos en insights</td></tr>
+            </tbody></table>
           </div>
-
-          <div data-mark style="position:relative;justify-self:center;width:clamp(72px,8vw,110px);aspect-ratio:1;border-radius:50%;background:var(--paper);display:grid;place-items:center">
-            <img src="logo-matiz-m.svg" alt="Matiz" style="display:{{ logoOnPaper }};width:52%;height:auto" />
-            <img src="logo-matiz-m-dark.svg" alt="Matiz" style="display:{{ logoOnInk }};width:52%;height:auto;grid-area:1 / 1" />
-          </div>
-
-          <div style="position:relative;text-align:right">
-            <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:{{ fieldOpacity }};transition:opacity .4s ease">Fieldwork</p>
-            <ul style="margin-top:14px;display:flex;flex-direction:column;gap:9px;opacity:{{ fieldOpacity }};transition:opacity .4s ease">
-              <li data-node="r" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Ejecutar</span></li>
-              <li data-node="r" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Coordinar</span></li>
-              <li data-node="r" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:34px;font-size:clamp(15px,1.4vw,21px);font-weight:500;letter-spacing:-.015em"><span>Llegar al terreno y hacerlo posible</span></li>
-            </ul>
+          <div class="mtz-table">
+            <div class="mtz-table__h"><span>Fieldwork</span><span>Terreno</span></div>
+            <table><tbody>
+              <tr><td>Ejecutar</td></tr>
+              <tr><td>Coordinar</td></tr>
+              <tr><td>Llegar al terreno y hacerlo posible</td></tr>
+            </tbody></table>
           </div>
         </div>
 
@@ -213,8 +257,8 @@
         </div>
 
         <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="#investigacion" onMouseEnter="{{ hoverResearch }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverResearch }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:46px;display:inline-flex;align-items:center;padding:12px 22px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Quiero realizar un estudio</a>
-          <a href="#fieldwork" onMouseEnter="{{ hoverField }}" onMouseLeave="{{ hoverNone }}" onFocus="{{ hoverField }}" onBlur="{{ hoverNone }}" style="flex:0 1 auto;min-height:46px;display:inline-flex;align-items:center;padding:12px 22px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;transition:background .25s ease,color .25s ease" style-hover="background:var(--paper);color:var(--ink)">Necesito soporte de fieldwork</a>
+          <a href="#investigacion" class="mtz-hero-cta" style="flex:0 1 auto;min-height:48px;display:inline-flex;align-items:center;padding:14px 26px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .4s ease">Quiero realizar un estudio<span class="mtz-hero-cta__arrow" aria-hidden="true">→</span></a>
+          <a href="#fieldwork" class="mtz-hero-cta" style="flex:0 1 auto;min-height:48px;display:inline-flex;align-items:center;padding:14px 26px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .4s ease">Necesito soporte de fieldwork<span class="mtz-hero-cta__arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </x-import>
@@ -224,19 +268,19 @@
     <div style="max-width:1320px;margin:0 auto;width:100%">
       <h2 data-reveal style="max-width:22ch;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.06;letter-spacing:-.025em">Dos áreas. <span style="color:#788389">Un mismo compromiso con cada proyecto.</span></h2>
       <p data-reveal style="margin-top:22px;max-width:56ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Matiz no busca ser un proveedor más. Busca convertirse en un aliado que se involucra en cada proyecto y encuentra la manera de hacerlo posible.</p>
-      <div data-reveal style="margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,72px)">
-        <div style="border-top:1px solid var(--ink);padding-top:26px">
-          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Investigación de Mercado</p>
-          <h3 style="margin-top:18px;font-weight:600;font-size:clamp(22px,2.4vw,34px);line-height:1.12;letter-spacing:-.025em;max-width:20ch">De la pregunta de negocio a los insights.</h3>
-          <p style="margin-top:16px;max-width:48ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Diseñamos investigaciones a medida para entender a tus consumidores, evaluar marcas, productos y servicios e identificar oportunidades.</p>
-          <a href="#investigacion" style="margin-top:24px;display:inline-flex;align-items:center;min-height:48px;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:6px" style-hover="border-color:var(--muted)">Ver Investigación de Mercado →</a>
-        </div>
-        <div style="border-top:1px solid var(--ink);padding-top:26px">
-          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Fieldwork &amp; Research Support</p>
-          <h3 style="margin-top:18px;font-weight:600;font-size:clamp(22px,2.4vw,34px);line-height:1.12;letter-spacing:-.025em;max-width:20ch">Todo lo necesario para poner tu estudio en marcha.</h3>
-          <p style="margin-top:16px;max-width:48ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Nos convertimos en el equipo local de consultoras y agencias, aportando personas, estructura, logística, coordinación y control.</p>
-          <a href="#fieldwork" style="margin-top:24px;display:inline-flex;align-items:center;min-height:48px;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:6px" style-hover="border-color:var(--muted)">Ver Fieldwork →</a>
-        </div>
+      <div data-reveal style="margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,40px)">
+        <a href="#investigacion" class="mtz-area" style="color:var(--ink);text-decoration:none">
+          <span class="mtz-area__eyebrow">Investigación de Mercado</span>
+          <h3 class="mtz-area__title">De la pregunta de negocio a los insights.</h3>
+          <p class="mtz-area__desc">Diseñamos investigaciones a medida para entender a tus consumidores, evaluar marcas, productos y servicios e identificar oportunidades.</p>
+          <span class="mtz-area__link">Ver Investigación de Mercado <span class="mtz-arrow" aria-hidden="true">→</span></span>
+        </a>
+        <a href="#fieldwork" class="mtz-area" style="color:var(--ink);text-decoration:none">
+          <span class="mtz-area__eyebrow">Fieldwork &amp; Research Support</span>
+          <h3 class="mtz-area__title">Todo lo necesario para poner tu estudio en marcha.</h3>
+          <p class="mtz-area__desc">Nos convertimos en el equipo local de consultoras y agencias, aportando personas, estructura, logística, coordinación y control.</p>
+          <span class="mtz-area__link">Ver Fieldwork <span class="mtz-arrow" aria-hidden="true">→</span></span>
+        </a>
       </div>
     </div>
   </section>
@@ -258,13 +302,17 @@
   <section data-screen-label="Propuesta de valor" style="padding:clamp(80px,10vw,160px) clamp(20px,5vw,64px);background:var(--ink);color:var(--paper)">
     <div style="max-width:1200px;margin:0 auto;width:100%">
       <p data-reveal style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#788389">Nuestra forma de trabajar</p>
-      <h2 data-reveal style="margin-top:clamp(20px,2.4vw,32px);font-weight:600;font-size:clamp(32px,5vw,72px);line-height:1.02;letter-spacing:-.035em;max-width:20ch">No queremos ser un proveedor más. Queremos ser <span style="color:#788389">tu equipo de confianza.</span></h2>
+      <h2 data-reveal data-stagger style="margin-top:clamp(20px,2.4vw,32px);font-weight:600;font-size:clamp(32px,5vw,72px);line-height:1.02;letter-spacing:-.035em;max-width:20ch;color:var(--paper)"><span data-stagger-text="light">No queremos ser un proveedor más. Queremos ser</span> <span style="color:#788389" data-stagger-text="muted">tu equipo de confianza.</span></h2>
       <div data-reveal style="margin-top:clamp(48px,6vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,56px);border-top:1px solid #788389;padding-top:clamp(28px,3vw,44px)">
         <p style="font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;color:var(--paper)">Sabemos lo que significa trabajar con tiempos ajustados, perfiles difíciles, mercados nuevos, presupuestos que deben cerrar y clientes que esperan respuestas.</p>
         <div>
           <p style="font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;color:var(--paper)">Por eso nuestro trabajo no termina en cotizar un servicio.</p>
           <p style="margin-top:16px;font-size:clamp(15px,1.15vw,17.5px);line-height:1.62;color:var(--paper)">Nos involucramos, proponemos alternativas y buscamos la manera de que cada proyecto pueda realizarse.</p>
         </div>
+      </div>
+      <div data-reveal style="margin-top:clamp(36px,4vw,56px);display:flex;flex-wrap:wrap;gap:14px">
+        <a href="#contacto" class="mtz-hero-cta" style="display:inline-flex;align-items:center;min-height:52px;padding:16px 30px;border:1px solid var(--paper);color:var(--paper);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:color .4s ease">Hablemos de tu proyecto<span class="mtz-hero-cta__arrow" aria-hidden="true">→</span></a>
+        <a href="#nosotros" class="mtz-link" style="display:inline-flex;align-items:center;min-height:52px;padding:16px 4px;color:var(--paper);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase">Conocé nuestro equipo</a>
       </div>
     </div>
   </section>
@@ -275,20 +323,20 @@
       <p data-reveal style="margin-top:22px;max-width:58ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink)">Más de 10 años de experiencia en investigación de mercados, estudios sociales y opinión pública, trabajando con consultoras y empresas nacionales e internacionales.</p>
       <div data-reveal style="margin-top:clamp(36px,4vw,64px);border-top:1px solid #788389;padding-top:clamp(24px,3vw,36px)">
         <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Experiencia en múltiples categorías</p>
-        <p style="margin-top:24px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 22px;letter-spacing:-.02em;line-height:1.05">
-          <span style="font-weight:600;font-size:clamp(22px,2.8vw,40px)">Bebidas</span>
-          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Alimentos</span>
-          <span style="font-weight:600;font-size:clamp(20px,2.4vw,34px)">Supermercados</span>
-          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Telecomunicaciones</span>
-          <span style="font-weight:600;font-size:clamp(22px,2.8vw,40px)">Cosméticos</span>
-          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Indumentarias</span>
-          <span style="font-weight:600;font-size:clamp(20px,2.2vw,32px)">Golosinas</span>
-          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Inmobiliarias</span>
-          <span style="font-weight:600;font-size:clamp(20px,2.4vw,34px)">Cigarrillos</span>
-          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Seguros</span>
-          <span style="font-weight:600;font-size:clamp(22px,2.8vw,40px)">Educación</span>
-          <span style="font-weight:400;font-size:clamp(16px,1.6vw,24px);color:var(--ink)">Salud</span>
-        </p>
+        <div class="mtz-chips" style="margin-top:24px">
+          <span class="mtz-chip mtz-chip--lg">Bebidas</span>
+          <span class="mtz-chip">Alimentos</span>
+          <span class="mtz-chip mtz-chip--lg">Supermercados</span>
+          <span class="mtz-chip">Telecomunicaciones</span>
+          <span class="mtz-chip mtz-chip--lg">Cosméticos</span>
+          <span class="mtz-chip">Indumentarias</span>
+          <span class="mtz-chip mtz-chip--lg">Golosinas</span>
+          <span class="mtz-chip">Inmobiliarias</span>
+          <span class="mtz-chip mtz-chip--lg">Cigarrillos</span>
+          <span class="mtz-chip">Seguros</span>
+          <span class="mtz-chip mtz-chip--lg">Educación</span>
+          <span class="mtz-chip">Salud</span>
+        </div>
       </div>
     </div>
   </section>
@@ -660,19 +708,19 @@
         </div>
 
         <div style="flex:1 1 340px;min-width:280px;display:flex;flex-direction:column;gap:clamp(28px,5vh,56px);padding-top:8px">
-          <div data-infra="0" style="border-top:1px solid {{ infraBorder0 }};padding-top:24px;opacity:{{ infraOpacity0 }};transition:opacity .4s ease">
+          <div data-reveal data-infra="0" style="border-top:1px solid {{ infraBorder0 }};padding-top:24px;opacity:{{ infraOpacity0 }};transition:opacity .4s ease">
             <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Sala de Focus Groups</h3>
             <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Espacio preparado para sesiones presenciales, con comodidad para participantes y moderadores.</p>
           </div>
-          <div data-infra="1" style="border-top:1px solid {{ infraBorder1 }};padding-top:24px;opacity:{{ infraOpacity1 }};transition:opacity .4s ease">
+          <div data-reveal data-infra="1" style="border-top:1px solid {{ infraBorder1 }};padding-top:24px;opacity:{{ infraOpacity1 }};transition:opacity .4s ease">
             <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Sala de transmisión</h3>
             <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Permite a clientes y equipos de investigación acompañar las sesiones de manera remota y en tiempo real.</p>
           </div>
-          <div data-infra="2" style="border-top:1px solid {{ infraBorder2 }};padding-top:24px;opacity:{{ infraOpacity2 }};transition:opacity .4s ease">
+          <div data-reveal data-infra="2" style="border-top:1px solid {{ infraBorder2 }};padding-top:24px;opacity:{{ infraOpacity2 }};transition:opacity .4s ease">
             <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Operación telefónica</h3>
             <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Oficina equipada para encuestas y entrevistas telefónicas con procesos de supervisión y control.</p>
           </div>
-          <div data-infra="3" style="border-top:1px solid {{ infraBorder3 }};padding-top:24px;opacity:{{ infraOpacity3 }};transition:opacity .4s ease">
+          <div data-reveal data-infra="3" style="border-top:1px solid {{ infraBorder3 }};padding-top:24px;opacity:{{ infraOpacity3 }};transition:opacity .4s ease">
             <h3 style="font-weight:600;font-size:clamp(20px,2.1vw,30px);letter-spacing:-.02em">Equipo de campo nacional</h3>
             <p style="margin-top:12px;max-width:46ch;font-size:clamp(15px,1.1vw,17px);line-height:1.6">Red de encuestadores, entrevistadores y supervisores para ejecución en diferentes puntos del país.</p>
           </div>
@@ -715,7 +763,7 @@
       </div>
 
       <div style="margin-top:clamp(40px,5vw,80px);display:flex;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px)">
-        <article style="flex:1.5 1 320px;min-width:280px;max-width:560px">
+        <article data-reveal style="flex:1.5 1 320px;min-width:280px;max-width:560px">
           <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
             <image-slot id="mtz-team-mabel" shape="rect" fit="cover" placeholder="Foto — Mabel Drakeford"></image-slot>
           </div>
@@ -724,7 +772,7 @@
           <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Ciencias de la Comunicación, especializada en Investigación Cualitativa. Apasionada por la información, proactiva y resolutiva, desarrolló toda su trayectoria profesional vinculada a la investigación, experiencia que hoy vuelca en cada proyecto que lidera.</p>
           <p style="margin-top:22px;padding-top:22px;border-top:1px solid var(--ink);font-weight:500;font-size:clamp(17px,1.6vw,23px);line-height:1.35;letter-spacing:-.015em">Después de años trabajando como investigadora independiente, dio origen a Matiz Research, reuniendo experiencia, equipo y una red consolidada de colaboradores.</p>
         </article>
-        <article style="flex:1 1 260px;min-width:250px;max-width:420px">
+        <article data-reveal style="flex:1 1 260px;min-width:250px;max-width:420px">
           <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
             <image-slot id="mtz-team-laura" shape="rect" fit="cover" placeholder="Foto — Laura Estigarribia"></image-slot>
           </div>
@@ -732,7 +780,7 @@
           <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Coordinadora de Estudios</p>
           <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Psicología, con más de 9 años de experiencia en investigación de mercado, especialmente en estudios cualitativos. Detallista, analítica y cercana, disfruta descubriendo nuevas herramientas que aporten valor a su trabajo. Su experiencia en coordinación, moderación y análisis le permite acompañar cada proyecto con una mirada organizada y estratégica.</p>
         </article>
-        <article style="flex:1 1 260px;min-width:250px;max-width:420px">
+        <article data-reveal style="flex:1 1 260px;min-width:250px;max-width:420px">
           <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
             <image-slot id="mtz-team-camila" shape="rect" fit="cover" placeholder="Foto — Camila"></image-slot>
           </div>
@@ -1180,13 +1228,126 @@ class Component extends DCLogic {
 </script>
 <script>
   (() => {
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    const attach = () => document.querySelectorAll('[data-reveal]:not(.is-in)').forEach((el) => io.observe(el));
-    attach();
-    new MutationObserver(attach).observe(document.body, { childList: true, subtree: true });
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Scroll reveal
+    if (!reduce) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+      const attach = () => document.querySelectorAll('[data-reveal]:not(.is-in)').forEach((el) => io.observe(el));
+      attach();
+      new MutationObserver(attach).observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Word stagger (data-stagger on element)
+    const stagger = (root) => {
+      root.querySelectorAll('[data-stagger]:not([data-stagger-ready])').forEach((el) => {
+        el.setAttribute('data-stagger-ready', '');
+        el.classList.add('mtz-stagger');
+        const walkAndSplit = (node) => {
+          if (node.nodeType === 3) {
+            const words = node.textContent.split(/(\s+)/);
+            const frag = document.createDocumentFragment();
+            let idx = 0;
+            words.forEach((w) => {
+              if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+              if (!w) return;
+              const span = document.createElement('span');
+              span.className = 'mtz-word';
+              span.textContent = w;
+              span.style.transitionDelay = (idx * 45) + 'ms';
+              idx++;
+              frag.appendChild(span);
+            });
+            node.parentNode.replaceChild(frag, node);
+          } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+            [...node.childNodes].forEach(walkAndSplit);
+          }
+        };
+        [...el.childNodes].forEach(walkAndSplit);
+        // Observe for reveal
+        const wio = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); wio.unobserve(e.target); } });
+        }, { threshold: 0.2 });
+        wio.observe(el);
+      });
+    };
+    if (!reduce) {
+      stagger(document);
+      new MutationObserver(() => stagger(document)).observe(document.body, { childList: true, subtree: true });
+    } else {
+      // Immediately show
+      document.querySelectorAll('[data-stagger]').forEach(el => el.classList.add('is-in'));
+    }
+
+    // Hero particle network (like tics-py, in black)
+    const startCanvas = () => {
+      const canvas = document.querySelector('.mtz-hero-canvas');
+      if (!canvas || canvas.dataset.ready) return;
+      canvas.dataset.ready = '1';
+      const ctx = canvas.getContext('2d');
+      let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const nodes = [];
+      const N = Math.max(28, Math.min(70, Math.floor((window.innerWidth * window.innerHeight) / 22000)));
+      const mouse = { x: -9999, y: -9999 };
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        w = rect.width; h = rect.height;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      const seed = () => {
+        nodes.length = 0;
+        for (let i = 0; i < N; i++) {
+          nodes.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25 });
+        }
+      };
+      resize();
+      seed();
+      window.addEventListener('resize', () => { resize(); seed(); });
+      canvas.parentElement && canvas.parentElement.addEventListener('mousemove', (e) => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      });
+      canvas.parentElement && canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+      const linkDist = 140;
+      const tick = () => {
+        ctx.clearRect(0, 0, w, h);
+        for (const n of nodes) {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+          const dxm = n.x - mouse.x, dym = n.y - mouse.y, dm = Math.hypot(dxm, dym);
+          if (dm < 120) { n.x += dxm / dm * .8; n.y += dym / dm * .8; }
+        }
+        // lines
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const d = Math.hypot(dx, dy);
+            if (d < linkDist) {
+              const alpha = (1 - d / linkDist) * .55;
+              ctx.strokeStyle = 'rgba(255,255,255,' + alpha.toFixed(3) + ')';
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+          }
+        }
+        // dots
+        ctx.fillStyle = 'rgba(255,255,255,.85)';
+        for (const n of nodes) {
+          ctx.beginPath(); ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2); ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      };
+      if (!reduce) requestAnimationFrame(tick);
+    };
+    // Wait for GlyphPortal content to be attached
+    if (document.readyState !== 'loading') setTimeout(startCanvas, 300);
+    else window.addEventListener('DOMContentLoaded', () => setTimeout(startCanvas, 300));
+    new MutationObserver(startCanvas).observe(document.body, { childList: true, subtree: true });
   })();
 </script>
 </body>
