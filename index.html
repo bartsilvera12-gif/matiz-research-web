@@ -49,6 +49,8 @@
      (iOS Safari's translucent toolbar otherwise shows a white band under it) */
   section[data-screen-label="Hero"] section[id^="gp-"][data-gp-entered="true"],
   section[data-screen-label="Hero"]:has(section[id^="gp-"][data-gp-entered="true"]) { background: var(--ink) !important; }
+  /* LATAM map country label (HTML so text renders; positioned in % over the map) */
+  .mtz-map-tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--paper); font: 600 12px/1 Montserrat, Helvetica, Arial, sans-serif; letter-spacing: -.01em; padding: 6px 9px; border-radius: 4px; white-space: nowrap; transition: opacity .2s ease; z-index: 2; }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -236,7 +238,7 @@
     .mtz-latam-side { display: contents !important; }
     .mtz-latam-label { grid-area: label; font-size: 10px !important; letter-spacing: .16em !important; line-height: 1.4 !important; margin-bottom: 14px !important; }
     .mtz-latam-map { grid-area: map; min-width: 0 !important; display: block !important; }
-    .mtz-latam-map svg { max-width: none !important; width: 100% !important; }
+    .mtz-latam-map svg, .mtz-latam-frame { max-width: none !important; width: 100% !important; }
     .mtz-latam-list { grid-area: list; margin-top: 0 !important; }
     .mtz-latam-list li { flex-direction: column !important; align-items: flex-start !important; justify-content: center !important; gap: 1px !important; min-height: 0 !important; padding: 7px 0 !important; }
     .mtz-latam-list .mtz-mkt-name { font-size: 14px !important; font-weight: 600 !important; letter-spacing: -.01em !important; text-transform: none !important; }
@@ -757,18 +759,17 @@
 
       <div class="mtz-latam" style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-start">
         <div class="mtz-latam-map" style="flex:1 1 280px;min-width:240px;display:flex;justify-content:center">
-          <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block">
-            <sc-for list="{{ latamShapes }}" as="c" hint-placeholder-count="0">
-              <path d="{{ c.d }}" stroke-linejoin="round" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transform:{{ c.transform }};transform-origin:{{ c.origin }};transform-box:fill-box;transition:transform .3s cubic-bezier(.2,.7,.2,1),fill .3s ease;cursor:{{ c.cursor }};filter:{{ c.filter }}"></path>
-            </sc-for>
-            <sc-for list="{{ latamDots }}" as="p" hint-placeholder-count="0">
-              <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" style="fill:{{ p.fill }};stroke:var(--paper);stroke-width:1;pointer-events:none"></circle>
-            </sc-for>
-            <g style="opacity:{{ tipOpacity }};transition:opacity .2s ease;pointer-events:none">
-              <rect x="{{ tipX }}" y="{{ tipY }}" width="{{ tipW }}" height="26" rx="4" style="fill:var(--ink)"></rect>
-              <text x="{{ tipTextX }}" y="{{ tipTextY }}" style="fill:var(--paper);font-family:Montserrat,Helvetica,sans-serif;font-size:14px;font-weight:600;letter-spacing:-.01em">{{ tipLabel }}</text>
-            </g>
-          </svg>
+          <div class="mtz-latam-frame" style="position:relative;width:100%;max-width:440px">
+            <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block">
+              <sc-for list="{{ latamShapes }}" as="c" hint-placeholder-count="0">
+                <path d="{{ c.d }}" stroke-linejoin="round" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transform:{{ c.transform }};transform-origin:{{ c.origin }};transform-box:fill-box;transition:transform .3s cubic-bezier(.2,.7,.2,1),fill .3s ease;cursor:{{ c.cursor }};filter:{{ c.filter }}"></path>
+              </sc-for>
+              <sc-for list="{{ latamDots }}" as="p" hint-placeholder-count="0">
+                <circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" style="fill:{{ p.fill }};stroke:var(--paper);stroke-width:1;pointer-events:none"></circle>
+              </sc-for>
+            </svg>
+            <div class="mtz-map-tip" aria-hidden="true" style="left:{{ tipLeft }};top:{{ tipTop }};opacity:{{ tipOpacity }};visibility:{{ tipVis }};transform:{{ tipShift }}">{{ tipLabel }}</div>
+          </div>
         </div>
         <div class="mtz-latam-side" style="flex:1 1 320px;min-width:260px">
           <p class="mtz-latam-label" style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Mercados con experiencia y red de colaboradores</p>
@@ -1181,8 +1182,18 @@ class Component extends DCLogic {
     }) : [];
     const latamDots = m ? m.latamPoints.map(p => ({ x: p.x, y: p.y, r: s.market === p.n ? 6 : 3.5, fill: 'var(--paper)' })) : [];
     const hoveredPoint = s.market && m ? m.latamPoints.find(p => p.n === s.market) : null;
-    const tipText = s.market || '';
-    const tipW = Math.max(60, tipText.length * 9 + 20);
+    const mapUnitsW = m ? m.latam.w : 520;
+    const mapUnitsH = m ? m.latam.h : 720;
+    // Keep the last label/position while it fades out, so it never jumps to the corner mid-fade.
+    if (hoveredPoint) {
+      this._tip = {
+        left: (hoveredPoint.x / mapUnitsW * 100) + '%',
+        top: (hoveredPoint.y / mapUnitsH * 100) + '%',
+        shift: hoveredPoint.x > mapUnitsW * 0.55 ? 'translate(calc(-100% - 10px), -50%)' : 'translate(10px, -50%)',
+        label: s.market
+      };
+    }
+    const tip = this._tip || { left: '0%', top: '0%', shift: 'translate(10px, -50%)', label: '' };
     const markets = marketNames.map(([name, note]) => ({
       name: name, note: s.market === name ? (note || 'Red local') : note,
       color: s.market === name ? 'var(--ink)' : 'var(--ink)',
@@ -1339,12 +1350,11 @@ class Component extends DCLogic {
       latamShapes: latamShapes,
       latamDots: latamDots,
       tipOpacity: hoveredPoint ? 1 : 0,
-      tipX: hoveredPoint ? (hoveredPoint.x + 14) : 0,
-      tipY: hoveredPoint ? (hoveredPoint.y - 34) : 0,
-      tipW: tipW,
-      tipTextX: hoveredPoint ? (hoveredPoint.x + 24) : 0,
-      tipTextY: hoveredPoint ? (hoveredPoint.y - 16) : 0,
-      tipLabel: tipText,
+      tipVis: this._tip ? 'visible' : 'hidden',
+      tipLeft: tip.left,
+      tipTop: tip.top,
+      tipShift: tip.shift,
+      tipLabel: tip.label,
       markets: markets,
       formMsg: s.formMsg,
       onSubmit: (e) => { e.preventDefault(); this.setState({ formMsg: 'Gracias. Te responderemos a la brevedad.' }); }
