@@ -105,16 +105,15 @@
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
-  .mtz-hero-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; color: var(--paper); overflow: hidden; }
-  .mtz-hero-paths svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .mtz-hero-paths path { fill: none; stroke: currentColor; stroke-dasharray: .45 .55; animation-name: mtzFlow, mtzPulse; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite; }
+  .mtz-hero-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; color: var(--paper); overflow: hidden; contain: strict; opacity: .7; }
+  .mtz-hero-paths svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transform: translateZ(0); }
+  .mtz-hero-paths path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-dasharray: .5 .5; animation: mtzFlow linear infinite; }
   @keyframes mtzFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -1; } }
-  @keyframes mtzPulse { 0%, 100% { opacity: .3; } 50% { opacity: .6; } }
   @media (prefers-reduced-motion: reduce) { .mtz-hero-paths path { animation: none !important; stroke-dasharray: none; opacity: .35; } }
   section[data-screen-label="Hero"] [data-gp-content] > div:not(.mtz-hero-paths) { position: relative; z-index: 1; }
   /* Data tables inside hero */
   .mtz-tables { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px,2vw,32px); }
-  .mtz-table { border: 1px solid #788389; background: color-mix(in srgb, var(--ink) 60%, transparent); backdrop-filter: blur(6px); overflow: hidden; }
+  .mtz-table { border: 1px solid #788389; background: color-mix(in srgb, var(--ink) 72%, transparent); overflow: hidden; }
   .mtz-table__h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px clamp(14px,1.4vw,22px); border-bottom: 1px solid #788389; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: color-mix(in srgb, var(--paper) 62%, var(--ink)); }
   .mtz-table__h span:last-child { color: var(--paper); font-weight: 500; letter-spacing: 0; text-transform: none; font-size: 12px; }
   .mtz-table table { width: 100%; border-collapse: collapse; }
@@ -340,7 +339,7 @@
     .mtz-chip--lg { padding: 10px 16px !important; font-size: 14.5px !important; }
 
     /* Hero canvas — a touch dimmer on mobile */
-    .mtz-hero-paths { opacity: .8; }
+    .mtz-hero-paths { opacity: .6 !important; }
 
     /* Hero tables full width */
     .mtz-tables { grid-template-columns: 1fr !important; }
@@ -1576,36 +1575,53 @@ class Component extends DCLogic {
     if (document.readyState !== 'loading') initMagnetic(); else document.addEventListener('DOMContentLoaded', initMagnetic);
     new MutationObserver(initMagnetic).observe(document.body, { childList: true, subtree: true });
 
-    // Hero floating paths: two mirrored sets of 36 curves drifting along their length
+    // Hero floating paths: mirrored sets of bezier curves; a dash slides along each one.
+    // Paths are built in the host's real pixel size (no non-scaling-stroke, no stretched viewBox)
+    // so Chrome computes dashes once and nothing shimmers.
     const startPaths = () => {
       const host = document.querySelector('.mtz-hero-paths');
       if (!host || host.dataset.ready) return;
       host.dataset.ready = '1';
       const NS = 'http://www.w3.org/2000/svg';
-      const layer = (position) => {
-        const svg = document.createElementNS(NS, 'svg');
-        svg.setAttribute('viewBox', '0 0 696 316');
-        svg.setAttribute('preserveAspectRatio', 'none');
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('preserveAspectRatio', 'none');
+      host.appendChild(svg);
+      const seeds = [];
+      for (const position of [1, -1]) {
         for (let i = 0; i < 36; i++) {
-          const x = (n) => n - i * 5 * position;
-          const d = 'M' + (-x(380)) + ' ' + (-(189 + i * 6)) +
-            'C' + (-x(380)) + ' ' + (-(189 + i * 6)) + ' ' + (-x(312)) + ' ' + (216 - i * 6) + ' ' + x(152) + ' ' + (343 - i * 6) +
-            'C' + x(616) + ' ' + (470 - i * 6) + ' ' + x(684) + ' ' + (875 - i * 6) + ' ' + x(684) + ' ' + (875 - i * 6);
+          if (i % 3 === 1) continue;
+          const dur = 22 + Math.random() * 10;
+          seeds.push({ position, i, dur, delay: -Math.random() * dur });
+        }
+      }
+      let lastW = 0, lastH = 0;
+      const build = () => {
+        const W = Math.round(host.clientWidth), H = Math.round(host.clientHeight);
+        if (!W || !H || (W === lastW && H === lastH)) return;
+        lastW = W; lastH = H;
+        const sx = W / 696, sy = H / 316;
+        svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+        svg.textContent = '';
+        for (const { position, i, dur, delay } of seeds) {
+          const X = (n) => ((n - i * 5 * position) * sx).toFixed(1);
+          const NX = (n) => (-(n - i * 5 * position) * sx).toFixed(1);
+          const Y = (n) => (n * sy).toFixed(1);
+          const d = 'M' + NX(380) + ' ' + Y(-(189 + i * 6)) +
+            'C' + NX(380) + ' ' + Y(-(189 + i * 6)) + ' ' + NX(312) + ' ' + Y(216 - i * 6) + ' ' + X(152) + ' ' + Y(343 - i * 6) +
+            'C' + X(616) + ' ' + Y(470 - i * 6) + ' ' + X(684) + ' ' + Y(875 - i * 6) + ' ' + X(684) + ' ' + Y(875 - i * 6);
           const path = document.createElementNS(NS, 'path');
           path.setAttribute('d', d);
           path.setAttribute('pathLength', '1');
-          path.setAttribute('vector-effect', 'non-scaling-stroke');
-          path.setAttribute('stroke-width', (0.6 + i * 0.035).toFixed(2));
-          path.setAttribute('stroke-opacity', Math.min(1, 0.1 + i * 0.03).toFixed(2));
-          const dur = 20 + Math.random() * 10;
-          path.style.animationDuration = dur.toFixed(1) + 's, ' + (dur / 2).toFixed(1) + 's';
-          path.style.animationDelay = (-Math.random() * dur).toFixed(1) + 's, ' + (-Math.random() * dur).toFixed(1) + 's';
+          path.setAttribute('stroke-width', (0.6 + i * 0.03).toFixed(2));
+          path.setAttribute('stroke-opacity', Math.min(0.6, 0.1 + i * 0.018).toFixed(2));
+          path.style.animationDuration = dur.toFixed(1) + 's';
+          path.style.animationDelay = delay.toFixed(1) + 's';
           svg.appendChild(path);
         }
-        return svg;
       };
-      host.appendChild(layer(1));
-      host.appendChild(layer(-1));
+      build();
+      let t = 0;
+      new ResizeObserver(() => { clearTimeout(t); t = setTimeout(build, 150); }).observe(host);
     };
     if (document.readyState !== 'loading') startPaths(); else document.addEventListener('DOMContentLoaded', startPaths);
     new MutationObserver(startPaths).observe(document.body, { childList: true, subtree: true });
