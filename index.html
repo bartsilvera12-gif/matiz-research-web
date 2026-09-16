@@ -90,6 +90,18 @@
   .mtz-team-grid-hint span { width: 6px; height: 6px; border-radius: 50%; background: #788389; }
   .mtz-team-grid-hint span:first-child { width: 18px; border-radius: 3px; background: var(--ink); }
   .mtz-team-grid-hint span:nth-child(3) { margin-right: 8px; }
+  /* Magnetic text: a cursor-following circle reveals the inverted word underneath */
+  .mtz-magnetic-wrap { margin-top: clamp(64px, 9vw, 140px); padding: 0 !important; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .mtz-magnetic-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #788389; }
+  .mtz-magnetic { position: relative; display: inline-flex; align-items: center; justify-content: center; margin-top: clamp(10px, 1.4vw, 20px); padding: .08em .12em; cursor: none; user-select: none; -webkit-user-select: none; touch-action: pan-y; }
+  .mtz-magnetic__base, .mtz-magnetic__inner span { font-weight: 800; font-size: clamp(56px, 12vw, 190px); line-height: 1; letter-spacing: -.035em; white-space: nowrap; }
+  .mtz-magnetic__base { color: var(--ink); }
+  .mtz-magnetic__circle { position: absolute; top: 0; left: 0; width: 0; height: 0; border-radius: 50%; background: var(--ink); overflow: hidden; pointer-events: none; will-change: transform, width, height; transition: width .5s cubic-bezier(.33,1,.68,1), height .5s cubic-bezier(.33,1,.68,1); }
+  .mtz-magnetic.is-hover .mtz-magnetic__circle { width: clamp(130px, 14vw, 220px); height: clamp(130px, 14vw, 220px); }
+  .mtz-magnetic__inner { position: absolute; top: 50%; left: 50%; display: flex; align-items: center; justify-content: center; will-change: transform; }
+  .mtz-magnetic__inner span { color: var(--paper); }
+  .mtz-magnetic-caption { margin-top: clamp(14px, 1.6vw, 22px); font-size: 13px; color: #788389; }
+  @media (hover: none) { .mtz-magnetic { cursor: default; } .mtz-magnetic-caption { display: none; } }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -97,15 +109,15 @@
   section[data-screen-label="Hero"] [data-gp-content] > div { position: relative; z-index: 1; }
   /* Data tables inside hero */
   .mtz-tables { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px,2vw,32px); }
-  .mtz-table { border: 1px solid #788389; background: rgba(0,0,0,.35); backdrop-filter: blur(6px); overflow: hidden; }
-  .mtz-table__h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px clamp(14px,1.4vw,22px); border-bottom: 1px solid #788389; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #a7b0b4; }
+  .mtz-table { border: 1px solid #788389; background: color-mix(in srgb, var(--ink) 60%, transparent); backdrop-filter: blur(6px); overflow: hidden; }
+  .mtz-table__h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px clamp(14px,1.4vw,22px); border-bottom: 1px solid #788389; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: color-mix(in srgb, var(--paper) 62%, var(--ink)); }
   .mtz-table__h span:last-child { color: var(--paper); font-weight: 500; letter-spacing: 0; text-transform: none; font-size: 12px; }
   .mtz-table table { width: 100%; border-collapse: collapse; }
   .mtz-table td { padding: 12px clamp(14px,1.4vw,22px); font-size: clamp(15px,1.25vw,18px); font-weight: 500; letter-spacing: -.015em; border-top: 1px solid rgba(120,131,137,.35); transition: background .25s ease, padding-left .3s cubic-bezier(.2,.7,.2,1); cursor: default; color: var(--paper); }
   .mtz-table tr:first-child td { border-top: 0; }
-  .mtz-table tr:hover td { background: rgba(255,255,255,.06); padding-left: calc(clamp(14px,1.4vw,22px) + 6px); }
+  .mtz-table tr:hover td { background: color-mix(in srgb, var(--paper) 7%, transparent); padding-left: calc(clamp(14px,1.4vw,22px) + 6px); }
   /* Hero CTA buttons — filled variant with slide */
-  .mtz-hero-cta { position: relative; overflow: hidden; isolation: isolate; background: rgba(255,255,255,.08) !important; }
+  .mtz-hero-cta { position: relative; overflow: hidden; isolation: isolate; background: color-mix(in srgb, var(--paper) 8%, transparent) !important; }
   .mtz-hero-cta::before { content: ""; position: absolute; inset: 0; background: var(--paper); transform: translateY(101%); transition: transform .4s cubic-bezier(.2,.7,.2,1); z-index: -1; }
   .mtz-hero-cta:hover::before, .mtz-hero-cta:focus-visible::before { transform: none; }
   .mtz-hero-cta:hover, .mtz-hero-cta:focus-visible { color: var(--ink) !important; background: transparent !important; }
@@ -425,6 +437,14 @@
           <span class="mtz-area__link">Ver Fieldwork <span class="mtz-arrow" aria-hidden="true">→</span></span>
         </a>
       </div>
+      <section class="mtz-magnetic-wrap" aria-label="Entender y resolver">
+        <p class="mtz-magnetic-eyebrow">Nuestra forma de trabajar</p>
+        <div class="mtz-magnetic" data-magnetic aria-hidden="true">
+          <span class="mtz-magnetic__base">ENTENDER</span>
+          <div class="mtz-magnetic__circle"><div class="mtz-magnetic__inner"><span>RESOLVER</span></div></div>
+        </div>
+        <p class="mtz-magnetic-caption">Pasá el cursor: primero entendemos, después resolvemos.</p>
+      </section>
     </div>
   </section>
 
@@ -1508,6 +1528,49 @@ class Component extends DCLogic {
     else document.addEventListener('DOMContentLoaded', initBurger);
     new MutationObserver(initBurger).observe(document.body, { childList: true, subtree: true });
 
+    // Magnetic text: circle follows the pointer and reveals the inverted word
+    const initMagnetic = () => {
+      document.querySelectorAll('[data-magnetic]:not([data-magnetic-ready])').forEach((el) => {
+        el.setAttribute('data-magnetic-ready', '');
+        const circle = el.querySelector('.mtz-magnetic__circle');
+        const inner = el.querySelector('.mtz-magnetic__inner');
+        const target = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+        let raf = 0, hovered = false, idleTimer = 0;
+        const size = () => { inner.style.width = el.offsetWidth + 'px'; inner.style.height = el.offsetHeight + 'px'; };
+        const paint = () => {
+          circle.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px) translate(-50%,-50%)';
+          inner.style.transform = 'translate(' + (-cur.x) + 'px,' + (-cur.y) + 'px) translate(-50%,-50%) translate(' + (el.offsetWidth / 2) + 'px,' + (el.offsetHeight / 2) + 'px)';
+        };
+        const tick = () => {
+          const k = reduce ? 1 : 0.15;
+          cur.x += (target.x - cur.x) * k; cur.y += (target.y - cur.y) * k;
+          paint();
+          raf = (hovered || Math.abs(target.x - cur.x) + Math.abs(target.y - cur.y) > 0.5) ? requestAnimationFrame(tick) : 0;
+        };
+        const at = (e) => { const r = el.getBoundingClientRect(); target.x = e.clientX - r.left; target.y = e.clientY - r.top; };
+        size();
+        window.addEventListener('resize', size);
+        el.addEventListener('pointerenter', (e) => {
+          if (e.pointerType === 'touch') return;
+          clearTimeout(idleTimer); size(); at(e); cur.x = target.x; cur.y = target.y; paint();
+          hovered = true; el.classList.add('is-hover'); if (!raf) raf = requestAnimationFrame(tick);
+        });
+        el.addEventListener('pointermove', (e) => { if (e.pointerType === 'touch') return; at(e); if (!raf) raf = requestAnimationFrame(tick); });
+        el.addEventListener('pointerleave', () => { hovered = false; el.classList.remove('is-hover'); });
+        // Touch: tap to reveal where you touched, tap again elsewhere to move it
+        el.addEventListener('pointerdown', (e) => {
+          if (e.pointerType !== 'touch') return;
+          size(); at(e);
+          if (!el.classList.contains('is-hover')) { cur.x = target.x; cur.y = target.y; paint(); }
+          el.classList.add('is-hover'); hovered = true; if (!raf) raf = requestAnimationFrame(tick);
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(() => { hovered = false; el.classList.remove('is-hover'); }, 2200);
+        });
+      });
+    };
+    if (document.readyState !== 'loading') initMagnetic(); else document.addEventListener('DOMContentLoaded', initMagnetic);
+    new MutationObserver(initMagnetic).observe(document.body, { childList: true, subtree: true });
+
     // Hero particle network (like tics-py, in black)
     const startCanvas = () => {
       const canvas = document.querySelector('.mtz-hero-canvas');
@@ -1539,6 +1602,11 @@ class Component extends DCLogic {
       });
       canvas.parentElement && canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
       const linkDist = 140;
+      // Lines/dots use the content color, which flips with the theme (paper on the ink field).
+      let netRGB = '255,255,255';
+      const readNetColor = () => { const m = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim(); netRGB = m === '#000' || m === '#000000' ? '0,0,0' : '255,255,255'; };
+      readNetColor();
+      new MutationObserver(readNetColor).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
       const tick = () => {
         ctx.clearRect(0, 0, w, h);
         for (const n of nodes) {
@@ -1556,14 +1624,14 @@ class Component extends DCLogic {
             const d = Math.hypot(dx, dy);
             if (d < linkDist) {
               const alpha = (1 - d / linkDist) * .55;
-              ctx.strokeStyle = 'rgba(255,255,255,' + alpha.toFixed(3) + ')';
+              ctx.strokeStyle = 'rgba(' + netRGB + ',' + alpha.toFixed(3) + ')';
               ctx.lineWidth = 1;
               ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
             }
           }
         }
         // dots
-        ctx.fillStyle = 'rgba(255,255,255,.85)';
+        ctx.fillStyle = 'rgba(' + netRGB + ',.85)';
         for (const n of nodes) {
           ctx.beginPath(); ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2); ctx.fill();
         }
