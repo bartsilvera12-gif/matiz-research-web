@@ -45,6 +45,8 @@
   /* Arrow slide inside links / CTAs */
   .mtz-arrow { display: inline-block; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
   a:hover .mtz-arrow, a:focus-visible .mtz-arrow, button:hover .mtz-arrow, button:focus-visible .mtz-arrow { transform: translateX(6px); }
+  /* Hide GlyphPortal "Elegí una letra" touch picker */
+  section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
   .mtz-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .55; }
   section[data-screen-label="Hero"] [data-gp-content] > div { position: relative; z-index: 1; }
@@ -137,6 +139,10 @@
     /* Hero — tighter */
     section[data-screen-label="Hero"] [data-gp-content] > div { gap: 18px !important; }
     section[data-screen-label="Hero"] [data-gp-content] h1 { font-size: 30px !important; letter-spacing: -.025em !important; max-width: none !important; }
+    /* Pull MATIZ intro up: shorter hero and eyebrow/support closer to letter */
+    section[data-screen-label="Hero"] section[id^="gp-"] { --gp-word-top: 32% !important; --gp-word-bottom: 60% !important; }
+    section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 13px !important; }
+    section[data-screen-label="Hero"] [data-gp-support] { font-size: 14px !important; line-height: 1.4 !important; }
     .mtz-tables { grid-template-columns: 1fr !important; gap: 12px !important; }
     .mtz-table__h { font-size: 10px !important; }
     .mtz-table td { font-size: 14px !important; padding: 8px 10px !important; }
