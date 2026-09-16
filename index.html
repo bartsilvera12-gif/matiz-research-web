@@ -93,6 +93,9 @@
   .mtz-btn-fill::before { content: ""; position: absolute; inset: 0; background: var(--paper); transform: translateY(-100%); transition: transform .4s cubic-bezier(.2,.7,.2,1); z-index: -1; }
   .mtz-btn-fill:hover::before, .mtz-btn-fill:focus-visible::before { transform: none; }
   .mtz-btn-fill:hover, .mtz-btn-fill:focus-visible { color: var(--ink); }
+  /* Hamburger + mobile menu (hidden by default; shown via mobile block) */
+  .mtz-burger { display: none; }
+  .mtz-mobile-menu { display: none; }
   /* Reason cards — editorial */
   .mtz-reason { position: relative; padding: clamp(32px,3.4vw,48px) 0 clamp(28px,3vw,40px); border-top: 1px solid #788389; display: grid; grid-template-columns: 88px 1fr; gap: clamp(20px,2.6vw,44px); align-items: start; transition: padding-left .5s cubic-bezier(.2,.7,.2,1); }
   .mtz-reason__num { font-size: clamp(18px,1.4vw,22px); font-weight: 600; letter-spacing: 0; color: #788389; font-variant-numeric: tabular-nums; transition: color .35s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
@@ -106,14 +109,22 @@
 
   /* ---- MOBILE (≤ 640px) ---- */
   @media (max-width: 640px) {
-    /* Header — compact nav */
-    header > div { padding: 10px 16px !important; gap: 8px 12px !important; }
-    header nav { gap: 8px !important; flex: 1 1 auto !important; }
-    header nav > div { gap: 4px 12px !important; justify-content: flex-start !important; }
-    header nav > div > a { font-size: 11px !important; min-height: 36px !important; }
-    header a[href="#contacto"] { padding: 0 12px !important; font-size: 10px !important; }
+    /* Header — hide desktop nav, show hamburger */
+    header > div { padding: 12px 18px !important; gap: 0 !important; flex-wrap: nowrap !important; }
     header img { height: 34px !important; }
-    header button[aria-pressed] { width: 40px !important; height: 24px !important; }
+    header nav { display: none !important; }
+    .mtz-burger { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px; padding: 0; margin: 0; background: transparent; border: 0; cursor: pointer; color: inherit; }
+    .mtz-burger span { display: block; width: 22px; height: 2px; background: currentColor; transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .25s ease; }
+    .mtz-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mtz-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .mtz-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* Mobile menu panel */
+    .mtz-mobile-menu { position: fixed; inset: 0; z-index: 55; background: var(--paper); display: flex !important; flex-direction: column; justify-content: flex-start; padding: 80px 24px 40px; gap: 0; transform: translateY(-102%); transition: transform .45s cubic-bezier(.2,.7,.2,1); overflow-y: auto; }
+    .mtz-mobile-menu.is-open { transform: none; }
+    .mtz-mobile-menu a { font-size: 24px; font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); padding: 18px 0; width: 100%; border-bottom: 1px solid rgba(120,131,137,.35); text-decoration: none; }
+    .mtz-mobile-menu a:hover { color: #788389; }
+    .mtz-mobile-menu__cta { margin-top: 32px !important; padding: 16px 28px !important; border: 1px solid var(--ink) !important; border-bottom: 1px solid var(--ink) !important; font-size: 12px !important; letter-spacing: .14em !important; text-transform: uppercase; width: auto !important; align-self: flex-start; }
+    body.mtz-menu-open { overflow: hidden; }
 
     /* Section paddings */
     main section { padding-left: 16px !important; padding-right: 16px !important; padding-top: 48px !important; padding-bottom: 48px !important; }
@@ -150,8 +161,23 @@
     section[id="equipo"] article p { font-size: 12.5px !important; margin-top: 8px !important; }
     section[id="equipo"] article p[style*="clamp(17px"] { font-size: 13.5px !important; padding-top: 12px !important; margin-top: 12px !important; line-height: 1.35 !important; }
 
-    /* Nosotros / Cómo trabajamos steps — 2 cols */
+    /* Cómo trabajamos — vertical timeline */
+    section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:first-of-type { display: flex !important; flex-direction: column !important; gap: 0 !important; margin-top: 24px !important; }
+    section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:first-of-type > div { flex: unset !important; min-width: 0 !important; width: 100% !important; padding: 18px 0 18px 26px !important; position: relative !important; }
+    section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:first-of-type > div > div:first-child { top: 0 !important; bottom: 0 !important; left: 8px !important; right: auto !important; width: 1px !important; height: 100% !important; background: #788389 !important; }
+    section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:first-of-type > div > div:nth-child(2) { top: 22px !important; left: 4px !important; right: auto !important; }
+    section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:first-of-type > div:last-child > div[aria-hidden]:last-child { top: 22px !important; right: auto !important; left: 4px !important; }
+    /* Nosotros — 2 cols reasons unchanged */
     section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:nth-of-type(2) > div:first-child { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px 16px !important; }
+    /* Metodologías — vertical list of buttons */
+    section[data-screen-label="Metodologías"] > div > div:last-child > div:last-child { display: grid !important; grid-template-columns: 1fr !important; gap: 14px !important; }
+    section[data-screen-label="Metodologías"] > div > div:last-child > div:last-child button { flex-direction: row !important; align-items: center !important; padding: 12px 0 !important; border-bottom: 1px solid rgba(255,255,255,.15) !important; min-height: 44px !important; gap: 14px !important; }
+    section[data-screen-label="Metodologías"] > div > div:last-child > div:last-child button > span[aria-hidden] { flex-shrink: 0 !important; }
+    section[data-screen-label="Metodologías"] > div > div:last-child > div:last-child button > span:last-child { font-size: 15px !important; max-width: none !important; }
+    /* Capacidad — image not sticky on mobile, size right */
+    section[id="capacidad"] > div > div:last-child { flex-direction: column !important; gap: 24px !important; }
+    section[id="capacidad"] > div > div:last-child > div { flex: unset !important; min-width: 0 !important; width: 100% !important; position: static !important; top: unset !important; }
+    section[id="capacidad"] > div > div:last-child > div:first-child > div:first-child { aspect-ratio: 4 / 3 !important; }
 
     /* Nuestra forma de trabajar — collapse to single col */
     section[data-screen-label="Propuesta de valor"] > div > div[data-reveal]:last-child { grid-template-columns: 1fr !important; gap: 18px !important; }
@@ -166,9 +192,16 @@
     /* Contacto — stack */
     section[id="contacto"] > div { grid-template-columns: 1fr !important; gap: 36px !important; }
 
-    /* Cobertura maps — stack tighter */
-    section[data-obs="py"] > div > div:last-child, section[data-obs="latam"] > div > div:last-child { flex-direction: column !important; gap: 28px !important; }
-    section[data-obs="py"] > div > div:last-child > div, section[data-obs="latam"] > div > div:last-child > div { flex: unset !important; min-width: 0 !important; width: 100% !important; }
+    /* Cobertura Paraguay */
+    section[data-obs="py"] > div { flex-direction: column !important; gap: 24px !important; }
+    section[data-obs="py"] > div > div { flex: unset !important; min-width: 0 !important; width: 100% !important; }
+    /* Cobertura LATAM — map first at full width, list below */
+    section[data-obs="latam"] > div > div:last-child { flex-direction: column !important; gap: 28px !important; align-items: stretch !important; }
+    section[data-obs="latam"] > div > div:last-child > div { flex: unset !important; min-width: 0 !important; width: 100% !important; max-width: none !important; }
+    section[data-obs="latam"] > div > div:last-child > div:first-child { display: block !important; }
+    section[data-obs="latam"] > div > div:last-child > div:first-child svg { max-width: 340px !important; margin: 0 auto !important; }
+    section[data-obs="latam"] ul li span:last-child { font-size: 10px !important; }
+    section[data-obs="latam"] ul li span:first-child { font-size: 18px !important; }
 
     /* Footer — 2 col grid, brand full width */
     footer > div > div:first-child { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 28px 20px !important; }
@@ -217,13 +250,25 @@
       <a href="#nosotros" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navNosotros }};padding-bottom:4px" style-hover="border-color:var(--muted)">Nosotros</span></a>
       <a href="#equipo" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navEquipo }};padding-bottom:4px" style-hover="border-color:var(--muted)">Equipo</span></a>
       </div>
-      <a href="#contacto" style="flex-shrink:0;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;padding:0 16px;border:1px solid currentColor;color:inherit;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:border-color .25s ease">Hablemos</a>
-      <button type="button" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" aria-pressed="{{ isDark }}" title="{{ themeLabel }}" style="flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;width:46px;height:26px;padding:3px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;opacity:.75;transition:opacity .25s ease" style-hover="opacity:1">
+      <a href="#contacto" class="mtz-nav-hablemos" style="flex-shrink:0;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;padding:0 16px;border:1px solid currentColor;color:inherit;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:border-color .25s ease">Hablemos</a>
+      <button type="button" class="mtz-theme-toggle" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" aria-pressed="{{ isDark }}" title="{{ themeLabel }}" style="flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;width:46px;height:26px;padding:3px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;opacity:.75;transition:opacity .25s ease" style-hover="opacity:1">
         <span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;background:currentColor;transform:translateX({{ knobX }});transition:transform .3s ease"></span>
       </button>
     </nav>
+    <button type="button" class="mtz-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mtz-mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+<div id="mtz-mobile-menu" class="mtz-mobile-menu" aria-hidden="true">
+  <a href="#inicio">Inicio</a>
+  <a href="#investigacion">Investigación de Mercado</a>
+  <a href="#fieldwork">Fieldwork</a>
+  <a href="#capacidad">Capacidad</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#equipo">Equipo</a>
+  <a href="#contacto" class="mtz-mobile-menu__cta">Hablemos</a>
+</div>
 
 <main>
   <div data-page="Home" style="display:{{ pgHome }}">
@@ -662,7 +707,7 @@
 
       <div style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-start">
         <div style="flex:1 1 280px;min-width:240px;display:flex;justify-content:center">
-          <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block;overflow:visible">
+          <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block">
             <sc-for list="{{ latamShapes }}" as="c" hint-placeholder-count="0">
               <path d="{{ c.d }}" stroke-linejoin="round" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transform:{{ c.transform }};transform-origin:{{ c.origin }};transform-box:fill-box;transition:transform .3s cubic-bezier(.2,.7,.2,1),fill .3s ease;cursor:{{ c.cursor }};filter:{{ c.filter }}"></path>
             </sc-for>
@@ -1310,6 +1355,37 @@ class Component extends DCLogic {
       // Immediately show
       document.querySelectorAll('[data-stagger]').forEach(el => el.classList.add('is-in'));
     }
+
+    // Mobile hamburger menu
+    const initBurger = () => {
+      const burger = document.querySelector('.mtz-burger');
+      const menu = document.getElementById('mtz-mobile-menu');
+      if (!burger || !menu || burger.dataset.wired) return;
+      burger.dataset.wired = '1';
+      const close = () => {
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Abrir menú');
+        menu.setAttribute('aria-hidden', 'true');
+        menu.classList.remove('is-open');
+        document.body.classList.remove('mtz-menu-open');
+      };
+      const open = () => {
+        burger.setAttribute('aria-expanded', 'true');
+        burger.setAttribute('aria-label', 'Cerrar menú');
+        menu.setAttribute('aria-hidden', 'false');
+        menu.classList.add('is-open');
+        document.body.classList.add('mtz-menu-open');
+      };
+      burger.addEventListener('click', () => {
+        if (burger.getAttribute('aria-expanded') === 'true') close(); else open();
+      });
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 640) close(); });
+    };
+    if (document.readyState !== 'loading') initBurger();
+    else document.addEventListener('DOMContentLoaded', initBurger);
+    new MutationObserver(initBurger).observe(document.body, { childList: true, subtree: true });
 
     // Hero particle network (like tics-py, in black)
     const startCanvas = () => {
