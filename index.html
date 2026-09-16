@@ -144,16 +144,18 @@
     section[data-screen-label="Hero"] [data-gp-pin] { height: 68vh !important; }
     section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 12px !important; bottom: 62% !important; top: auto !important; }
     section[data-screen-label="Hero"] [data-gp-support] { font-size: 13.5px !important; line-height: 1.4 !important; top: 62% !important; bottom: auto !important; }
-    section[data-screen-label="Hero"] [data-gp-content] { padding-left: 16px !important; padding-right: 16px !important; }
-    section[data-screen-label="Hero"] [data-gp-content] > div { max-width: 100% !important; min-width: 0 !important; }
-    .mtz-tables { grid-template-columns: 1fr !important; gap: 10px !important; max-width: 100% !important; min-width: 0 !important; }
-    .mtz-table { max-width: 100% !important; }
+    section[data-screen-label="Hero"] { overflow-x: hidden !important; }
+    section[data-screen-label="Hero"] [data-gp-content] { padding-left: 16px !important; padding-right: 16px !important; overflow-x: hidden !important; box-sizing: border-box !important; max-width: 100vw !important; }
+    section[data-screen-label="Hero"] [data-gp-content] > div { max-width: 100% !important; width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
+    .mtz-hero-copy { grid-template-columns: 1fr !important; max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
+    .mtz-tables { grid-template-columns: 1fr !important; gap: 10px !important; max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
+    .mtz-table { max-width: 100% !important; min-width: 0 !important; }
     .mtz-table__h { font-size: 10px !important; padding: 10px 12px !important; }
     .mtz-table__h span:last-child { font-size: 10px !important; }
     .mtz-table td { font-size: 13px !important; padding: 8px 12px !important; }
-    section[data-screen-label="Hero"] [data-gp-content] a[href^="#"] { min-height: 42px !important; padding: 10px 12px !important; font-size: 9.5px !important; letter-spacing: .06em !important; flex: 1 1 100% !important; justify-content: center !important; max-width: 100% !important; min-width: 0 !important; }
-    section[data-screen-label="Hero"] [data-gp-content] a[href^="#"] .mtz-hero-cta__arrow { margin-left: 8px !important; }
-    section[data-screen-label="Hero"] [data-gp-content] > div > div:last-child { flex-direction: column !important; gap: 8px !important; }
+    .mtz-hero-ctas { display: flex !important; flex-direction: column !important; flex-wrap: nowrap !important; gap: 8px !important; width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+    .mtz-hero-ctas > a { flex: 0 0 auto !important; width: 100% !important; max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; min-height: 44px !important; padding: 12px 14px !important; font-size: 10px !important; letter-spacing: .08em !important; justify-content: center !important; text-align: center !important; }
+    .mtz-hero-ctas > a .mtz-hero-cta__arrow { margin-left: 8px !important; }
 
     /* Two-column card grid — forced on mobile */
     [data-mobile-2col] { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
@@ -326,12 +328,12 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(16px,2.4vw,36px);max-width:1060px;border-top:1px solid #788389;padding-top:clamp(14px,1.8vw,22px)">
-          <p style="font-size:clamp(13.5px,1vw,15.5px);line-height:1.55">En Matiz Research ayudamos a empresas a comprender a sus consumidores, evaluar sus marcas y productos e identificar oportunidades a través de estudios de mercado diseñados a medida.</p>
-          <p style="font-size:clamp(13.5px,1vw,15.5px);line-height:1.55">También somos aliados de consultoras y agencias de investigación que necesitan soporte de fieldwork confiable en Paraguay y Latinoamérica, acompañando la puesta en marcha y ejecución de sus proyectos.</p>
+        <div class="mtz-hero-copy" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(16px,2.4vw,36px);max-width:1060px;border-top:1px solid #788389;padding-top:clamp(14px,1.8vw,22px)">
+          <p style="font-size:clamp(13.5px,1vw,15.5px);line-height:1.55;min-width:0">En Matiz Research ayudamos a empresas a comprender a sus consumidores, evaluar sus marcas y productos e identificar oportunidades a través de estudios de mercado diseñados a medida.</p>
+          <p style="font-size:clamp(13.5px,1vw,15.5px);line-height:1.55;min-width:0">También somos aliados de consultoras y agencias de investigación que necesitan soporte de fieldwork confiable en Paraguay y Latinoamérica, acompañando la puesta en marcha y ejecución de sus proyectos.</p>
         </div>
 
-        <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <div class="mtz-hero-ctas" style="display:flex;flex-wrap:wrap;gap:12px">
           <a href="#investigacion" class="mtz-hero-cta" style="flex:0 1 auto;min-height:48px;display:inline-flex;align-items:center;padding:14px 26px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .4s ease">Quiero realizar un estudio<span class="mtz-hero-cta__arrow" aria-hidden="true">→</span></a>
           <a href="#fieldwork" class="mtz-hero-cta" style="flex:0 1 auto;min-height:48px;display:inline-flex;align-items:center;padding:14px 26px;border:1px solid var(--paper);color:var(--paper);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .4s ease">Necesito soporte de fieldwork<span class="mtz-hero-cta__arrow" aria-hidden="true">→</span></a>
         </div>
