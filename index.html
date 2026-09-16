@@ -58,12 +58,29 @@
   .mtz-team-card__media image-slot { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform .35s ease; }
   .mtz-team-card:hover .mtz-team-card__media image-slot { transform: scale(1.05); }
   .mtz-team-card__fade { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(to top, #000, transparent); pointer-events: none; z-index: 1; }
-  .mtz-team-card__body { position: relative; z-index: 2; margin-top: -40px; padding: 0 20px 22px; display: flex; flex-direction: column; flex: 1; }
-  .mtz-team-card__bio { font-weight: 500; font-size: 14px; line-height: 1.6; color: #fff; }
-  .mtz-team-card__extra { margin-top: 14px; font-size: 13.5px; line-height: 1.55; color: #a7b0b4; font-style: italic; }
-  .mtz-team-card__name { margin-top: auto; padding-top: 18px; border-top: 1px solid #4b5563; font-weight: 500; font-size: 16px; letter-spacing: -.01em; color: #fff; }
-  .mtz-team-card__bio + .mtz-team-card__name, .mtz-team-card__extra + .mtz-team-card__name { margin-top: 20px; }
-  .mtz-team-card__role { margin-top: 4px; font-size: 13px; font-weight: 600; background: linear-gradient(90deg, #ffffff, #a7b0b4 55%, #788389); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mtz-team-card__body { position: relative; z-index: 2; margin-top: -32px; padding: 0 28px 28px; display: flex; flex-direction: column; flex: 1; }
+  .mtz-team-card__bio { font-weight: 400; font-size: 14px; line-height: 1.65; color: rgba(255,255,255,.88); }
+  .mtz-team-card__extra { margin-top: 16px; padding-left: 12px; border-left: 2px solid #3a3f44; font-size: 13px; line-height: 1.55; color: #a7b0b4; font-style: italic; }
+  .mtz-team-card__name { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-weight: 600; font-size: 16px; letter-spacing: -.01em; color: #fff; }
+  .mtz-team-card__bio + .mtz-team-card__name, .mtz-team-card__extra + .mtz-team-card__name { margin-top: 24px; }
+  .mtz-team-card__role { margin-top: 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; background: linear-gradient(90deg, #ffffff, #a7b0b4 55%, #788389); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  /* Theme toggle: sun · pill · moon */
+  .mtz-theme-toggle { flex-shrink: 0; display: inline-flex; align-items: center; gap: 10px; padding: 4px 2px; border: 0; background: transparent; color: inherit; cursor: pointer; }
+  .mtz-tt-icon { width: 18px; height: 18px; opacity: .4; transition: opacity .3s ease, transform .4s cubic-bezier(.2,.7,.2,1); }
+  .mtz-theme-toggle[aria-pressed="false"] .mtz-tt-sun, .mtz-theme-toggle[aria-pressed="true"] .mtz-tt-moon { opacity: 1; }
+  .mtz-theme-toggle[aria-pressed="false"] .mtz-tt-sun { transform: rotate(45deg); }
+  .mtz-theme-toggle[aria-pressed="true"] .mtz-tt-moon { transform: rotate(-12deg); }
+  .mtz-tt-track { position: relative; width: 58px; height: 32px; border-radius: 999px; padding: 3px; background: linear-gradient(180deg, #d9dcde, #f4f5f6); box-shadow: inset 0 1px 3px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.08); display: block; }
+  .mtz-tt-knob { position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #0a0a0a; box-shadow: 0 0 0 2px #9aa3a8, 0 2px 6px rgba(0,0,0,.35); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .mtz-theme-toggle:hover .mtz-tt-icon { opacity: .75; }
+  .mtz-theme-toggle[aria-pressed="false"]:hover .mtz-tt-sun, .mtz-theme-toggle[aria-pressed="true"]:hover .mtz-tt-moon { opacity: 1; }
+  .mtz-theme-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 999px; }
+  .mtz-mobile-menu__theme { display: none; }
+  /* Minimal mountain range at the foot of a white section */
+  .mtz-mountains { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(90px, 13vw, 200px); display: block; pointer-events: none; }
+  .mtz-mountains .m-back { fill: #a7b0b4; opacity: .45; }
+  .mtz-mountains .m-mid { fill: #788389; opacity: .85; }
+  .mtz-mountains .m-front { fill: var(--ink); }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -145,7 +162,9 @@
     .mtz-mobile-menu a { font-size: 24px; font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); padding: 18px 0; width: 100%; border-bottom: 1px solid rgba(120,131,137,.35); text-decoration: none; }
     .mtz-mobile-menu a:hover { color: #788389; }
     .mtz-mobile-menu__cta { margin-top: 32px !important; padding: 16px 28px !important; border: 1px solid var(--ink) !important; border-bottom: 1px solid var(--ink) !important; font-size: 12px !important; letter-spacing: .14em !important; text-transform: uppercase; width: auto !important; align-self: flex-start; }
-    body.mtz-menu-open { overflow: hidden; }
+    html.mtz-menu-open { overflow: hidden; }
+    .mtz-mobile-menu__theme { display: flex !important; align-items: center; justify-content: space-between; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(120,131,137,.35); color: var(--ink); }
+    .mtz-mobile-menu__theme > span { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #788389; }
 
     /* Section paddings */
     main section:not([data-screen-label="Hero"]):not([id^="gp-"]) { padding-left: 16px !important; padding-right: 16px !important; padding-top: 48px !important; padding-bottom: 48px !important; }
@@ -188,11 +207,13 @@
     section[data-screen-label="Servicios de fieldwork"] ul li [aria-hidden] { display: none !important; }
 
     /* Equipo — horizontal carousel of dark cards */
-    .mtz-team-grid { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto !important; scroll-snap-type: x mandatory; gap: 14px !important; margin: 24px -16px 0 !important; padding: 4px 16px 20px !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .mtz-team-grid { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto !important; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; gap: 14px !important; margin: 28px -16px 0 !important; padding: 4px 20px 24px !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .mtz-team-grid::after { content: ""; flex: 0 0 6px; }
     .mtz-team-grid::-webkit-scrollbar { display: none; }
-    .mtz-team-card { flex: 0 0 82% !important; max-width: 300px !important; scroll-snap-align: start; }
+    .mtz-team-card { flex: 0 0 80% !important; max-width: 300px !important; scroll-snap-align: start; border-radius: 18px !important; }
     .mtz-team-card__media { height: 250px !important; }
-    .mtz-team-card__bio { font-size: 13px !important; }
+    .mtz-team-card__body { padding: 0 22px 24px !important; }
+    .mtz-team-card__bio { font-size: 13px !important; line-height: 1.6 !important; }
     .mtz-team-card__extra { font-size: 12.5px !important; }
     .mtz-team-card__name { font-size: 15px !important; line-height: 1.3 !important; }
 
@@ -316,9 +337,7 @@
       <a href="#equipo" style="display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:11.5px;font-weight:500;letter-spacing:0;color:inherit"><span style="border-bottom:1px solid {{ navEquipo }};padding-bottom:4px" style-hover="border-color:var(--muted)">Equipo</span></a>
       </div>
       <a href="#contacto" class="mtz-nav-hablemos" style="flex-shrink:0;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;padding:0 16px;border:1px solid currentColor;color:inherit;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:border-color .25s ease">Hablemos</a>
-      <button type="button" class="mtz-theme-toggle" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" aria-pressed="{{ isDark }}" title="{{ themeLabel }}" style="flex-shrink:0;display:flex;align-items:center;justify-content:flex-start;width:46px;height:26px;padding:3px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;opacity:.75;transition:opacity .25s ease" style-hover="opacity:1">
-        <span aria-hidden="true" style="width:18px;height:18px;border-radius:50%;background:currentColor;transform:translateX({{ knobX }});transition:transform .3s ease"></span>
-      </button>
+      <button type="button" class="mtz-theme-toggle" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" aria-pressed="{{ isDark }}" title="{{ themeLabel }}"><svg class="mtz-tt-icon mtz-tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg><span class="mtz-tt-track" aria-hidden="true"><span class="mtz-tt-knob" style="transform:translateX({{ knobX }})"></span></span><svg class="mtz-tt-icon mtz-tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
     </nav>
     <button type="button" class="mtz-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mtz-mobile-menu">
       <span></span><span></span><span></span>
@@ -333,6 +352,7 @@
   <a href="#nosotros">Nosotros</a>
   <a href="#equipo">Equipo</a>
   <a href="#contacto" class="mtz-mobile-menu__cta">Hablemos</a>
+  <div class="mtz-mobile-menu__theme"><span>Tema</span><button type="button" class="mtz-theme-toggle mtz-theme-toggle--lg" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" aria-pressed="{{ isDark }}" title="{{ themeLabel }}"><svg class="mtz-tt-icon mtz-tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg><span class="mtz-tt-track" aria-hidden="true"><span class="mtz-tt-knob" style="transform:translateX({{ knobX }})"></span></span><svg class="mtz-tt-icon mtz-tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></div>
 </div>
 
 <main>
@@ -428,7 +448,7 @@
     </div>
   </section>
 
-  <section data-screen-label="Experiencia" style="padding:clamp(64px,8vw,112px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
+  <section data-screen-label="Experiencia" style="position:relative;overflow:hidden;padding:clamp(64px,8vw,112px) clamp(20px,5vw,64px) calc(clamp(64px,8vw,112px) + clamp(90px,13vw,200px));background:var(--paper);border-top:1px solid #788389">
     <div style="max-width:1320px;margin:0 auto;width:100%">
       <h2 data-reveal style="max-width:24ch;font-weight:600;font-size:clamp(26px,3.4vw,50px);line-height:1.06;letter-spacing:-.03em">Más de una década <span style="color:#788389">entendiendo mercados desde el terreno.</span></h2>
       <p data-reveal style="margin-top:22px;max-width:58ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62;color:var(--ink)">Más de 10 años de experiencia en investigación de mercados, estudios sociales y opinión pública, trabajando con consultoras y empresas nacionales e internacionales.</p>
@@ -450,6 +470,11 @@
         </div>
       </div>
     </div>
+    <svg class="mtz-mountains" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="m-back" d="M0 150 L120 96 L210 128 L340 52 L470 118 L560 86 L700 30 L830 104 L930 74 L1060 20 L1190 96 L1290 66 L1440 118 L1440 220 L0 220 Z"/>
+      <path class="m-mid" d="M0 176 L150 120 L240 150 L380 92 L500 150 L610 118 L760 70 L880 140 L990 108 L1120 62 L1250 136 L1340 112 L1440 150 L1440 220 L0 220 Z"/>
+      <path class="m-front" d="M0 204 L170 160 L290 186 L430 138 L560 190 L690 162 L820 124 L960 182 L1090 150 L1230 118 L1350 170 L1440 150 L1440 220 L0 220 Z"/>
+    </svg>
   </section>
 
   </div>
@@ -1240,7 +1265,7 @@ class Component extends DCLogic {
       heroWordY: vw < 640 ? 0.3 : 0.46,
       logoOnPaper: s.dark ? 'none' : 'block',
       logoOnInk: s.dark ? 'block' : 'none',
-      knobX: s.dark ? '20px' : '0px',
+      knobX: s.dark ? '26px' : '0px',
       themeLabel: s.dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
       toggleTheme: () => {
         const d = !this.state.dark;
@@ -1450,14 +1475,14 @@ class Component extends DCLogic {
         burger.setAttribute('aria-label', 'Abrir menú');
         menu.setAttribute('aria-hidden', 'true');
         menu.classList.remove('is-open');
-        document.body.classList.remove('mtz-menu-open');
+        document.documentElement.classList.remove('mtz-menu-open');
       };
       const open = () => {
         burger.setAttribute('aria-expanded', 'true');
         burger.setAttribute('aria-label', 'Cerrar menú');
         menu.setAttribute('aria-hidden', 'false');
         menu.classList.add('is-open');
-        document.body.classList.add('mtz-menu-open');
+        document.documentElement.classList.add('mtz-menu-open');
       };
       burger.addEventListener('click', () => {
         if (burger.getAttribute('aria-expanded') === 'true') close(); else open();
