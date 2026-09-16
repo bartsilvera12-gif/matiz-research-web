@@ -248,12 +248,12 @@
     .mtz-team-card__name { font-size: 15px !important; line-height: 1.3 !important; }
 
     /* Nosotros — photo + text side by side */
-    section[id="nosotros"] > div { display: grid !important; grid-template-columns: 130px 1fr !important; gap: 14px !important; flex-wrap: unset !important; align-items: start !important; }
-    section[id="nosotros"] > div > div { flex: unset !important; min-width: 0 !important; width: auto !important; }
-    section[id="nosotros"] > div > div:first-child > div { aspect-ratio: 4 / 5 !important; }
-    section[id="nosotros"] > div > div:last-child h2 { font-size: 22px !important; }
-    section[id="nosotros"] > div > div:last-child p { font-size: 13px !important; }
-    section[id="nosotros"] > div > div:last-child p[style*="clamp(22px"] { font-size: 16px !important; }
+    section[id="nosotros"] > div:not(.mtz-magnetic-host) { display: grid !important; grid-template-columns: 130px 1fr !important; gap: 14px !important; flex-wrap: unset !important; align-items: start !important; }
+    section[id="nosotros"] > div:not(.mtz-magnetic-host) > div { flex: unset !important; min-width: 0 !important; width: auto !important; }
+    section[id="nosotros"] > div:not(.mtz-magnetic-host) > div:first-child > div { aspect-ratio: 4 / 5 !important; }
+    section[id="nosotros"] > div:not(.mtz-magnetic-host) > div:last-child h2 { font-size: 22px !important; }
+    section[id="nosotros"] > div:not(.mtz-magnetic-host) > div:last-child p { font-size: 13px !important; }
+    section[id="nosotros"] > div:not(.mtz-magnetic-host) > div:last-child p[style*="clamp(22px"] { font-size: 16px !important; }
 
     /* Cómo trabajamos — vertical timeline */
     section[data-screen-label="Cómo trabajamos"] > div > div[data-reveal]:first-of-type { display: flex !important; flex-direction: column !important; gap: 0 !important; margin-top: 24px !important; }
@@ -578,15 +578,6 @@
         <p style="margin-top:clamp(28px,3vw,44px);padding-top:22px;border-top:1px solid #788389;font-weight:600;font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.025em">Entender antes de decidir.</p>
       </div>
     </div>
-    <div style="max-width:1320px;margin:0 auto;width:100%">
-        <div class="mtz-magnetic-wrap" role="group" aria-label="Entender y resolver">
-          <p class="mtz-magnetic-eyebrow">Nuestra forma de trabajar</p>
-          <div class="mtz-magnetic" data-magnetic aria-hidden="true">
-            <span class="mtz-magnetic__base">ENTENDER</span>
-            <div class="mtz-magnetic__circle"><div class="mtz-magnetic__inner"><span>RESOLVER</span></div></div>
-          </div>
-          <p class="mtz-magnetic-caption">Pasá el cursor: primero entendemos, después resolvemos.</p>
-        </div>
     </div>
   </section>
 
@@ -929,6 +920,15 @@
         <p style="margin-top:clamp(28px,3vw,40px);padding-top:24px;border-top:1px solid #788389;font-weight:600;font-size:clamp(22px,2.6vw,38px);line-height:1.1;letter-spacing:-.025em">Tu proyecto <span style="color:#788389">también es nuestro proyecto.</span></p>
       </div>
     </div>
+    <div class="mtz-magnetic-host" style="max-width:1320px;margin:0 auto;width:100%">
+        <div class="mtz-magnetic-wrap" role="group" aria-label="Entender y resolver">
+          <p class="mtz-magnetic-eyebrow">Nuestra forma de trabajar</p>
+          <div class="mtz-magnetic" data-magnetic aria-hidden="true">
+            <span class="mtz-magnetic__base">ENTENDER</span>
+            <div class="mtz-magnetic__circle"><div class="mtz-magnetic__inner"><span>RESOLVER</span></div></div>
+          </div>
+          <p class="mtz-magnetic-caption">Pasá el cursor: primero entendemos, después resolvemos.</p>
+        </div>
   </section>
 
   </div>
