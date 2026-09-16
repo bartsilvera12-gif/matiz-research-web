@@ -220,22 +220,29 @@
     /* Contacto — stack */
     section[id="contacto"] > div { grid-template-columns: 1fr !important; gap: 36px !important; }
 
-    /* Cobertura Paraguay — text on left, map on right */
-    section[data-obs="py"] > div { display: grid !important; grid-template-columns: 1fr 130px !important; gap: 16px !important; align-items: start !important; flex-wrap: unset !important; }
-    section[data-obs="py"] > div > div { flex: unset !important; min-width: 0 !important; width: auto !important; }
-    section[data-obs="py"] > div > div:last-child svg { max-width: 130px !important; }
-    section[data-obs="py"] > div > div:first-child p[style*="46ch"], section[data-obs="py"] > div > div:first-child p[style*="50ch"] { font-size: 13.5px !important; margin-top: 10px !important; line-height: 1.5 !important; }
-    section[data-obs="py"] > div > div:first-child p[style*="1.3vw"] { font-size: 14px !important; }
-    section[data-obs="py"] > div > div:first-child h2 { font-size: 22px !important; }
-    /* Cobertura LATAM — map + list side by side */
-    section[data-obs="latam"] > div > div:last-child { display: grid !important; grid-template-columns: 140px 1fr !important; gap: 16px !important; align-items: start !important; flex-wrap: unset !important; }
-    section[data-obs="latam"] > div > div:last-child > div { flex: unset !important; min-width: 0 !important; width: auto !important; max-width: none !important; }
-    section[data-obs="latam"] > div > div:last-child > div:first-child { display: block !important; position: sticky !important; top: 90px !important; }
-    section[data-obs="latam"] > div > div:last-child > div:first-child svg { max-width: 140px !important; margin: 0 !important; }
-    section[data-obs="latam"] ul li { min-height: 40px !important; padding: 8px 0 !important; gap: 8px !important; }
-    section[data-obs="latam"] ul li span:first-child { font-size: 15px !important; }
-    section[data-obs="latam"] ul li span:last-child { font-size: 9px !important; letter-spacing: .12em !important; }
-    section[data-obs="latam"] p[style*="26ch"] { font-size: 16px !important; margin-top: 20px !important; padding-top: 16px !important; border-top: 1px solid #788389 !important; }
+    /* Cobertura Paraguay — big map beside the lead line, compact copy around it */
+    .mtz-py { display: grid !important; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr) !important; grid-template-areas: "label label" "title title" "lead map" "body body" "close close" !important; gap: 0 14px !important; align-items: center !important; }
+    .mtz-py-text { display: contents !important; }
+    .mtz-py-label { grid-area: label; font-size: 10px !important; letter-spacing: .18em !important; }
+    .mtz-py-title { grid-area: title; font-size: 24px !important; margin-top: 10px !important; }
+    .mtz-py-lead { grid-area: lead; font-size: 14px !important; line-height: 1.35 !important; margin-top: 14px !important; max-width: none !important; }
+    .mtz-py-map { grid-area: map; min-width: 0 !important; margin-top: 14px !important; }
+    .mtz-py-map svg { max-width: none !important; width: 100% !important; }
+    .mtz-py-body { grid-area: body; font-size: 13.5px !important; line-height: 1.5 !important; margin-top: 14px !important; max-width: none !important; }
+    .mtz-py-close { grid-area: close; font-size: 15px !important; margin-top: 12px !important; }
+
+    /* Cobertura LATAM — big map left, compact market list right, closing line full width */
+    .mtz-latam { display: grid !important; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr) !important; grid-template-areas: "label label" "map list" "close close" !important; gap: 0 14px !important; align-items: center !important; }
+    .mtz-latam-side { display: contents !important; }
+    .mtz-latam-label { grid-area: label; font-size: 10px !important; letter-spacing: .16em !important; line-height: 1.4 !important; margin-bottom: 14px !important; }
+    .mtz-latam-map { grid-area: map; min-width: 0 !important; display: block !important; }
+    .mtz-latam-map svg { max-width: none !important; width: 100% !important; }
+    .mtz-latam-list { grid-area: list; margin-top: 0 !important; }
+    .mtz-latam-list li { flex-direction: column !important; align-items: flex-start !important; justify-content: center !important; gap: 1px !important; min-height: 0 !important; padding: 7px 0 !important; }
+    .mtz-latam-list .mtz-mkt-name { font-size: 14px !important; font-weight: 600 !important; letter-spacing: -.01em !important; text-transform: none !important; }
+    .mtz-latam-list .mtz-mkt-note { font-size: 8px !important; letter-spacing: .1em !important; color: #788389 !important; }
+    .mtz-latam-list .mtz-mkt-note:empty { display: none !important; }
+    .mtz-latam-close { grid-area: close; font-size: 17px !important; max-width: none !important; margin-top: 18px !important; }
 
     /* Footer — compact, class-based */
     footer { padding: 40px 16px 24px !important; }
@@ -705,15 +712,15 @@
   </section>
 
   <section data-obs="py" data-screen-label="Cobertura Paraguay" style="padding:clamp(64px,8vw,120px) clamp(20px,5vw,64px);background:var(--paper);border-top:1px solid #788389">
-    <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(32px,5vw,80px)">
-      <div data-reveal style="flex:1 1 340px;min-width:280px">
-        <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Cobertura local</p>
-        <h2 style="margin-top:20px;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em">Paraguay, de punta a punta.</h2>
-        <p style="margin-top:22px;max-width:46ch;font-size:clamp(16px,1.3vw,20px);line-height:1.5;font-weight:500">Nuestro mercado de origen y nuestra principal fortaleza operativa.</p>
-        <p style="margin-top:18px;max-width:50ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Contamos con experiencia coordinando estudios en Asunción, Área Metropolitana y distintos departamentos del país, con equipos capaces de llegar tanto a centros urbanos como a zonas rurales.</p>
-        <p style="margin-top:22px;font-size:clamp(16px,1.3vw,20px);line-height:1.45;font-weight:600">Encontramos la mejor manera de hacerlo posible.</p>
+    <div class="mtz-py" style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-wrap:wrap;align-items:center;gap:clamp(32px,5vw,80px)">
+      <div class="mtz-py-text" data-reveal style="flex:1 1 340px;min-width:280px">
+        <p class="mtz-py-label" style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Cobertura local</p>
+        <h2 class="mtz-py-title" style="margin-top:20px;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.04;letter-spacing:-.03em">Paraguay, de punta a punta.</h2>
+        <p class="mtz-py-lead" style="margin-top:22px;max-width:46ch;font-size:clamp(16px,1.3vw,20px);line-height:1.5;font-weight:500">Nuestro mercado de origen y nuestra principal fortaleza operativa.</p>
+        <p class="mtz-py-body" style="margin-top:18px;max-width:50ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Contamos con experiencia coordinando estudios en Asunción, Área Metropolitana y distintos departamentos del país, con equipos capaces de llegar tanto a centros urbanos como a zonas rurales.</p>
+        <p class="mtz-py-close" style="margin-top:22px;font-size:clamp(16px,1.3vw,20px);line-height:1.45;font-weight:600">Encontramos la mejor manera de hacerlo posible.</p>
       </div>
-      <div style="flex:1 1 300px;min-width:260px;display:flex;justify-content:center">
+      <div class="mtz-py-map" style="flex:1 1 300px;min-width:260px;display:flex;justify-content:center">
         <svg viewBox="{{ pyViewBox }}" role="img" aria-label="Mapa de Paraguay con puntos de cobertura" style="width:100%;max-width:440px;height:auto;display:block">
           <path d="{{ pyPath }}" stroke-linejoin="round" style="fill:var(--paper);stroke:var(--ink);stroke-width:1.2" />
           <g stroke="#788389" stroke-width=".8" opacity=".55">
@@ -748,8 +755,8 @@
         <p style="max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Contamos con experiencia en la ejecución y coordinación de estudios cualitativos y cuantitativos en Latinoamérica, respaldada por una red consolidada de colaboradores y equipos locales en distintos mercados de la región.</p>
       </div>
 
-      <div style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-start">
-        <div style="flex:1 1 280px;min-width:240px;display:flex;justify-content:center">
+      <div class="mtz-latam" style="margin-top:clamp(36px,5vw,72px);display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,72px);align-items:flex-start">
+        <div class="mtz-latam-map" style="flex:1 1 280px;min-width:240px;display:flex;justify-content:center">
           <svg viewBox="{{ latamViewBox }}" role="img" aria-label="Mapa de Sudamérica con los mercados donde Matiz Research opera" style="width:100%;max-width:440px;height:auto;display:block">
             <sc-for list="{{ latamShapes }}" as="c" hint-placeholder-count="0">
               <path d="{{ c.d }}" stroke-linejoin="round" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="fill:{{ c.fill }};stroke:{{ c.stroke }};stroke-width:{{ c.sw }};transform:{{ c.transform }};transform-origin:{{ c.origin }};transform-box:fill-box;transition:transform .3s cubic-bezier(.2,.7,.2,1),fill .3s ease;cursor:{{ c.cursor }};filter:{{ c.filter }}"></path>
@@ -763,17 +770,17 @@
             </g>
           </svg>
         </div>
-        <div style="flex:1 1 320px;min-width:260px">
-          <p style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Mercados con experiencia y red de colaboradores</p>
-          <ul style="margin-top:18px">
+        <div class="mtz-latam-side" style="flex:1 1 320px;min-width:260px">
+          <p class="mtz-latam-label" style="font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)">Mercados con experiencia y red de colaboradores</p>
+          <ul class="mtz-latam-list" style="margin-top:18px">
             <sc-for list="{{ markets }}" as="m" hint-placeholder-count="7">
               <li onMouseEnter="{{ m.enter }}" onMouseLeave="{{ m.leave }}" onClick="{{ m.enter }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-height:52px;padding:14px 0;border-bottom:1px solid #788389;cursor:default">
-                <span style="font-size:clamp(16px,1.5vw,22px);font-weight:500;letter-spacing:-.01em;color:{{ m.color }};transition:color .25s ease">{{ m.name }}</span>
-                <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">{{ m.note }}</span>
+                <span class="mtz-mkt-name" style="font-size:clamp(16px,1.5vw,22px);font-weight:500;letter-spacing:-.01em;color:{{ m.color }};transition:color .25s ease">{{ m.name }}</span>
+                <span class="mtz-mkt-note" style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)">{{ m.note }}</span>
               </li>
             </sc-for>
           </ul>
-          <p style="margin-top:clamp(28px,3vw,44px);max-width:26ch;font-weight:600;font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.02em">Un solo punto de contacto. Distintos mercados. Una misma metodología.</p>
+          <p class="mtz-latam-close" style="margin-top:clamp(28px,3vw,44px);max-width:26ch;font-weight:600;font-size:clamp(20px,2.2vw,32px);line-height:1.15;letter-spacing:-.02em">Un solo punto de contacto. Distintos mercados. Una misma metodología.</p>
         </div>
       </div>
     </div>
