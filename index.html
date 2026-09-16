@@ -51,6 +51,19 @@
   section[data-screen-label="Hero"]:has(section[id^="gp-"][data-gp-entered="true"]) { background: var(--ink) !important; }
   /* LATAM map country label (HTML so text renders; positioned in % over the map) */
   .mtz-map-tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--paper); font: 600 12px/1 Montserrat, Helvetica, Arial, sans-serif; letter-spacing: -.01em; padding: 6px 9px; border-radius: 4px; white-space: nowrap; transition: opacity .2s ease; z-index: 2; }
+  /* Team cards — dark card, photo with bottom fade, bio + signature */
+  .mtz-team-grid { margin-top: clamp(40px,5vw,80px); display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 24px; }
+  .mtz-team-card { flex: 0 1 340px; max-width: 340px; background: #000; color: #fff; border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; }
+  .mtz-team-card__media { position: relative; margin-top: -1px; height: 300px; overflow: hidden; border-radius: 16px; background: #1a1a1a; }
+  .mtz-team-card__media image-slot { position: absolute; inset: 0; width: 100%; height: 100%; display: block; transition: transform .35s ease; }
+  .mtz-team-card:hover .mtz-team-card__media image-slot { transform: scale(1.05); }
+  .mtz-team-card__fade { position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(to top, #000, transparent); pointer-events: none; z-index: 1; }
+  .mtz-team-card__body { position: relative; z-index: 2; margin-top: -40px; padding: 0 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .mtz-team-card__bio { font-weight: 500; font-size: 14px; line-height: 1.6; color: #fff; }
+  .mtz-team-card__extra { margin-top: 14px; font-size: 13.5px; line-height: 1.55; color: #a7b0b4; font-style: italic; }
+  .mtz-team-card__name { margin-top: auto; padding-top: 18px; border-top: 1px solid #4b5563; font-weight: 500; font-size: 16px; letter-spacing: -.01em; color: #fff; }
+  .mtz-team-card__bio + .mtz-team-card__name, .mtz-team-card__extra + .mtz-team-card__name { margin-top: 20px; }
+  .mtz-team-card__role { margin-top: 4px; font-size: 13px; font-weight: 600; background: linear-gradient(90deg, #ffffff, #a7b0b4 55%, #788389); -webkit-background-clip: text; background-clip: text; color: transparent; }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -174,14 +187,14 @@
     section[data-screen-label="Servicios de fieldwork"] ul li span:last-child { font-size: 16px !important; }
     section[data-screen-label="Servicios de fieldwork"] ul li [aria-hidden] { display: none !important; }
 
-    /* Equipo — horizontal carousel of cards */
-    section[id="equipo"] > div > div:last-child { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; gap: 14px !important; margin: 24px -16px 0 !important; padding: 4px 16px 20px !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-    section[id="equipo"] > div > div:last-child::-webkit-scrollbar { display: none; }
-    section[id="equipo"] article { flex: 0 0 250px !important; min-width: 250px !important; max-width: 250px !important; scroll-snap-align: start; display: block !important; }
-    section[id="equipo"] article > div:first-child { width: 100% !important; aspect-ratio: 3 / 4 !important; }
-    section[id="equipo"] article h3 { font-size: 17px !important; margin-top: 12px !important; }
-    section[id="equipo"] article p { font-size: 12.5px !important; margin-top: 6px !important; line-height: 1.45 !important; }
-    section[id="equipo"] article p[style*="clamp(17px"] { font-size: 13px !important; padding-top: 12px !important; margin-top: 12px !important; line-height: 1.35 !important; }
+    /* Equipo — horizontal carousel of dark cards */
+    .mtz-team-grid { flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto !important; scroll-snap-type: x mandatory; gap: 14px !important; margin: 24px -16px 0 !important; padding: 4px 16px 20px !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .mtz-team-grid::-webkit-scrollbar { display: none; }
+    .mtz-team-card { flex: 0 0 82% !important; max-width: 300px !important; scroll-snap-align: start; }
+    .mtz-team-card__media { height: 250px !important; }
+    .mtz-team-card__bio { font-size: 13px !important; }
+    .mtz-team-card__extra { font-size: 12.5px !important; }
+    .mtz-team-card__name { font-size: 15px !important; line-height: 1.3 !important; }
 
     /* Nosotros — photo + text side by side */
     section[id="nosotros"] > div { display: grid !important; grid-template-columns: 130px 1fr !important; gap: 14px !important; flex-wrap: unset !important; align-items: start !important; }
@@ -863,31 +876,40 @@
         <p style="max-width:52ch;font-size:clamp(15px,1.1vw,17px);line-height:1.62">Tenemos un equipo de profesionales con experiencia directa en investigación, coordinación y trabajo de campo. Nos involucramos personalmente en la ejecución y seguimiento de cada estudio.</p>
       </div>
 
-      <div style="margin-top:clamp(40px,5vw,80px);display:flex;flex-wrap:wrap;gap:clamp(28px,3.5vw,56px)">
-        <article data-reveal style="flex:1.5 1 320px;min-width:280px;max-width:560px">
-          <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
+      <div class="mtz-team-grid">
+        <article class="mtz-team-card" data-reveal>
+          <div class="mtz-team-card__media">
             <image-slot id="mtz-team-mabel" shape="rect" fit="cover" placeholder="Foto — Mabel Drakeford"></image-slot>
+            <div class="mtz-team-card__fade" aria-hidden="true"></div>
           </div>
-          <h3 style="margin-top:24px;font-weight:600;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.02em">Mabel Drakeford</h3>
-          <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Jefa de Proyectos y Operaciones</p>
-          <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Ciencias de la Comunicación, especializada en Investigación Cualitativa. Apasionada por la información, proactiva y resolutiva, desarrolló toda su trayectoria profesional vinculada a la investigación, experiencia que hoy vuelca en cada proyecto que lidera.</p>
-          <p style="margin-top:22px;padding-top:22px;border-top:1px solid var(--ink);font-weight:500;font-size:clamp(17px,1.6vw,23px);line-height:1.35;letter-spacing:-.015em">Después de años trabajando como investigadora independiente, dio origen a Matiz Research, reuniendo experiencia, equipo y una red consolidada de colaboradores.</p>
+          <div class="mtz-team-card__body">
+            <p class="mtz-team-card__bio">Licenciada en Ciencias de la Comunicación, especializada en Investigación Cualitativa. Apasionada por la información, proactiva y resolutiva, desarrolló toda su trayectoria profesional vinculada a la investigación, experiencia que hoy vuelca en cada proyecto que lidera.</p>
+            <p class="mtz-team-card__extra">Después de años trabajando como investigadora independiente, dio origen a Matiz Research, reuniendo experiencia, equipo y una red consolidada de colaboradores.</p>
+            <h3 class="mtz-team-card__name">— Mabel Drakeford</h3>
+            <p class="mtz-team-card__role">Jefa de Proyectos y Operaciones</p>
+          </div>
         </article>
-        <article data-reveal style="flex:1 1 260px;min-width:250px;max-width:420px">
-          <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
+        <article class="mtz-team-card" data-reveal>
+          <div class="mtz-team-card__media">
             <image-slot id="mtz-team-laura" shape="rect" fit="cover" placeholder="Foto — Laura Estigarribia"></image-slot>
+            <div class="mtz-team-card__fade" aria-hidden="true"></div>
           </div>
-          <h3 style="margin-top:24px;font-weight:600;font-size:clamp(20px,1.9vw,26px);letter-spacing:-.02em">Laura Estigarribia</h3>
-          <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Coordinadora de Estudios</p>
-          <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Psicología, con más de 9 años de experiencia en investigación de mercado, especialmente en estudios cualitativos. Detallista, analítica y cercana, disfruta descubriendo nuevas herramientas que aporten valor a su trabajo. Su experiencia en coordinación, moderación y análisis le permite acompañar cada proyecto con una mirada organizada y estratégica.</p>
+          <div class="mtz-team-card__body">
+            <p class="mtz-team-card__bio">Licenciada en Psicología, con más de 9 años de experiencia en investigación de mercado, especialmente en estudios cualitativos. Detallista, analítica y cercana, disfruta descubriendo nuevas herramientas que aporten valor a su trabajo. Su experiencia en coordinación, moderación y análisis le permite acompañar cada proyecto con una mirada organizada y estratégica.</p>
+            <h3 class="mtz-team-card__name">— Laura Estigarribia</h3>
+            <p class="mtz-team-card__role">Coordinadora de Estudios</p>
+          </div>
         </article>
-        <article data-reveal style="flex:1 1 260px;min-width:250px;max-width:420px">
-          <div style="position:relative;width:100%;aspect-ratio:3 / 4;border:1px solid #788389;background:var(--paper)">
+        <article class="mtz-team-card" data-reveal>
+          <div class="mtz-team-card__media">
             <image-slot id="mtz-team-camila" shape="rect" fit="cover" placeholder="Foto — Camila"></image-slot>
+            <div class="mtz-team-card__fade" aria-hidden="true"></div>
           </div>
-          <h3 style="margin-top:24px;font-weight:600;font-size:clamp(20px,1.9vw,26px);letter-spacing:-.02em">Camila</h3>
-          <p style="margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)">Supervisora de Campo</p>
-          <p style="margin-top:18px;font-size:clamp(14.5px,1.05vw,16.5px);line-height:1.62">Licenciada en Ciencias de la Comunicación, con experiencia en trabajo de campo y relevamiento de datos. Se destaca por su capacidad de organización y seguimiento, acompañando de cerca a los equipos para asegurar el cumplimiento de los criterios metodológicos y de calidad de cada estudio.</p>
+          <div class="mtz-team-card__body">
+            <p class="mtz-team-card__bio">Licenciada en Ciencias de la Comunicación, con experiencia en trabajo de campo y relevamiento de datos. Se destaca por su capacidad de organización y seguimiento, acompañando de cerca a los equipos para asegurar el cumplimiento de los criterios metodológicos y de calidad de cada estudio.</p>
+            <h3 class="mtz-team-card__name">— Camila</h3>
+            <p class="mtz-team-card__role">Supervisora de Campo</p>
+          </div>
         </article>
       </div>
     </div>
