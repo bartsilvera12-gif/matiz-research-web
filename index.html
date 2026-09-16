@@ -139,10 +139,11 @@
     /* Hero — tighter */
     section[data-screen-label="Hero"] [data-gp-content] > div { gap: 18px !important; }
     section[data-screen-label="Hero"] [data-gp-content] h1 { font-size: 30px !important; letter-spacing: -.025em !important; max-width: none !important; }
-    /* Pull MATIZ intro up: shorter hero and eyebrow/support closer to letter */
-    section[data-screen-label="Hero"] section[id^="gp-"] { --gp-word-top: 32% !important; --gp-word-bottom: 60% !important; }
-    section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 13px !important; }
-    section[data-screen-label="Hero"] [data-gp-support] { font-size: 14px !important; line-height: 1.4 !important; }
+    /* Shorten the whole intro so MATIZ sits high in the viewport */
+    section[data-screen-label="Hero"] section[id^="gp-"] { --gp-height: 68vh !important; }
+    section[data-screen-label="Hero"] [data-gp-pin] { height: 68vh !important; }
+    section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 12px !important; bottom: 62% !important; top: auto !important; }
+    section[data-screen-label="Hero"] [data-gp-support] { font-size: 13.5px !important; line-height: 1.4 !important; top: 62% !important; bottom: auto !important; }
     section[data-screen-label="Hero"] [data-gp-content] { padding-left: 16px !important; padding-right: 16px !important; }
     section[data-screen-label="Hero"] [data-gp-content] > div { max-width: 100% !important; min-width: 0 !important; }
     .mtz-tables { grid-template-columns: 1fr !important; gap: 10px !important; max-width: 100% !important; min-width: 0 !important; }
