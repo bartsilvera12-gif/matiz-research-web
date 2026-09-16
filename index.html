@@ -143,10 +143,16 @@
     section[data-screen-label="Hero"] section[id^="gp-"] { --gp-word-top: 32% !important; --gp-word-bottom: 60% !important; }
     section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 13px !important; }
     section[data-screen-label="Hero"] [data-gp-support] { font-size: 14px !important; line-height: 1.4 !important; }
-    .mtz-tables { grid-template-columns: 1fr !important; gap: 12px !important; }
-    .mtz-table__h { font-size: 10px !important; }
-    .mtz-table td { font-size: 14px !important; padding: 8px 10px !important; }
-    section[data-screen-label="Hero"] [data-gp-content] a[href^="#"] { min-height: 44px !important; padding: 10px 16px !important; font-size: 10.5px !important; flex: 1 1 100% !important; justify-content: center !important; }
+    section[data-screen-label="Hero"] [data-gp-content] { padding-left: 16px !important; padding-right: 16px !important; }
+    section[data-screen-label="Hero"] [data-gp-content] > div { max-width: 100% !important; min-width: 0 !important; }
+    .mtz-tables { grid-template-columns: 1fr !important; gap: 10px !important; max-width: 100% !important; min-width: 0 !important; }
+    .mtz-table { max-width: 100% !important; }
+    .mtz-table__h { font-size: 10px !important; padding: 10px 12px !important; }
+    .mtz-table__h span:last-child { font-size: 10px !important; }
+    .mtz-table td { font-size: 13px !important; padding: 8px 12px !important; }
+    section[data-screen-label="Hero"] [data-gp-content] a[href^="#"] { min-height: 42px !important; padding: 10px 12px !important; font-size: 9.5px !important; letter-spacing: .06em !important; flex: 1 1 100% !important; justify-content: center !important; max-width: 100% !important; min-width: 0 !important; }
+    section[data-screen-label="Hero"] [data-gp-content] a[href^="#"] .mtz-hero-cta__arrow { margin-left: 8px !important; }
+    section[data-screen-label="Hero"] [data-gp-content] > div > div:last-child { flex-direction: column !important; gap: 8px !important; }
 
     /* Two-column card grid — forced on mobile */
     [data-mobile-2col] { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
@@ -160,15 +166,14 @@
     section[data-screen-label="Servicios de fieldwork"] ul li span:last-child { font-size: 16px !important; }
     section[data-screen-label="Servicios de fieldwork"] ul li [aria-hidden] { display: none !important; }
 
-    /* Equipo — each card: photo LEFT, text RIGHT (side by side) */
-    section[id="equipo"] > div > div:last-child { display: flex !important; flex-direction: column !important; gap: 24px !important; flex-wrap: unset !important; margin-top: 24px !important; }
-    section[id="equipo"] article { flex: unset !important; min-width: 0 !important; max-width: none !important; width: 100% !important; display: grid !important; grid-template-columns: 110px 1fr !important; gap: 14px !important; align-items: start !important; }
+    /* Equipo — horizontal carousel of cards */
+    section[id="equipo"] > div > div:last-child { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; overflow-x: auto !important; scroll-snap-type: x mandatory !important; gap: 14px !important; margin: 24px -16px 0 !important; padding: 4px 16px 20px !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    section[id="equipo"] > div > div:last-child::-webkit-scrollbar { display: none; }
+    section[id="equipo"] article { flex: 0 0 250px !important; min-width: 250px !important; max-width: 250px !important; scroll-snap-align: start; display: block !important; }
     section[id="equipo"] article > div:first-child { width: 100% !important; aspect-ratio: 3 / 4 !important; }
-    section[id="equipo"] article h3 { font-size: 16px !important; margin-top: 0 !important; }
-    section[id="equipo"] article p { font-size: 12.5px !important; margin-top: 8px !important; }
+    section[id="equipo"] article h3 { font-size: 17px !important; margin-top: 12px !important; }
+    section[id="equipo"] article p { font-size: 12.5px !important; margin-top: 6px !important; line-height: 1.45 !important; }
     section[id="equipo"] article p[style*="clamp(17px"] { font-size: 13px !important; padding-top: 12px !important; margin-top: 12px !important; line-height: 1.35 !important; }
-    section[id="equipo"] article > *:not(:first-child) { grid-column: 2 !important; }
-    section[id="equipo"] article > div:first-child { grid-column: 1 !important; grid-row: 1 / span 20 !important; }
 
     /* Nosotros — photo + text side by side */
     section[id="nosotros"] > div { display: grid !important; grid-template-columns: 130px 1fr !important; gap: 14px !important; flex-wrap: unset !important; align-items: start !important; }
