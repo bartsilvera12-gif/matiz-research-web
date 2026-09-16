@@ -48,7 +48,9 @@
   /* Once the portal has opened, the area around the pinned frame must be ink too
      (iOS Safari's translucent toolbar otherwise shows a white band under it) */
   section[data-screen-label="Hero"] section[id^="gp-"][data-gp-entered="true"],
-  section[data-screen-label="Hero"]:has(section[id^="gp-"][data-gp-entered="true"]) { background: var(--ink) !important; }
+  section[data-screen-label="Hero"]:has(section[id^="gp-"][data-gp-entered="true"]),
+  section[data-screen-label="Hero"] section[id^="gp-"][data-gp-filled="true"],
+  section[data-screen-label="Hero"]:has(section[id^="gp-"][data-gp-filled="true"]) { background: var(--ink) !important; }
   /* LATAM map country label (HTML so text renders; positioned in % over the map) */
   .mtz-map-tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--paper); font: 600 12px/1 Montserrat, Helvetica, Arial, sans-serif; letter-spacing: -.01em; padding: 6px 9px; border-radius: 4px; white-space: nowrap; transition: opacity .2s ease; z-index: 2; }
   /* Team cards — dark card, photo with bottom fade, bio + signature */

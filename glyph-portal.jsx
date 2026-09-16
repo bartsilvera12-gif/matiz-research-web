@@ -194,6 +194,8 @@ function GlyphPortal(props) {
       choices.inert = !choosing;
       section.dataset.gpChoosing = String(choosing);
       field.style.clipPath = t >= 1 ? "none" : "url(#" + clipId + ")";
+      // The frame reads as fully ink once the zoomed interior (the largest opaque square) spans the frame.
+      section.dataset.gpFilled = String(!isStatic && (t >= 1 || (!!target && target.radius * scale >= Math.max(W, H) / 2 * 0.9)));
       section.style.setProperty("--gp-caption", String(1 - smooth(0.01, 0.16, p)));
       section.style.setProperty("--gp-reveal", String(isStatic ? 1 : smooth(0.78, 0.9, p)));
       section.style.setProperty("--gp-field-scale", String(1 + 0.16 * smooth(0, 0.82, p)));
@@ -219,7 +221,8 @@ function GlyphPortal(props) {
           }
         }
       }
-      offset = Math.max(0, Math.min(viewportHeight * 0.4, offset));
+      // Floor so the pinned frame tucks under a fractional-height header instead of leaving a 1px seam.
+      offset = Math.floor(Math.max(0, Math.min(viewportHeight * 0.4, offset)));
       section.style.setProperty("--gp-offset", offset + "px");
       H = motion.matches ? Math.min(viewportHeight * 0.75, 480) : viewportHeight - offset;
       section.style.setProperty("--gp-height", H + "px");
