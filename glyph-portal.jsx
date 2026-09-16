@@ -68,6 +68,8 @@ function GlyphPortal(props) {
   let characterOffset = 0;
   const characters = Array.from(text, (char) => { const index = characterOffset; characterOffset += char.length; return { char, index }; });
   const length = Number.isFinite(+props.scrollLength) ? clamp(+props.scrollLength, 1, 8) : 2.4;
+  // Vertical anchor of the word inside the pinned frame (fraction of its height).
+  const wordY = Number.isFinite(+props.wordY) ? clamp(+props.wordY, 0.15, 0.7) : 0.46;
   const weight = Number.isFinite(+props.fontWeight) ? clamp(+props.fontWeight, 1, 1000) : 900;
   const q = ":where(#" + uid + ")";
 
@@ -181,9 +183,9 @@ function GlyphPortal(props) {
       const cx = center.x + ((target ? target.x : center.x) - center.x) * blend;
       const cy = center.y + ((target ? target.y : center.y) - center.y) * blend;
       const roll = -4 * smooth(0.06, 0.5, t) * (1 - smooth(0.62, 0.92, t));
-      const transform = "translate(" + (W / 2) + " " + (H * 0.46 + H * 0.04 * eased) + ") scale(" + scale + ") rotate(" + roll + ") translate(" + (-cx) + " " + (-cy) + ")";
+      const transform = "translate(" + (W / 2) + " " + (H * wordY + H * 0.04 * eased) + ") scale(" + scale + ") rotate(" + roll + ") translate(" + (-cx) + " " + (-cy) + ")";
       const radians = roll * Math.PI / 180;
-      const dx = W / 2 / scale, dy = (H * 0.46 + H * 0.04 * eased) / scale;
+      const dx = W / 2 / scale, dy = (H * wordY + H * 0.04 * eased) / scale;
       clip.setAttribute("transform", "scale(" + scale + ") rotate(" + roll + ")");
       glyph.setAttribute("transform", "translate(" + (Math.cos(radians) * dx + Math.sin(radians) * dy - cx) + " " + (-Math.sin(radians) * dx + Math.cos(radians) * dy - cy) + ")");
       marks.setAttribute("transform", transform);
@@ -232,13 +234,13 @@ function GlyphPortal(props) {
         if (!letter) continue;
         Object.assign(button.style, {
           left: (W / 2 + (letter.x - center.x) * startScale) + "px",
-          top: (H * 0.46 + (letter.y - center.y) * startScale - Math.max(0, 44 - letter.height * startScale) / 2) + "px",
+          top: (H * wordY + (letter.y - center.y) * startScale - Math.max(0, 44 - letter.height * startScale) / 2) + "px",
           width: Math.max(1, letter.width * startScale) + "px",
           height: Math.max(44, letter.height * startScale) + "px"
         });
       }
-      section.style.setProperty("--gp-word-top", (H * 0.46 - bounds.height * startScale / 2) + "px");
-      section.style.setProperty("--gp-word-bottom", (H * 0.46 + bounds.height * startScale / 2) + "px");
+      section.style.setProperty("--gp-word-top", (H * wordY - bounds.height * startScale / 2) + "px");
+      section.style.setProperty("--gp-word-bottom", (H * wordY + bounds.height * startScale / 2) + "px");
       section.dataset.gpReady = "true";
       section.dataset.gpMotion = !motion.matches && !stalled && target ? "on" : "off";
     };
@@ -317,7 +319,7 @@ function GlyphPortal(props) {
       choices.removeEventListener("keydown", navigate);
       picker.removeEventListener("change", pick);
     };
-  }, [text, focusChar, interactive, fontFamily, weight, length, clipId, props.stickyOffset]);
+  }, [text, focusChar, interactive, fontFamily, weight, length, wordY, clipId, props.stickyOffset]);
 
   const css = `
     ${q}{--gp-paper:#fff;--gp-ink:#000;--gp-field:#000;--gp-foreground:#fff;position:relative;isolation:isolate;background:var(--gp-paper);color:var(--gp-ink);}

@@ -139,11 +139,9 @@
     /* Hero — tighter */
     section[data-screen-label="Hero"] [data-gp-content] > div { gap: 18px !important; }
     section[data-screen-label="Hero"] [data-gp-content] h1 { font-size: 30px !important; letter-spacing: -.025em !important; max-width: none !important; }
-    /* Shorten the whole intro so MATIZ sits high in the viewport */
-    section[data-screen-label="Hero"] section[id^="gp-"] { --gp-height: 68vh !important; }
-    section[data-screen-label="Hero"] [data-gp-pin] { height: 68vh !important; }
-    section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 12px !important; bottom: 62% !important; top: auto !important; }
-    section[data-screen-label="Hero"] [data-gp-support] { font-size: 13.5px !important; line-height: 1.4 !important; top: 62% !important; bottom: auto !important; }
+    /* Intro labels a touch smaller on phones (letter position comes from the word-y prop) */
+    section[data-screen-label="Hero"] [data-gp-eyebrow] { font-size: 12px !important; }
+    section[data-screen-label="Hero"] [data-gp-support] { font-size: 13.5px !important; line-height: 1.4 !important; }
     section[data-screen-label="Hero"] { overflow-x: hidden !important; }
     section[data-screen-label="Hero"] [data-gp-content] { padding-left: 16px !important; padding-right: 16px !important; overflow-x: hidden !important; box-sizing: border-box !important; max-width: 100vw !important; }
     section[data-screen-label="Hero"] [data-gp-content] > div { max-width: 100% !important; width: 100% !important; min-width: 0 !important; box-sizing: border-box !important; }
@@ -234,11 +232,22 @@
     section[data-obs="latam"] ul li span:last-child { font-size: 9px !important; letter-spacing: .12em !important; }
     section[data-obs="latam"] p[style*="26ch"] { font-size: 16px !important; margin-top: 20px !important; padding-top: 16px !important; border-top: 1px solid #788389 !important; }
 
-    /* Footer — 2 col grid, brand full width */
-    footer > div > div:first-child { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 28px 20px !important; }
-    footer > div > div:first-child > div:first-child, footer > div > div:first-child > nav { grid-column: 1 / -1 !important; }
-    footer nav a { font-size: 13px !important; }
-    footer > div > div:last-child { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+    /* Footer — compact: nav in 2 cols, contact rows, social inline, one-line legal */
+    footer { padding: 40px 16px 24px !important; }
+    footer > div > div:first-child { display: grid !important; grid-template-columns: 1fr !important; gap: 22px !important; }
+    footer > div > div:first-child > div:first-child img { width: 200px !important; }
+    footer > div > div:first-child > div:first-child p { font-size: 13px !important; line-height: 1.45 !important; margin-top: 12px !important; max-width: none !important; }
+    footer > div > div:first-child > nav { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px 16px !important; }
+    footer nav a { font-size: 13.5px !important; }
+    footer > div > div:first-child > div:nth-child(3) { display: flex !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 6px 18px !important; }
+    footer > div > div:first-child > div:nth-child(3) > p { flex: 1 1 100% !important; }
+    footer > div > div:first-child > div:nth-child(3) > a { font-size: 13.5px !important; word-break: normal !important; overflow-wrap: anywhere !important; }
+    footer > div > div:first-child > div:nth-child(3) > a[href^="mailto"] { flex: 1 1 100% !important; }
+    footer > div > div:first-child > div:nth-child(4) { display: flex !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 6px 16px !important; }
+    footer > div > div:first-child > div:nth-child(4) > p { flex: 1 1 100% !important; }
+    footer > div > div:first-child > div:nth-child(4) > span { font-size: 13.5px !important; }
+    footer > div > div:last-child { flex-direction: row !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 4px 12px !important; margin-top: 28px !important; padding-top: 16px !important; }
+    footer > div > div:last-child p { font-size: 11.5px !important; }
 
     /* Reason list — number aligned inline */
     .mtz-reason { padding: 22px 0 !important; }
@@ -304,7 +313,7 @@
 <main>
   <div data-page="Home" style="display:{{ pgHome }}">
   <section id="inicio" data-screen-label="Hero">
-    <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
+    <x-import component="GlyphPortal" from="./glyph-portal.jsx" word="MATIZ" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="800" scroll-length="2.6" enter-label="Entrar" sticky-offset="{{ headerOffset }}" word-y="{{ heroWordY }}" eyebrow="Investigación de Mercado · Fieldwork &amp; Research Support" support="Una pregunta puede empezar en una oficina y terminar recorriendo todo un país." hint-size="100%,100vh">
       <canvas class="mtz-hero-canvas" aria-hidden="true"></canvas>
       <div style="max-width:1320px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:clamp(18px,2.2vw,32px);color:var(--paper);position:relative;z-index:1">
         <h1 style="font-weight:600;font-size:clamp(26px,4.2vw,58px);line-height:1;letter-spacing:-.03em;max-width:20ch">Investigación que conecta. <span style="color:#788389">Ejecución que hace posible cada proyecto.</span></h1>
@@ -1185,6 +1194,7 @@ class Component extends DCLogic {
     return {
       isDark: s.dark,
       headerOffset: s.headerH,
+      heroWordY: vw < 640 ? 0.3 : 0.46,
       logoOnPaper: s.dark ? 'none' : 'block',
       logoOnInk: s.dark ? 'block' : 'none',
       knobX: s.dark ? '20px' : '0px',
