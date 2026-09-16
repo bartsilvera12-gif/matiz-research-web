@@ -45,6 +45,10 @@
   /* Arrow slide inside links / CTAs */
   .mtz-arrow { display: inline-block; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
   a:hover .mtz-arrow, a:focus-visible .mtz-arrow, button:hover .mtz-arrow, button:focus-visible .mtz-arrow { transform: translateX(6px); }
+  /* Once the portal has opened, the area around the pinned frame must be ink too
+     (iOS Safari's translucent toolbar otherwise shows a white band under it) */
+  section[data-screen-label="Hero"] section[id^="gp-"][data-gp-entered="true"],
+  section[data-screen-label="Hero"]:has(section[id^="gp-"][data-gp-entered="true"]) { background: var(--ink) !important; }
   /* Hide GlyphPortal "Elegí una letra" touch picker */
   section[data-screen-label="Hero"] [data-gp-touch-picker] { display: none !important; }
   /* Hero particle network canvas */
@@ -233,22 +237,20 @@
     section[data-obs="latam"] ul li span:last-child { font-size: 9px !important; letter-spacing: .12em !important; }
     section[data-obs="latam"] p[style*="26ch"] { font-size: 16px !important; margin-top: 20px !important; padding-top: 16px !important; border-top: 1px solid #788389 !important; }
 
-    /* Footer — compact: nav in 2 cols, contact rows, social inline, one-line legal */
+    /* Footer — compact, class-based */
     footer { padding: 40px 16px 24px !important; }
-    footer > div > div:first-child { display: grid !important; grid-template-columns: 1fr !important; gap: 22px !important; }
-    footer > div > div:first-child > div:first-child img { width: 200px !important; }
-    footer > div > div:first-child > div:first-child p { font-size: 13px !important; line-height: 1.45 !important; margin-top: 12px !important; max-width: none !important; }
-    footer > div > div:first-child > nav { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px 16px !important; }
-    footer nav a { font-size: 13.5px !important; }
-    footer > div > div:first-child > div:nth-child(3) { display: flex !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 6px 18px !important; }
-    footer > div > div:first-child > div:nth-child(3) > p { flex: 1 1 100% !important; }
-    footer > div > div:first-child > div:nth-child(3) > a { font-size: 13.5px !important; word-break: normal !important; overflow-wrap: anywhere !important; }
-    footer > div > div:first-child > div:nth-child(3) > a[href^="mailto"] { flex: 1 1 100% !important; }
-    footer > div > div:first-child > div:nth-child(4) { display: flex !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 6px 16px !important; }
-    footer > div > div:first-child > div:nth-child(4) > p { flex: 1 1 100% !important; }
-    footer > div > div:first-child > div:nth-child(4) > span { font-size: 13.5px !important; }
-    footer > div > div:last-child { flex-direction: row !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 4px 12px !important; margin-top: 28px !important; padding-top: 16px !important; }
-    footer > div > div:last-child p { font-size: 11.5px !important; }
+    .mtz-foot-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+    .mtz-foot-brand img { width: 200px !important; }
+    .mtz-foot-brand p { font-size: 13px !important; line-height: 1.45 !important; margin-top: 12px !important; max-width: none !important; }
+    .mtz-foot-nav { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 10px 16px !important; }
+    .mtz-foot-nav a { font-size: 13.5px !important; }
+    .mtz-foot-contact, .mtz-foot-social { flex-direction: row !important; flex-wrap: wrap !important; align-items: baseline !important; gap: 8px 20px !important; }
+    .mtz-foot-contact > *, .mtz-foot-social > * { font-size: 13.5px !important; }
+    .mtz-foot-contact > p:first-child, .mtz-foot-social > p:first-child { flex: 0 0 100% !important; font-size: 11px !important; }
+    .mtz-foot-contact > a[href^="mailto"] { flex: 0 0 100% !important; }
+    .mtz-foot-social > p:last-child { flex: 0 0 100% !important; font-size: 12px !important; }
+    .mtz-foot-legal { flex-direction: row !important; flex-wrap: wrap !important; justify-content: space-between !important; gap: 6px 12px !important; margin-top: 28px !important; padding-top: 16px !important; }
+    .mtz-foot-legal p { font-size: 11.5px !important; }
 
     /* Reason list — number aligned inline */
     .mtz-reason { padding: 22px 0 !important; }
@@ -947,13 +949,13 @@
 
 <footer style="background:var(--ink);color:var(--paper);padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px) 32px">
   <div style="max-width:1320px;margin:0 auto;width:100%">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(32px,4vw,64px)">
-      <div>
+    <div class="mtz-foot-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(32px,4vw,64px)">
+      <div class="mtz-foot-brand">
         <img src="logo-matiz-dark.svg" alt="Matiz Research — Insights &amp; Fieldwork LATAM" style="display:{{ logoOnPaper }};width:min(260px,100%);height:auto" />
         <img src="logo-matiz.svg" alt="Matiz Research — Insights &amp; Fieldwork LATAM" style="display:{{ logoOnInk }};width:min(260px,100%);height:auto" />
         <p style="margin-top:24px;font-size:14px;line-height:1.6;color:var(--muted);max-width:30ch">Investigación de mercado y soporte de fieldwork en Paraguay y Latinoamérica.</p>
       </div>
-      <nav aria-label="Secciones" style="display:flex;flex-direction:column;gap:12px">
+      <nav class="mtz-foot-nav" aria-label="Secciones" style="display:flex;flex-direction:column;gap:12px">
         <a href="#investigacion" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Investigación de Mercado</a>
         <a href="#fieldwork" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Fieldwork</a>
         <a href="#capacidad" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Capacidad Operativa</a>
@@ -961,13 +963,13 @@
         <a href="#equipo" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Equipo</a>
         <a href="#contacto" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">Contacto</a>
       </nav>
-      <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="mtz-foot-contact" style="display:flex;flex-direction:column;gap:12px">
         <p style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Contacto</p>
-        <a href="mailto:mabedrakeford@gmail.com" style="color:var(--paper);font-size:14px;word-break:break-all" style-hover="color:var(--muted)">mabedrakeford@gmail.com</a>
+        <a href="mailto:mabedrakeford@gmail.com" style="color:var(--paper);font-size:14px;overflow-wrap:anywhere" style-hover="color:var(--muted)">mabedrakeford@gmail.com</a>
         <a href="tel:+595985711422" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">+595 985 711 422</a>
         <a href="https://matizr.com" style="color:var(--paper);font-size:14px" style-hover="color:var(--muted)">matizr.com</a>
       </div>
-      <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="mtz-foot-social" style="display:flex;flex-direction:column;gap:12px">
         <p style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Redes</p>
         <span style="font-size:14px;color:var(--muted)">LinkedIn</span>
         <span style="font-size:14px;color:var(--muted)">Instagram</span>
@@ -975,7 +977,7 @@
         <p style="font-size:12px;color:var(--muted);display:{{ socialNoteDisplay }}">En proceso de creación.</p>
       </div>
     </div>
-    <div style="margin-top:clamp(40px,5vw,72px);padding-top:24px;border-top:1px solid #788389;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+    <div class="mtz-foot-legal" style="margin-top:clamp(40px,5vw,72px);padding-top:24px;border-top:1px solid #788389;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
       <p style="font-size:12px;color:var(--muted)">© Matiz Research</p>
       <p style="font-size:12px;color:var(--muted)">Paraguay · Latinoamérica</p>
       <p style="font-size:12px;color:var(--muted)">Desarrollado por <a href="https://neura.com.py" target="_blank" rel="noopener" style="color:var(--paper);border-bottom:1px solid #788389;padding-bottom:2px" style-hover="border-color:var(--paper)">Neura</a></p>
